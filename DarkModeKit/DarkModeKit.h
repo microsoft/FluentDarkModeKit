@@ -1,19 +1,13 @@
 //
-//  DarkModeKit.h
-//  DarkModeKit
-//
-//  Created by Bei Li on 2019/10/24.
-//  Copyright © 2019 Microsoft Corporation. All rights reserved.
+//  Copyright 2013-2019 Microsoft Inc.
 //
 
-#import <Foundation/Foundation.h>
+#import <DarkModeKit/DMTraitCollection.h>
+#import <DarkModeKit/OLMDynamicColor.h>
+#import <DarkModeKit/OLMDynamicImage.h>
 
 //! Project version number for DarkModeKit.
 FOUNDATION_EXPORT double DarkModeKitVersionNumber;
 
 //! Project version string for DarkModeKit.
 FOUNDATION_EXPORT const unsigned char DarkModeKitVersionString[];
-
-// In this header, you should import all the public headers of your framework using statements like #import <DarkModeKit/PublicHeader.h>
-
-
