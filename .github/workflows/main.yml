@@ -10,6 +10,7 @@ jobs:
     steps:
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode_11.1.app
+      - uses: actions/checkout@v1
       - name: Build
         run: |
           ls -a
