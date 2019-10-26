@@ -11,4 +11,6 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode_11.1.app
       - name: Build
-        run: xcodebuild -configuration Release
+        run: |
+          ls -a
+          xcodebuild -configuration Release
