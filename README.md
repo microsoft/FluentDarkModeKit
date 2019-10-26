@@ -1,5 +1,7 @@
 # DarkModeKit
 
+![](https://github.com/microsoft/DarkModeKit/workflows/CI/badge.svg)
+
 ## Installation
 
 ## Contributing
