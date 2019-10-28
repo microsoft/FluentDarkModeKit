@@ -29,7 +29,7 @@ public protocol Themeable {
   func themeDidChange()
 }
 
-public final class DarkModeKit: NSObject {
+public final class DarkModeManager: NSObject {
   public static func setup(updateAppearance: @escaping (UIApplication) -> Void) {
     UIApplication.updateAppearance = updateAppearance
 

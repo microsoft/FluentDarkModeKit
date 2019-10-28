@@ -33,13 +33,13 @@ extension UITabBarItem: Themeable {
 
   static let swizzleSetImageOnce: Void = {
     if !dm_swizzleInstanceMethod(#selector(setter: image), to: #selector(outlookSetImage(_:))) {
-      assertionFailure(DarkModeKit.messageForSwizzlingFailed(class: UITabBarItem.self, selector: #selector(setter: image)))
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UITabBarItem.self, selector: #selector(setter: image)))
     }
   }()
 
   static let swizzleSetSelectedImageOnce: Void = {
     if !dm_swizzleInstanceMethod(#selector(setter: selectedImage), to: #selector(outlookSetSelectedImage(_:))) {
-      assertionFailure(DarkModeKit.messageForSwizzlingFailed(class: UITabBarItem.self, selector: #selector(setter: selectedImage)))
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UITabBarItem.self, selector: #selector(setter: selectedImage)))
     }
   }()
 
@@ -58,7 +58,7 @@ extension UITabBarItem: Themeable {
   }
 
   @objc dynamic func outlookSetImage(_ image: UIImage?) {
-    if object_getClass(image) == OLMDynamicImageProxy.self {
+    if object_getClass(image) == DMDynamicImageProxy.self {
       _dynamicImage = image
     }
     else {
@@ -68,7 +68,7 @@ extension UITabBarItem: Themeable {
   }
 
   @objc dynamic func outlookSetSelectedImage(_ image: UIImage?) {
-    if object_getClass(image) == OLMDynamicImageProxy.self {
+    if object_getClass(image) == DMDynamicImageProxy.self {
       _dynamicSelectedImage = image
     }
     else {

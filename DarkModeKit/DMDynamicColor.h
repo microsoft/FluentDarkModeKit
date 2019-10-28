@@ -7,7 +7,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 NS_SWIFT_NAME(DynamicColor)
-@interface OLMDynamicColor : UIColor
+@interface DMDynamicColor : UIColor
 
 @property (nonatomic, readonly) UIColor *lightColor;
 @property (nonatomic, readonly) UIColor *darkColor;

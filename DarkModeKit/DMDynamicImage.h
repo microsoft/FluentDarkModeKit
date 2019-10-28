@@ -6,7 +6,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface OLMDynamicImageProxy : NSProxy
+@interface DMDynamicImageProxy : NSProxy
 @end
 
 @interface UIImage (DynamicImage)

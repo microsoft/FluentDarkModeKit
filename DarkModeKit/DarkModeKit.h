@@ -2,9 +2,9 @@
 //  Copyright 2013-2019 Microsoft Inc.
 //
 
+#import <DarkModeKit/DMDynamicColor.h>
+#import <DarkModeKit/DMDynamicImage.h>
 #import <DarkModeKit/DMTraitCollection.h>
-#import <DarkModeKit/OLMDynamicColor.h>
-#import <DarkModeKit/OLMDynamicImage.h>
 
 //! Project version number for DarkModeKit.
 FOUNDATION_EXPORT double DarkModeKitVersionNumber;

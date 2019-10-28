@@ -28,7 +28,7 @@ extension UIView: Themeable {
 extension UIView {
   static let swizzleWillMoveToWindowOnce: Void = {
     if !dm_swizzleInstanceMethod(#selector(willMove(toWindow:)), to: #selector(outlookWillMove(toWindow:))) {
-      assertionFailure(DarkModeKit.messageForSwizzlingFailed(class: UIView.self, selector: #selector(willMove(toWindow:))))
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: #selector(willMove(toWindow:))))
     }
   }()
 
@@ -49,13 +49,13 @@ extension UIView {
 
   static let swizzleSetBackgroundColorOnce: Void = {
     if !dm_swizzleInstanceMethod(#selector(setter: backgroundColor), to: #selector(outlookSetBackgroundColor)) {
-      assertionFailure(DarkModeKit.messageForSwizzlingFailed(class: UIView.self, selector: #selector(setter: backgroundColor)))
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: #selector(setter: backgroundColor)))
     }
   }()
 
   static let swizzleSetTintColorOnce: Void = {
     if !dm_swizzleInstanceMethod(#selector(setter: tintColor), to: #selector(outlookSetTintColor)) {
-      assertionFailure(DarkModeKit.messageForSwizzlingFailed(class: UIView.self, selector: #selector(setter: tintColor)))
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: #selector(setter: tintColor)))
     }
   }()
 

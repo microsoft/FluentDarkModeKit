@@ -15,18 +15,18 @@ extension UIImageView {
 
   static let swizzleSetImageOnce: Void = {
     if !dm_swizzleInstanceMethod(#selector(setter: image), to: #selector(outlookSetImage(_:))) {
-      assertionFailure(DarkModeKit.messageForSwizzlingFailed(class: UIImageView.self, selector: #selector(setter: image)))
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIImageView.self, selector: #selector(setter: image)))
     }
   }()
 
   static let swizzleInitImageOnce: Void = {
     if !dm_swizzleInstanceMethod(#selector(UIImageView.init(image:)), to: #selector(UIImageView.outlookInit(image:))) {
-      assertionFailure(DarkModeKit.messageForSwizzlingFailed(class: UIImageView.self, selector: #selector(setter: image)))
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIImageView.self, selector: #selector(setter: image)))
     }
   }()
 
   @objc dynamic func outlookInit(image: UIImage?) -> UIImageView {
-    if object_getClass(image) == OLMDynamicImageProxy.self {
+    if object_getClass(image) == DMDynamicImageProxy.self {
       _dynamicImage = image
     }
     return outlookInit(image: image)
@@ -41,7 +41,7 @@ extension UIImageView {
   }
 
   @objc dynamic func outlookSetImage(_ image: UIImage?) {
-    if object_getClass(image) == OLMDynamicImageProxy.self {
+    if object_getClass(image) == DMDynamicImageProxy.self {
       _dynamicImage = image
     }
     else {

@@ -19,9 +19,7 @@ private func class_swizzleMethods(_ cls: AnyClass?, _ selector1: Selector, _ sel
 }
 
 extension NSObject {
-  @objc
-  @discardableResult
-  public static func dm_swizzleInstanceMethod(_ fromSelector: Selector, to toSelector: Selector) -> Bool {
+  @discardableResult @objc static func dm_swizzleInstanceMethod(_ fromSelector: Selector, to toSelector: Selector) -> Bool {
     class_swizzleMethods(self, fromSelector, toSelector)
   }
 

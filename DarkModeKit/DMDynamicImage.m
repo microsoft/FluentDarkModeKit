@@ -2,19 +2,19 @@
 //  Copyright 2013-2019 Microsoft Inc.
 //
 
-#import "OLMDynamicImage.h"
+#import "DMDynamicImage.h"
 #import "DMTraitCollection.h"
 #import <DarkModeKit/DarkModeKit-Swift.h>
 
-// MARK: - OLMDynamicImageProxy
+// MARK: - DMDynamicImageProxy
 
-@interface OLMDynamicImageProxy ()
+@interface DMDynamicImageProxy ()
 @property (nonatomic, strong) UIImage *lightImage;
 @property (nonatomic, strong) UIImage *darkImage;
 @property (nonatomic, readonly) UIImage *resolvedImage;
 @end
 
-@implementation OLMDynamicImageProxy
+@implementation DMDynamicImageProxy
 
 - (instancetype)initWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage
 {
@@ -66,32 +66,32 @@
 
 - (UIImage *)resizableImageWithCapInsets:(UIEdgeInsets)capInsets
 {
-  return (UIImage *)[[OLMDynamicImageProxy alloc] initWithLightImage:[self.lightImage resizableImageWithCapInsets:capInsets] darkImage:[self.darkImage resizableImageWithCapInsets:capInsets]];
+  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage resizableImageWithCapInsets:capInsets] darkImage:[self.darkImage resizableImageWithCapInsets:capInsets]];
 }
 
 - (UIImage *)resizableImageWithCapInsets:(UIEdgeInsets)capInsets resizingMode:(UIImageResizingMode)resizingMode
 {
-  return (UIImage *)[[OLMDynamicImageProxy alloc] initWithLightImage:[self.lightImage resizableImageWithCapInsets:capInsets resizingMode:resizingMode] darkImage:[self.darkImage resizableImageWithCapInsets:capInsets resizingMode:resizingMode]];
+  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage resizableImageWithCapInsets:capInsets resizingMode:resizingMode] darkImage:[self.darkImage resizableImageWithCapInsets:capInsets resizingMode:resizingMode]];
 }
 
 - (UIImage *)imageWithAlignmentRectInsets:(UIEdgeInsets)alignmentInsets
 {
-  return (UIImage *)[[OLMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageWithAlignmentRectInsets:alignmentInsets] darkImage:[self.darkImage imageWithAlignmentRectInsets:alignmentInsets]];
+  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageWithAlignmentRectInsets:alignmentInsets] darkImage:[self.darkImage imageWithAlignmentRectInsets:alignmentInsets]];
 }
 
 - (UIImage *)imageWithRenderingMode:(UIImageRenderingMode)renderingMode
 {
-  return (UIImage *)[[OLMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageWithRenderingMode:renderingMode] darkImage:[self.darkImage imageWithRenderingMode:renderingMode]];
+  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageWithRenderingMode:renderingMode] darkImage:[self.darkImage imageWithRenderingMode:renderingMode]];
 }
 
 - (UIImage *)imageFlippedForRightToLeftLayoutDirection
 {
-  return (UIImage *)[[OLMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageFlippedForRightToLeftLayoutDirection] darkImage:[self.darkImage imageFlippedForRightToLeftLayoutDirection]];
+  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageFlippedForRightToLeftLayoutDirection] darkImage:[self.darkImage imageFlippedForRightToLeftLayoutDirection]];
 }
 
 - (UIImage *)imageWithHorizontallyFlippedOrientation
 {
-  return (UIImage *)[[OLMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageWithHorizontallyFlippedOrientation] darkImage:[self.darkImage imageWithHorizontallyFlippedOrientation]];
+  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageWithHorizontallyFlippedOrientation] darkImage:[self.darkImage imageWithHorizontallyFlippedOrientation]];
 }
 
 - (id)copy
@@ -101,7 +101,7 @@
 
 - (id)copyWithZone:(NSZone *)zone
 {
-  return [[OLMDynamicImageProxy alloc] initWithLightImage:self.lightImage darkImage:self.darkImage];
+  return [[DMDynamicImageProxy alloc] initWithLightImage:self.lightImage darkImage:self.darkImage];
 }
 
 @end
@@ -117,7 +117,7 @@
 
 - (instancetype)initWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage
 {
-  return (UIImage *)[[OLMDynamicImageProxy alloc] initWithLightImage:lightImage darkImage:darkImage];
+  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:lightImage darkImage:darkImage];
 }
 
 - (BOOL)outlookIsEqual:(UIImage *)other
@@ -126,13 +126,13 @@
   /// here we forward the message to internal images manually
   UIImage *realSelf = self;
   UIImage *realOther = other;
-  if (object_getClass(self) == OLMDynamicImageProxy.class)
+  if (object_getClass(self) == DMDynamicImageProxy.class)
   {
-    realSelf = ((OLMDynamicImageProxy *)self).resolvedImage;
+    realSelf = ((DMDynamicImageProxy *)self).resolvedImage;
   }
-  if (object_getClass(other) == OLMDynamicImageProxy.class)
+  if (object_getClass(other) == DMDynamicImageProxy.class)
   {
-    realOther = ((OLMDynamicImageProxy *)other).resolvedImage;
+    realOther = ((DMDynamicImageProxy *)other).resolvedImage;
   }
   return [realSelf outlookIsEqual:realOther];
 }

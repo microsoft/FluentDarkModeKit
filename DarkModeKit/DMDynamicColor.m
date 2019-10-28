@@ -2,10 +2,10 @@
 //  Copyright 2013-2019 Microsoft Inc.
 //
 
-#import "OLMDynamicColor.h"
+#import "DMDynamicColor.h"
 #import "DMTraitCollection.h"
 
-@interface OLMDynamicColorProxy : NSProxy <NSCopying>
+@interface DMDynamicColorProxy : NSProxy <NSCopying>
 
 @property (nonatomic, strong) UIColor *lightColor;
 @property (nonatomic, strong) UIColor *darkColor;
@@ -14,7 +14,7 @@
 
 @end
 
-@implementation OLMDynamicColorProxy
+@implementation DMDynamicColorProxy
 
 // TODO: We need a more generic initializer.
 - (instancetype)initWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor
@@ -41,8 +41,8 @@
 
 - (UIColor *)colorWithAlphaComponent:(CGFloat)alpha
 {
-  return [[OLMDynamicColor alloc] initWithLightColor:[self.lightColor colorWithAlphaComponent:alpha]
-                                           darkColor:[self.darkColor colorWithAlphaComponent:alpha]];
+  return [[DMDynamicColor alloc] initWithLightColor:[self.lightColor colorWithAlphaComponent:alpha]
+                                          darkColor:[self.darkColor colorWithAlphaComponent:alpha]];
 }
 
 // MARK: NSProxy
@@ -61,10 +61,10 @@
 
 - (BOOL)isKindOfClass:(Class)aClass
 {
-  static OLMDynamicColor *dynamicColor = nil;
+  static DMDynamicColor *dynamicColor = nil;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    dynamicColor = [[OLMDynamicColor alloc] init];
+    dynamicColor = [[DMDynamicColor alloc] init];
   });
   return [dynamicColor isKindOfClass:aClass];
 }
@@ -76,18 +76,18 @@
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-  return [[OLMDynamicColorProxy alloc] initWithLightColor:self.lightColor darkColor:self.darkColor];
+  return [[DMDynamicColorProxy alloc] initWithLightColor:self.lightColor darkColor:self.darkColor];
 }
 
 @end
 
 // MARK: -
 
-@implementation OLMDynamicColor
+@implementation DMDynamicColor
 
 - (UIColor *)initWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor
 {
-  return (OLMDynamicColor *)[[OLMDynamicColorProxy alloc] initWithLightColor:lightColor darkColor:darkColor];
+  return (DMDynamicColor *)[[DMDynamicColorProxy alloc] initWithLightColor:lightColor darkColor:darkColor];
 }
 
 - (UIColor *)lightColor

@@ -9,7 +9,7 @@ extension UILabel {
 
   static let swizzleDidMoveToWindowOnce: Void = {
     if !dm_swizzleInstanceMethod(#selector(didMoveToWindow), to: #selector(outlookDidMoveToWindow)) {
-      assertionFailure(DarkModeKit.messageForSwizzlingFailed(class: UILabel.self, selector: #selector(outlookDidMoveToWindow)))
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UILabel.self, selector: #selector(outlookDidMoveToWindow)))
     }
   }()
 
@@ -28,13 +28,6 @@ extension UILabel {
 
   override open func themeDidChange() {
     super.themeDidChange()
-
-    if #available(iOS 12, *) {
-      // Do noting, setNeedsDisplay() is enough.
-    }
-    else {
-      updateDynamicColorInAttributedText()
-    }
   }
 
   private func updateDynamicColorInAttributedText() {

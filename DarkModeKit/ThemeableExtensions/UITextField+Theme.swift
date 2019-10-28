@@ -27,7 +27,7 @@ extension UITextField {
   /// `UITextField` will not call `super.willMove(toWindow:)` in its implementation, so we need to swizzle it separately.
   static let swizzleTextFieldWillMoveToWindowOnce: Void = {
     if !dm_swizzleInstanceMethod(#selector(willMove(toWindow:)), to: #selector(outlookTextFieldWillMove(toWindow:))) {
-      assertionFailure(DarkModeKit.messageForSwizzlingFailed(class: UITextField.self, selector: #selector(willMove(toWindow:))))
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UITextField.self, selector: #selector(willMove(toWindow:))))
     }
   }()
 
