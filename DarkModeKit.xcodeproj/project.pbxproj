@@ -102,11 +102,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8C1915C42361EFDB004A606A = {
+		8C071AEE236844C9001AB7B2 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
 				8C1915D02361EFDB004A606A /* DarkModeKit */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		8C071AEF23684531001AB7B2 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
 				8C1915DB2361EFDB004A606A /* DarkModeKitTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		8C1915C42361EFDB004A606A = {
+			isa = PBXGroup;
+			children = (
+				8C071AEE236844C9001AB7B2 /* Sources */,
+				8C071AEF23684531001AB7B2 /* Tests */,
 				8C1915CF2361EFDB004A606A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -468,7 +484,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = DarkModeKit/Info.plist;
+				INFOPLIST_FILE = Sources/DarkModeKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -494,7 +510,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = DarkModeKit/Info.plist;
+				INFOPLIST_FILE = Sources/DarkModeKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -514,7 +530,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DarkModeKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/DarkModeKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -532,7 +548,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DarkModeKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/DarkModeKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
