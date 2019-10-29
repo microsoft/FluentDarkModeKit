@@ -4,7 +4,6 @@
 
 #if SWIFT_PACKAGE
 import DarkModeCore
-import UIKit
 #endif
 
 extension UITextView {
