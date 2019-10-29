@@ -2,6 +2,10 @@
 //  Copyright 2013-2019 Microsoft Inc.
 //
 
+#if SWIFT_PACKAGE
+import DarkModeCore
+#endif
+
 extension UIProgressView {
   override func _updateDynamicColors() {
     super._updateDynamicColors()

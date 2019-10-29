@@ -2,6 +2,8 @@
 //  Copyright 2013-2019 Microsoft Inc.
 //
 
+import UIKit
+
 /// The protocol for theme changing.
 ///
 /// This protocol is very similar to `UITraitEnvironment` protocol.
