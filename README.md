@@ -2,7 +2,25 @@
 
 ![](https://github.com/microsoft/DarkModeKit/workflows/CI/badge.svg)
 
+`DarkModeKit` provides your apps the ability support dark mode for both iOS 13+ and prior iOS 13.
+
+## Features
+
 ## Installation
+
+### Requirements
+
+- iOS 11.0+
+- Xcode 11.0+
+- Swift 5+
+
+### Carthage
+
+To integrate DarkModeKit into your Xcode project using Carthage, specify it in your Cartfile:
+
+```
+github "microsoft/DarkModeKit" ~> 0.1.0
+```
 
 ## Contributing
 
