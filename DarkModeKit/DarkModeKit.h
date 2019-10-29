@@ -5,6 +5,7 @@
 #import <DarkModeKit/DMDynamicColor.h>
 #import <DarkModeKit/DMDynamicImage.h>
 #import <DarkModeKit/DMTraitCollection.h>
+#import <DarkModeKit/NSObject+DarkModeKit.h>
 
 //! Project version number for DarkModeKit.
 FOUNDATION_EXPORT double DarkModeKitVersionNumber;

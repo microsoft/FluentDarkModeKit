@@ -4,7 +4,9 @@
 
 #import "DMDynamicImage.h"
 #import "DMTraitCollection.h"
-#import <DarkModeKit/DarkModeKit-Swift.h>
+#import "NSObject+DarkModeKit.h"
+
+@import ObjectiveC;
 
 // MARK: - DMDynamicImageProxy
 
