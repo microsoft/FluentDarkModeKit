@@ -19,4 +19,4 @@ jobs:
       - name: Build DarkModeKitExample
         run: |
           cd Examples/DarkModeKitExample/
-          xcodebuild build -scheme DarkModeKitExample -destination 'platform=iOS Simulator,name=iPhone X' -configuration Release | xcpretty
+          xcodebuild build -scheme DarkModeKitExample -destination 'platform=iOS Simulator,name=iPhone 11 Pro' -configuration Release | xcpretty
