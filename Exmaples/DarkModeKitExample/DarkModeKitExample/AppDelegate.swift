@@ -1,9 +1,6 @@
 //
-//  AppDelegate.swift
-//  DarkModeKitExample
-//
-//  Created by Bei Li on 2019/10/31.
-//  Copyright © 2019 Microsoft Corporation. All rights reserved.
+//  Copyright (c) Microsoft Corporation. All rights reserved.
+//  Licensed under the MIT License.
 //
 
 import DarkModeKit
