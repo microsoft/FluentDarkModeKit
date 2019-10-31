@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,7 @@
 		8CD26858236AB10800121FF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CD26856236AB10800121FF8 /* Main.storyboard */; };
 		8CD2685A236AB10900121FF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD26859236AB10900121FF8 /* Assets.xcassets */; };
 		8CD2685D236AB10900121FF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CD2685B236AB10900121FF8 /* LaunchScreen.storyboard */; };
+		8CD26867236AB1FA00121FF8 /* DarkModeKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8CD26866236AB1FA00121FF8 /* DarkModeKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		8CD26859236AB10900121FF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CD2685C236AB10900121FF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8CD2685E236AB10900121FF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8CD26864236AB1ED00121FF8 /* DarkModeKit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DarkModeKit; path = ../..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CD26867236AB1FA00121FF8 /* DarkModeKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,8 +41,10 @@
 		8CD26844236AB10800121FF8 = {
 			isa = PBXGroup;
 			children = (
+				8CD26864236AB1ED00121FF8 /* DarkModeKit */,
 				8CD2684F236AB10800121FF8 /* DarkModeKitExample */,
 				8CD2684E236AB10800121FF8 /* Products */,
+				8CD26865236AB1FA00121FF8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +69,13 @@
 			path = DarkModeKitExample;
 			sourceTree = "<group>";
 		};
+		8CD26865236AB1FA00121FF8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,6 +92,9 @@
 			dependencies = (
 			);
 			name = DarkModeKitExample;
+			packageProductDependencies = (
+				8CD26866236AB1FA00121FF8 /* DarkModeKit */,
+			);
 			productName = DarkModeKitExample;
 			productReference = 8CD2684D236AB10800121FF8 /* DarkModeKitExample.app */;
 			productType = "com.apple.product-type.application";
@@ -332,6 +347,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8CD26866236AB1FA00121FF8 /* DarkModeKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DarkModeKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8CD26845236AB10800121FF8 /* Project object */;
 }
