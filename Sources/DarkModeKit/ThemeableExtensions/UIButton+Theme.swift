@@ -1,5 +1,6 @@
 //
-//  Copyright 2013-2019 Microsoft Inc.
+//  Copyright (c) Microsoft Corporation. All rights reserved.
+//  Licensed under the MIT License.
 //
 
 #if SWIFT_PACKAGE
