@@ -89,11 +89,11 @@ extension Themeable {
 
       themeDidChange()
 
-      UIView.animate(withDuration: 0.25, animations: {
+      UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.25, delay: 0, options: [], animations: {
         snapshotViews.forEach { $0.alpha = 0 }
-      }, completion: { _ in
+      }) { _ in
         snapshotViews.forEach { $0.removeFromSuperview() }
-      })
+      }
     }
     else {
       themeDidChange()
