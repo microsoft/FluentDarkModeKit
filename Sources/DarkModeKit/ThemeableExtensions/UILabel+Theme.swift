@@ -47,7 +47,7 @@ extension UILabel {
     // 3. If you set UILabel.textColor, the entire attributed text will get a foreground color
     // 4. So if a label has a two or more colors attributed string, we can not simply reset text color
     // 5. The final solution is in below, we just update attributed text
-    // 6. Luckliy we only need do this in iOS 11.
+    // 6. Luckliy we only need to do this in iOS 11.
 
     var updatedAttributedText: NSMutableAttributedString?
 
