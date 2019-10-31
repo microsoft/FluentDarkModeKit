@@ -102,11 +102,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8C071AEE236844C9001AB7B2 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				8C071AF023684588001AB7B2 /* DarkModeCore */,
+				8C1915D02361EFDB004A606A /* DarkModeKit */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		8C071AEF23684531001AB7B2 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8C1915DB2361EFDB004A606A /* DarkModeKitTests */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		8C071AF023684588001AB7B2 /* DarkModeCore */ = {
+			isa = PBXGroup;
+			children = (
+				8CDA62702366DAA9004895B5 /* DarkModeKit.h */,
+				8CDA628B2366DAA9004895B5 /* DMDynamicColor.h */,
+				8CDA62732366DAA9004895B5 /* DMDynamicColor.m */,
+				8CDA62762366DAA9004895B5 /* DMDynamicImage.h */,
+				8CDA62892366DAA9004895B5 /* DMDynamicImage.m */,
+				8CDA62712366DAA9004895B5 /* DMTraitCollection.h */,
+				8CDA62722366DAA9004895B5 /* DMTraitCollection.m */,
+				8C071AEA23683BF5001AB7B2 /* NSObject+DarkModeKit.h */,
+				8C071AEB23683BF5001AB7B2 /* NSObject+DarkModeKit.m */,
+			);
+			path = DarkModeCore;
+			sourceTree = "<group>";
+		};
 		8C1915C42361EFDB004A606A = {
 			isa = PBXGroup;
 			children = (
-				8C1915D02361EFDB004A606A /* DarkModeKit */,
-				8C1915DB2361EFDB004A606A /* DarkModeKitTests */,
+				8C071AEE236844C9001AB7B2 /* Sources */,
+				8C071AEF23684531001AB7B2 /* Tests */,
 				8C1915CF2361EFDB004A606A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -123,16 +156,8 @@
 		8C1915D02361EFDB004A606A /* DarkModeKit */ = {
 			isa = PBXGroup;
 			children = (
-				8CDA62702366DAA9004895B5 /* DarkModeKit.h */,
 				8CDA628A2366DAA9004895B5 /* DarkModeManager.swift */,
-				8CDA628B2366DAA9004895B5 /* DMDynamicColor.h */,
-				8CDA62732366DAA9004895B5 /* DMDynamicColor.m */,
-				8CDA62762366DAA9004895B5 /* DMDynamicImage.h */,
-				8CDA62892366DAA9004895B5 /* DMDynamicImage.m */,
-				8CDA62712366DAA9004895B5 /* DMTraitCollection.h */,
-				8CDA62722366DAA9004895B5 /* DMTraitCollection.m */,
 				8CDA62772366DAA9004895B5 /* ThemeableExtensions */,
-				8CDA62742366DAA9004895B5 /* Utilities */,
 				8C1915D22361EFDB004A606A /* Info.plist */,
 			);
 			path = DarkModeKit;
@@ -145,15 +170,6 @@
 				8C1915DE2361EFDB004A606A /* Info.plist */,
 			);
 			path = DarkModeKitTests;
-			sourceTree = "<group>";
-		};
-		8CDA62742366DAA9004895B5 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				8C071AEA23683BF5001AB7B2 /* NSObject+DarkModeKit.h */,
-				8C071AEB23683BF5001AB7B2 /* NSObject+DarkModeKit.m */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		8CDA62772366DAA9004895B5 /* ThemeableExtensions */ = {
@@ -468,7 +484,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = DarkModeKit/Info.plist;
+				INFOPLIST_FILE = Sources/DarkModeKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -494,7 +510,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = DarkModeKit/Info.plist;
+				INFOPLIST_FILE = Sources/DarkModeKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -514,7 +530,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DarkModeKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/DarkModeKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -532,7 +548,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = DarkModeKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/DarkModeKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
