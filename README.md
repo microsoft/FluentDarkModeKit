@@ -1,6 +1,7 @@
 # DarkModeKit
 
 ![](https://github.com/microsoft/DarkModeKit/workflows/CI/badge.svg)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 DarkModeKit provides your apps the ability to support dark mode for both iOS 13+ and prior iOS 13.
 
