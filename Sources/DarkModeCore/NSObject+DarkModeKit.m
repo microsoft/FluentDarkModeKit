@@ -1,9 +1,6 @@
 //
-//  NSObject+DarkModeKit.m
-//  DarkModeKit
-//
-//  Created by Bei Li on 2019/10/29.
-//  Copyright © 2019 Microsoft Corporation. All rights reserved.
+//  Copyright (c) Microsoft Corporation. All rights reserved.
+//  Licensed under the MIT License.
 //
 
 #import "NSObject+DarkModeKit.h"
