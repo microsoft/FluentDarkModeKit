@@ -9,7 +9,7 @@ import UIKit
 ///
 /// This protocol is very similar to `UITraitEnvironment` protocol.
 ///
-/// Adoped by `UIApplication`, `UIView` (`UIWindow`), and `UIViewController`.
+/// Adopted by `UIApplication`, `UIView` (`UIWindow`), and `UIViewController`.
 ///
 /// # How Theme Changing Works
 ///

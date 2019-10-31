@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Swizzle two instance methods for class that calls this method.
 ///
-/// Return NO if any selector can not found corresponding method.
+/// Return NO if any selector cannot find corresponding method.
 + (BOOL)dm_swizzleInstanceMethod:(SEL)fromSelector to:(SEL)toSelector;
 
 @end
