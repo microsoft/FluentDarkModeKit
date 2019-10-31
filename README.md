@@ -7,7 +7,7 @@
 ## Features
 
 - [x] Dark Mode support for iOS 11+
-- [x] Multi-theme support not restricted to Dark Mode
+- [x] Multi-theme support (not restricted to Dark Mode)
 - [x] Dynamic theme change within the app without restart
 - [x] Simple API design. Limited changes to your existing code.
 
@@ -28,6 +28,24 @@ github "microsoft/DarkModeKit" ~> 0.1.0
 ```
 
 ## Get Started
+
+### Design with Dark Mode Ahead
+
+To adopt dark mode, it's not just a single line of code change. Your app should be carefully designed stay as beautiful as light mode. 
+
+#### Color Palette
+
+#### Semantic Colors
+
+### How to Use DarkModeKit
+
+#### Colors
+
+#### Images
+
+#### Special Cases
+
+## How it Works
 
 ## Contributing
 
