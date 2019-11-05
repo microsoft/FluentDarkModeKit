@@ -14,4 +14,4 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Build
-        run: xcodebuild -scheme DarkModeKit -configuration Release | xcpretty -s
+        run:  xcodebuild -scheme DarkModeKit -destination generic/platform=iOS -configuration Release | xcpretty -s
