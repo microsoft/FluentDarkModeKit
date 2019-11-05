@@ -3,7 +3,6 @@
 //  Licensed under the MIT License.
 //
 
-import DarkModeCore
 import DarkModeKit
 import UIKit
 
