@@ -38,21 +38,23 @@ github "microsoft/DarkModeKit" ~> 0.1.0
 
 ## Get Started
 
-### Design with Dark Mode Ahead
-
-To adopt dark mode, it's not just a single line of code change. Your app should be carefully designed stay as beautiful as light mode. 
-
-#### Color Palette
-
-#### Semantic Colors
-
 ### How to Use DarkModeKit
 
 #### Colors
 
+Simply replace your existing colors with a pair of light/dark colors:
+
+```swift
+UIColor(light: UIColor, dark: UIColor)
+```
+
 #### Images
 
-#### Special Cases
+Similar as colors, DarkModeKit also provides a convience initializer for images:
+
+```swift
+UIImage(lightName: String, darkName: String)
+```
 
 ## How it Works
 
