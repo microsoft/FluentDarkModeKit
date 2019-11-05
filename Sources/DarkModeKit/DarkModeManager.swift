@@ -6,9 +6,7 @@
 import UIKit
 
 public final class DarkModeManager: NSObject {
-  public static func setup(updateAppearance: @escaping (UIApplication) -> Void) {
-    UIApplication.updateAppearance = updateAppearance
-
+  public static func setup() {
     // Colors
     UIView.swizzleWillMoveToWindowOnce
     UIView.dm_swizzleSetBackgroundColor()
