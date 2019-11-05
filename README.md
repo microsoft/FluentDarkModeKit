@@ -56,6 +56,16 @@ Similar as colors, DarkModeKit also provides a convience initializer for images:
 UIImage(lightName: String, darkName: String)
 ```
 
+### Others
+
+For more complex scenarios, DarkModeKit will notify views or view controllers when current theme changes. The views and view controllers have to be in window hierarchy and conform to `Themeable` protocol.
+
+```swift
+public protocol Themeable {
+  func themeDidChange()
+}
+```
+
 ## How it Works
 
 ## Contributing
