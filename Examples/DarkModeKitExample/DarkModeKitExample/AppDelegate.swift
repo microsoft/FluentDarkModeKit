@@ -17,6 +17,18 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         DarkModeManager.setup(updateAppearance: { _ in })
         setUpAppearance()
+
+        window = UIWindow()
+        window?.rootViewController = {
+            let tabBarController = UITabBarController()
+            tabBarController.viewControllers = [
+                NavigationController(rootViewController: ViewController()),
+                NavigationController(rootViewController: ViewController()),
+            ]
+            return tabBarController
+        }()
+        window?.makeKeyAndVisible()
+
         return true
     }
 

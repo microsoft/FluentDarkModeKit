@@ -16,6 +16,8 @@ final class ViewController: UIViewController {
             target: self,
             action: #selector(refresh)
         )
+
+        view.backgroundColor = .white
     }
 
     @objc
