@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8CD2684C236AB10800121FF8"
+               BlueprintIdentifier = "8CAFD9D123715FAA001A63B8"
                BuildableName = "DarkModeKitExample.app"
                BlueprintName = "DarkModeKitExample"
-               ReferencedContainer = "container:DarkModeKitExample.xcodeproj">
+               ReferencedContainer = "container:DarkModeKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -44,10 +44,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8CD2684C236AB10800121FF8"
+            BlueprintIdentifier = "8CAFD9D123715FAA001A63B8"
             BuildableName = "DarkModeKitExample.app"
             BlueprintName = "DarkModeKitExample"
-            ReferencedContainer = "container:DarkModeKitExample.xcodeproj">
+            ReferencedContainer = "container:DarkModeKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -61,10 +61,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8CD2684C236AB10800121FF8"
+            BlueprintIdentifier = "8CAFD9D123715FAA001A63B8"
             BuildableName = "DarkModeKitExample.app"
             BlueprintName = "DarkModeKitExample"
-            ReferencedContainer = "container:DarkModeKitExample.xcodeproj">
+            ReferencedContainer = "container:DarkModeKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

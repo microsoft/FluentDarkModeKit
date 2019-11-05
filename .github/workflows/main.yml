@@ -14,9 +14,4 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Build
-        run: xcodebuild -configuration Release | xcpretty -s
-
-      - name: Build DarkModeKitExample
-        run: |
-          cd Examples/DarkModeKitExample/
-          xcodebuild build -scheme DarkModeKitExample -destination 'platform=iOS Simulator,name=iPhone 11 Pro' -configuration Release | xcpretty
+        run: xcodebuild -scheme DarkModeKit -destination generic/platform=iOS -configuration Release | xcpretty -s
