@@ -18,6 +18,8 @@
 		8CAFD9E723716054001A63B8 /* DarkModeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1915CE2361EFDB004A606A /* DarkModeKit.framework */; };
 		8CAFD9E823716054001A63B8 /* DarkModeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1915CE2361EFDB004A606A /* DarkModeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8CAFD9ED2371606D001A63B8 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAFD9EC2371606D001A63B8 /* NavigationController.swift */; };
+		8CB63E41238551F3008ABCE2 /* UIView+DarkModeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CB63E3F238551F3008ABCE2 /* UIView+DarkModeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8CB63E42238551F3008ABCE2 /* UIView+DarkModeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CB63E40238551F3008ABCE2 /* UIView+DarkModeKit.m */; };
 		8CDA628C2366DAA9004895B5 /* DarkModeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDA62702366DAA9004895B5 /* DarkModeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8CDA628D2366DAA9004895B5 /* DMTraitCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDA62712366DAA9004895B5 /* DMTraitCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8CDA628E2366DAA9004895B5 /* DMTraitCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62722366DAA9004895B5 /* DMTraitCollection.m */; };
@@ -91,6 +93,8 @@
 		8CAFD9E023715FAB001A63B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8CAFD9E223715FAB001A63B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CAFD9EC2371606D001A63B8 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		8CB63E3F238551F3008ABCE2 /* UIView+DarkModeKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+DarkModeKit.h"; sourceTree = "<group>"; };
+		8CB63E40238551F3008ABCE2 /* UIView+DarkModeKit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+DarkModeKit.m"; sourceTree = "<group>"; };
 		8CDA62702366DAA9004895B5 /* DarkModeKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DarkModeKit.h; sourceTree = "<group>"; };
 		8CDA62712366DAA9004895B5 /* DMTraitCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTraitCollection.h; sourceTree = "<group>"; };
 		8CDA62722366DAA9004895B5 /* DMTraitCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTraitCollection.m; sourceTree = "<group>"; };
@@ -175,6 +179,8 @@
 				8CDA62722366DAA9004895B5 /* DMTraitCollection.m */,
 				8C071AEA23683BF5001AB7B2 /* NSObject+DarkModeKit.h */,
 				8C071AEB23683BF5001AB7B2 /* NSObject+DarkModeKit.m */,
+				8CB63E3F238551F3008ABCE2 /* UIView+DarkModeKit.h */,
+				8CB63E40238551F3008ABCE2 /* UIView+DarkModeKit.m */,
 			);
 			path = DarkModeCore;
 			sourceTree = "<group>";
@@ -272,6 +278,7 @@
 				8C071AEC23683BF5001AB7B2 /* NSObject+DarkModeKit.h in Headers */,
 				8CDA628D2366DAA9004895B5 /* DMTraitCollection.h in Headers */,
 				8CDA628C2366DAA9004895B5 /* DarkModeKit.h in Headers */,
+				8CB63E41238551F3008ABCE2 /* UIView+DarkModeKit.h in Headers */,
 				8CDA62912366DAA9004895B5 /* DMDynamicImage.h in Headers */,
 				8CDA62A52366DAA9004895B5 /* DMDynamicColor.h in Headers */,
 			);
@@ -409,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CDA62972366DAA9004895B5 /* UIScrollView+Theme.swift in Sources */,
+				8CB63E42238551F3008ABCE2 /* UIView+DarkModeKit.m in Sources */,
 				8CDA62A12366DAA9004895B5 /* UITextField+Theme.swift in Sources */,
 				8CDA62952366DAA9004895B5 /* UIWindow+Theme.swift in Sources */,
 				8CDA629E2366DAA9004895B5 /* UIViewController+Theme.swift in Sources */,
