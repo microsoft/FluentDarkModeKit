@@ -6,4 +6,10 @@
 import XCTest
 @testable import DarkModeKit
 
-final class DarkModeKitTests: XCTestCase {}
+final class DarkModeKitTests: XCTestCase {
+  func testSetBackgroundColorSwizzling() {
+    UIWindow.appearance().backgroundColor = .white
+    DarkModeManager.setup(updateAppearance: { _ in })
+    _ = UIWindow()
+  }
+}

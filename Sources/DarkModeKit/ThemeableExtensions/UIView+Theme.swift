@@ -17,7 +17,7 @@ extension UIView: Themeable {
   }
 
   @objc func _updateDynamicColors() {
-    if let dynamicBackgroundColor = _dynamicBackgroundColor {
+    if let dynamicBackgroundColor = dm_dynamicBackgroundColor {
       backgroundColor = dynamicBackgroundColor
     }
     if let dynamicTintColor = _dynamicTintColor {
@@ -48,15 +48,8 @@ extension UIView {
 
 extension UIView {
   private struct Constants {
-    static var dynamicBackgroundColorKey = "dynamicBackgroundColorKey"
     static var dynamicTintColorKey = "dynamicTintColorKey"
   }
-
-  static let swizzleSetBackgroundColorOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(setter: backgroundColor), to: #selector(outlookSetBackgroundColor)) {
-      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: #selector(setter: backgroundColor)))
-    }
-  }()
 
   static let swizzleSetTintColorOnce: Void = {
     if !dm_swizzleInstanceMethod(#selector(setter: tintColor), to: #selector(outlookSetTintColor)) {
@@ -64,19 +57,9 @@ extension UIView {
     }
   }()
 
-  private var _dynamicBackgroundColor: DynamicColor? {
-    get { return objc_getAssociatedObject(self, &Constants.dynamicBackgroundColorKey) as? DynamicColor }
-    set { objc_setAssociatedObject(self, &Constants.dynamicBackgroundColorKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
-  }
-
   private var _dynamicTintColor: DynamicColor? {
     get { return objc_getAssociatedObject(self, &Constants.dynamicTintColorKey) as? DynamicColor }
     set { objc_setAssociatedObject(self, &Constants.dynamicTintColorKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
-  }
-
-  @objc private dynamic func outlookSetBackgroundColor(_ color: UIColor) {
-    _dynamicBackgroundColor = color as? DynamicColor
-    outlookSetBackgroundColor(color)
   }
 
   @objc private dynamic func outlookSetTintColor(_ color: UIColor) {
