@@ -45,7 +45,7 @@ github "microsoft/DarkModeKit" ~> 0.1.0
 Simply replace your existing colors with a pair of light/dark colors:
 
 ```swift
-UIColor(light: UIColor, dark: UIColor)
+DynamicColor(lightColor: UIColor, darkColor: UIColor)
 ```
 
 #### Images
@@ -53,7 +53,7 @@ UIColor(light: UIColor, dark: UIColor)
 Similar as colors, DarkModeKit also provides a convience initializer for images:
 
 ```swift
-UIImage(lightName: String, darkName: String)
+UIImage(lightImage: UIImage?, darkImage: UIImage?)
 ```
 
 ### Others
