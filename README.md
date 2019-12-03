@@ -40,7 +40,7 @@ github "microsoft/DarkModeKit" ~> 0.1.0
 
 ### How to Use DarkModeKit
 
-The basic idea for adopting `DarkModeKit` is to provide a pair of colors or images instead of a single value.
+The basic idea for adopting DarkModeKit is to provide a pair of colors or images instead of a single value.
 
 #### Colors
 
@@ -52,7 +52,7 @@ DynamicColor(lightColor: UIColor, darkColor: UIColor)
 
 #### Images
 
-Similarly, `DarkModeKit` also provides a convience initializer for images:
+Similarly, DarkModeKit also provides a convience initializer for images:
 
 ```swift
 UIImage(lightImage: UIImage?, darkImage: UIImage?)
