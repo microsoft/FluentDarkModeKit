@@ -2,7 +2,7 @@
 
 ![](https://github.com/microsoft/DarkModeKit/workflows/CI/badge.svg)
 
-DarkModeKit was designed and developed before Apple‘s dark mode official release, so it provides your apps the ability to support dark mode for iOS 11+ (including iOS 13). 
+DarkModeKit was designed and developed before Apple‘s dark mode official release, so it provides your apps the ability to support dark mode for iOS 11+ (including iOS 13).
 
 ## Features
 
