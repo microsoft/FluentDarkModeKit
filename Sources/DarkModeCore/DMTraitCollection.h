@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, DMUserInterfaceStyle)
 
 @end
 
-#pragma mark -
+#pragma mark - DMTraitEnvironment
 
 @protocol DMTraitEnvironment <NSObject>
 
