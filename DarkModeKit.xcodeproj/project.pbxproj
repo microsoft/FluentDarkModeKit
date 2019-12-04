@@ -209,7 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				8CDA628A2366DAA9004895B5 /* DarkModeManager.swift */,
-				8CDA62772366DAA9004895B5 /* ThemeableExtensions */,
+				8CDA62772366DAA9004895B5 /* Extensions */,
 				8C1915D22361EFDB004A606A /* Info.plist */,
 			);
 			path = DarkModeKit;
@@ -244,7 +244,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8CDA62772366DAA9004895B5 /* ThemeableExtensions */ = {
+		8CDA62772366DAA9004895B5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				8CDA62782366DAA9004895B5 /* UIToolbar+Theme.swift */,
@@ -265,7 +265,7 @@
 				8CDA62872366DAA9004895B5 /* UITextField+Theme.swift */,
 				8CDA62882366DAA9004895B5 /* UIApplication+Theme.swift */,
 			);
-			path = ThemeableExtensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
