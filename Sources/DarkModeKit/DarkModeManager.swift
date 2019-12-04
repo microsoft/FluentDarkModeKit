@@ -5,33 +5,6 @@
 
 import UIKit
 
-/// The protocol for theme changing.
-///
-/// This protocol is very similar to `UITraitEnvironment` protocol.
-///
-/// Adopted by `UIApplication`, `UIView` (`UIWindow`), and `UIViewController`.
-///
-/// # How Theme Changing Works
-///
-/// After the current theme changed, you can call `Theme.updateAppearance(for:animated:)` to update UI.
-/// `Theme.updateAppearance(for:animated:)` will call `themeDidChange()` for passed in instance.
-///
-/// These classes will propagate `themeDidChange()`:
-/// - `UIApplication`: It will propagate `themeDidChange()` to `UIWindow` through `windows`.
-/// - `UIWindow`: It will propagate `themeDidChange()` to `UIViewController` through `rootViewController`.
-/// - `UIViewController`: It will propagate `themeDidChange()` to `UIViewController` through `presentedViewController`
-///   and `children`, propagate `themeDidChange()` to `UIView` through `view`.
-/// - `UIView`: It will propagate `themeDidChange()` to `UIView` through `subviews`.
-///
-/// For the basic, `UIView.themeDidChange()` will call `setNeedsUpdate()` to trigger layouts, this gives you a chance
-/// to update some non-automatic changing colors like `CALayer`'s color in `UIView.layoutSubviews()`
-/// or `UIViewController.viewDidLayoutSubviews().
-///
-/// For automatic color changing part, you can see each classes' `themeDidChange()` for details.
-public protocol Themeable {
-  func themeDidChange()
-}
-
 public final class DarkModeManager: NSObject {
   public static func setup(updateAppearance: @escaping (UIApplication) -> Void) {
     UIApplication.updateAppearance = updateAppearance
@@ -68,7 +41,7 @@ public final class DarkModeManager: NSObject {
 
 // MARK: -
 
-extension Themeable {
+extension DMTraitEnvironment {
   /// Trigger `themeDidChange()`.
   ///
   /// - Parameters:
@@ -87,7 +60,7 @@ extension Themeable {
         snapshotViews.append(snapshotView)
       }
 
-      themeDidChange()
+      dm_traitCollectionDidChange(nil)
 
       UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.25, delay: 0, options: [], animations: {
         snapshotViews.forEach { $0.alpha = 0 }
@@ -96,7 +69,7 @@ extension Themeable {
       }
     }
     else {
-      themeDidChange()
+      dm_traitCollectionDidChange(nil)
     }
   }
 }

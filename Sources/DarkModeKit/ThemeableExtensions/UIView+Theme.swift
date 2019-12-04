@@ -7,9 +7,9 @@
 import DarkModeCore
 #endif
 
-extension UIView: Themeable {
-  @objc open func themeDidChange() {
-    subviews.forEach { $0.themeDidChange() }
+extension UIView: DMTraitEnvironment {
+  open func dm_traitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
+    subviews.forEach { $0.dm_traitCollectionDidChange(previousTraitCollection) }
     setNeedsLayout()
     setNeedsDisplay()
     _updateDynamicColors()

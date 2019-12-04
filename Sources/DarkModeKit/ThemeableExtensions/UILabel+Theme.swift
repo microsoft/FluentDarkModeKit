@@ -27,12 +27,12 @@ extension UILabel {
     outlookDidMoveToWindow()
     if currentUserInterfaceStyle != DMTraitCollection.current.userInterfaceStyle {
       currentUserInterfaceStyle = DMTraitCollection.current.userInterfaceStyle
-      themeDidChange()
+      dm_traitCollectionDidChange(nil)
     }
   }
 
-  override open func themeDidChange() {
-    super.themeDidChange()
+  open override func dm_traitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
+    super.dm_traitCollectionDidChange(previousTraitCollection)
   }
 
   private func updateDynamicColorInAttributedText() {

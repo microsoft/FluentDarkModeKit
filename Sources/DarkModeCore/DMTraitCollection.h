@@ -26,4 +26,12 @@ typedef NS_ENUM(NSInteger, DMUserInterfaceStyle)
 
 @end
 
+#pragma mark -
+
+@protocol DMTraitEnvironment <NSObject>
+
+- (void)dm_traitCollectionDidChange:(nullable DMTraitCollection *)previousTraitCollection;
+
+@end
+
 NS_ASSUME_NONNULL_END

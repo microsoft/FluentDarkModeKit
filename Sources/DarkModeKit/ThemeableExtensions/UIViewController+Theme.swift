@@ -7,13 +7,13 @@
 import DarkModeCore
 #endif
 
-extension UIViewController: Themeable {
-  @objc open func themeDidChange() {
+extension UIViewController: DMTraitEnvironment {
+  open func dm_traitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
     setNeedsStatusBarAppearanceUpdate()
-    presentedViewController?.themeDidChange()
-    children.forEach { $0.themeDidChange() }
+    presentedViewController?.dm_traitCollectionDidChange(previousTraitCollection)
+    children.forEach { $0.dm_traitCollectionDidChange(previousTraitCollection) }
     if isViewLoaded {
-      view.themeDidChange()
+      view.dm_traitCollectionDidChange(previousTraitCollection)
     }
   }
 }

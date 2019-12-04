@@ -5,11 +5,11 @@
 
 import UIKit
 
-extension UIApplication: Themeable {
+extension UIApplication: DMTraitEnvironment {
   static var updateAppearance: ((UIApplication) -> Void)?
 
-  @objc open func themeDidChange() {
+  open func dm_traitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
     Self.updateAppearance?(self)
-    windows.forEach { $0.themeDidChange() }
+    windows.forEach { $0.dm_traitCollectionDidChange(previousTraitCollection) }
   }
 }
