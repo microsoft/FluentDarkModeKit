@@ -44,10 +44,14 @@ The basic idea for adopting DarkModeKit is to provide a pair of colors or images
 
 #### Colors
 
-As for colors, you can simply replace your existing colors with a pair of light and dark colors:
+Simply replace existing colors with a pair of light and dark colors:
 
 ```swift
-DynamicColor(lightColor: UIColor, darkColor: UIColor)
+UIColor(.dm, light: UIColor, dark: UIColor)
+```
+
+```objc
+[UIColor dm_colorWithLightColor:darkColor:]
 ```
 
 #### Images
@@ -55,24 +59,28 @@ DynamicColor(lightColor: UIColor, darkColor: UIColor)
 Similarly, DarkModeKit also provides a convience initializer for images:
 
 ```swift
-UIImage(lightImage: UIImage?, darkImage: UIImage?)
+UIImage(.dm, light: UIImage, dark: UIImage)
+```
+
+```objc
+[UIImage dm_imageWithLightImage:darkImage:]
 ```
 
 ### Others
 
-For more complex scenarios, DarkModeKit will notify views or view controllers when current theme changes. The views and view controllers have to be in window hierarchy and conform to `Themeable` protocol.
+For more complex scenarios, DarkModeKit will notify views or view controllers when current theme changes. The views and view controllers have to be in window hierarchy and conform to `DMTraitEnvironment` protocol.
 
-```swift
-public protocol Themeable {
-  func themeDidChange()
-}
+```objc
+@protocol DMTraitEnvironment <NSObject>
+
+- (void)dmTraitCollectionDidChange:(nullable DMTraitCollection *)previousTraitCollection;
+
+@end
 ```
-
-## How it Works
 
 ## Contributing
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
+This project welcomes contributions and suggestions. Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
 the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
 
