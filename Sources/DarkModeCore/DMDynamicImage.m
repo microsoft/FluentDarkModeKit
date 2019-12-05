@@ -14,7 +14,6 @@
 @interface DMDynamicImageProxy ()
 @property (nonatomic, strong) UIImage *lightImage;
 @property (nonatomic, strong) UIImage *darkImage;
-@property (nonatomic, readonly) UIImage *resolvedImage;
 @end
 
 @implementation DMDynamicImageProxy
@@ -105,39 +104,6 @@
 - (id)copyWithZone:(NSZone *)zone
 {
   return [[DMDynamicImageProxy alloc] initWithLightImage:self.lightImage darkImage:self.darkImage];
-}
-
-@end
-
-// MARK: - UIImage
-
-@implementation UIImage (DynamicImage)
-
-+ (void)load
-{
-  [UIImage dm_swizzleInstanceMethod:@selector(isEqual:) to:@selector(outlookIsEqual:)];
-}
-
-- (instancetype)initWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage
-{
-  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:lightImage darkImage:darkImage];
-}
-
-- (BOOL)outlookIsEqual:(UIImage *)other
-{
-  /// On iOS 13, UIImage `isEqual:` somehow changes internally and doesn't work for `NSProxy`,
-  /// here we forward the message to internal images manually
-  UIImage *realSelf = self;
-  UIImage *realOther = other;
-  if (object_getClass(self) == DMDynamicImageProxy.class)
-  {
-    realSelf = ((DMDynamicImageProxy *)self).resolvedImage;
-  }
-  if (object_getClass(other) == DMDynamicImageProxy.class)
-  {
-    realOther = ((DMDynamicImageProxy *)other).resolvedImage;
-  }
-  return [realSelf outlookIsEqual:realOther];
 }
 
 @end
