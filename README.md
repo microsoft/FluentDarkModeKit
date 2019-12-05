@@ -60,7 +60,7 @@ UIImage(lightImage: UIImage?, darkImage: UIImage?)
 
 ### Others
 
-For more complex scenariosgit@github.com:microsoft/DarkModeKit.git, DarkModeKit will notify views or view controllers when current theme changes. The views and view controllers have to be in window hierarchy and conform to `Themeable` protocol.
+For more complex scenarios, DarkModeKit will notify views or view controllers when current theme changes. The views and view controllers have to be in window hierarchy and conform to `Themeable` protocol.
 
 ```swift
 public protocol Themeable {
