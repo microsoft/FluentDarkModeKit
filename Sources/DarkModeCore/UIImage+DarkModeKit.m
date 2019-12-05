@@ -20,9 +20,9 @@
     return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:lightImage darkImage:darkImage];
 }
 
-+ (UIImage *)dm_imageWithNamespace:(DMNamespace)namespace
-                        lightImage:(UIImage *)lightImage
-                         darkImage:(UIImage *)darkImage {
++ (UIImage *)dm_namespace:(DMNamespace)namespace
+      imageWithLightImage:(UIImage *)lightImage
+                darkImage:(UIImage *)darkImage {
     return [UIImage dm_imageWithLightImage:lightImage darkImage:darkImage];
 }
 

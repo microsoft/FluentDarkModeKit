@@ -12,9 +12,9 @@
     return (UIColor *)[[DMDynamicColor alloc] initWithLightColor:lightColor darkColor:darkColor];
 }
 
-+ (UIColor *)dm_colorWithNamespace:(DMNamespace)namespace
-                        lightColor:(UIColor *)lightColor
-                         darkColor:(UIColor *)darkColor {
++ (UIColor *)dm_namespace:(DMNamespace)namespace
+      colorWithLightColor:(UIColor *)lightColor
+                darkColor:(UIColor *)darkColor {
     return [UIColor dm_colorWithLightColor:lightColor darkColor:darkColor];
 }
 
