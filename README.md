@@ -18,16 +18,6 @@ DarkModeKit was designed and developed before Apple‘s dark mode official relea
 - Xcode 11.0+
 - Swift 5+
 
-### Swift Package Manager
-
-To integrate DarkModeKit into your Xcode project using Swift Package Manager, specify it in your `Package.swift`:
-
-```
-dependencies: [
-    .package(url: "https://github.com/microsoft/DarkModeKit", from: "0.1.0")
-]
-```
-
 ### Carthage
 
 To integrate DarkModeKit into your Xcode project using Carthage, specify it in your `Cartfile`:
@@ -35,6 +25,10 @@ To integrate DarkModeKit into your Xcode project using Carthage, specify it in y
 ```
 github "microsoft/DarkModeKit" ~> 0.1.0
 ```
+
+### Swift Package Manager
+
+Click "Files -> Swift Package Manager -> Add Package Dependency..." in Xcode's menu and search "https://github.com/microsoft/DarkModeKit"
 
 ## Get Started
 
