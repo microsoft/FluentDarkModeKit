@@ -23,7 +23,7 @@
 		8CC8D86D2398E4EC0043276A /* UIColor+DarkModeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CC8D86B2398E4EC0043276A /* UIColor+DarkModeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8CC8D86E2398E4EC0043276A /* UIColor+DarkModeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC8D86C2398E4EC0043276A /* UIColor+DarkModeKit.m */; };
 		8CC8D8702398E7520043276A /* DMNamespace.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CC8D86F2398E7520043276A /* DMNamespace.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8CC8D8732398E7A30043276A /* UIImage+DarkModeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CC8D8712398E7A30043276A /* UIImage+DarkModeKit.h */; };
+		8CC8D8732398E7A30043276A /* UIImage+DarkModeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CC8D8712398E7A30043276A /* UIImage+DarkModeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8CC8D8742398E7A30043276A /* UIImage+DarkModeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC8D8722398E7A30043276A /* UIImage+DarkModeKit.m */; };
 		8CDA628C2366DAA9004895B5 /* DarkModeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDA62702366DAA9004895B5 /* DarkModeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8CDA628D2366DAA9004895B5 /* DMTraitCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDA62712366DAA9004895B5 /* DMTraitCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };

@@ -8,6 +8,7 @@
 #import <DarkModeKit/DMTraitCollection.h>
 #import <DarkModeKit/NSObject+DarkModeKit.h>
 #import <DarkModeKit/UIColor+DarkModeKit.h>
+#import <DarkModeKit/UIImage+DarkModeKit.h>
 #import <DarkModeKit/UIView+DarkModeKit.h>
 
 //! Project version number for DarkModeKit.
