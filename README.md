@@ -20,7 +20,13 @@ DarkModeKit was designed and developed before Apple‘s dark mode official relea
 
 ### Swift Package Manager
 
-Click "Files -> Swift Package Manager -> Add Package Dependency..." in Xcode's menu and search "https://github.com/microsoft/DarkModeKit"
+To integrate DarkModeKit into your Xcode project using Swift Package Manager, specify it in your `Package.swift`:
+
+```
+dependencies: [
+    .package(url: "https://github.com/microsoft/DarkModeKit", from: "0.1.0")
+]
+```
 
 ### Carthage
 
@@ -62,8 +68,22 @@ Objective-C
 
 ### Others
 
-For more complex scenarios, DarkModeKit will notify views or view controllers when current theme changes. The views and view controllers have to be in window hierarchy and conform to `DMTraitEnvironment` protocol.
+For more complex scenarios, DarkModeKit is similar as what Apple does in iOS 13 (with slight differences). It maintains a global `DMTraitCollection` which can be accessed through `DMTraitCollection.current` during custom layout. 
 
+For more information on stuff you should handle during layout, please refer to [Apple's documentation](https://developer.apple.com/documentation/xcode/supporting_dark_mode_in_your_interface#2993898).
+
+DarkModeKit will notify views or view controllers in current window when theme changes by calling the following delegate method. 
+
+Swift
+```swift
+@protocol DMTraitEnvironment: NSObject
+
+func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?)
+
+@end
+```
+
+Objective-C
 ```objc
 @protocol DMTraitEnvironment <NSObject>
 
