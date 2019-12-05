@@ -8,9 +8,9 @@ import DarkModeCore
 #endif
 
 extension UITabBar {
-  open override func dm_traitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
-    super.dm_traitCollectionDidChange(previousTraitCollection)
-    items?.forEach { $0.dm_traitCollectionDidChange(previousTraitCollection) }
+  open override func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
+    super.dmTraitCollectionDidChange(previousTraitCollection)
+    items?.forEach { $0.dmTraitCollectionDidChange(previousTraitCollection) }
   }
 
   override func _updateDynamicImages() {
@@ -48,7 +48,7 @@ extension UITabBarItem: DMTraitEnvironment {
     }
   }()
 
-  open func dm_traitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
+  open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
     // For subclasses to override
   }
 

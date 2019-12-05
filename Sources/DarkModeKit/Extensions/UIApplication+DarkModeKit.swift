@@ -8,8 +8,8 @@ import UIKit
 extension UIApplication: DMTraitEnvironment {
   static var updateAppearance: ((UIApplication) -> Void)?
 
-  open func dm_traitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
+  open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
     Self.updateAppearance?(self)
-    windows.forEach { $0.dm_traitCollectionDidChange(previousTraitCollection) }
+    windows.forEach { $0.dmTraitCollectionDidChange(previousTraitCollection) }
   }
 }

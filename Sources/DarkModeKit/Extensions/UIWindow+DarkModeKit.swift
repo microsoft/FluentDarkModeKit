@@ -6,8 +6,8 @@
 import UIKit
 
 extension UIWindow {
-  open override func dm_traitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
-    super.dm_traitCollectionDidChange(previousTraitCollection)
-    rootViewController?.dm_traitCollectionDidChange(previousTraitCollection)
+  open override func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
+    super.dmTraitCollectionDidChange(previousTraitCollection)
+    rootViewController?.dmTraitCollectionDidChange(previousTraitCollection)
   }
 }

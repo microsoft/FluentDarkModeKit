@@ -8,8 +8,8 @@ import DarkModeCore
 #endif
 
 extension UIView: DMTraitEnvironment {
-  open func dm_traitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
-    subviews.forEach { $0.dm_traitCollectionDidChange(previousTraitCollection) }
+  open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
+    subviews.forEach { $0.dmTraitCollectionDidChange(previousTraitCollection) }
     setNeedsLayout()
     setNeedsDisplay()
     _updateDynamicColors()

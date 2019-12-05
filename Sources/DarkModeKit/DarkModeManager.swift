@@ -60,7 +60,7 @@ extension DMTraitEnvironment {
         snapshotViews.append(snapshotView)
       }
 
-      dm_traitCollectionDidChange(nil)
+      dmTraitCollectionDidChange(nil)
 
       UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.25, delay: 0, options: [], animations: {
         snapshotViews.forEach { $0.alpha = 0 }
@@ -69,7 +69,7 @@ extension DMTraitEnvironment {
       }
     }
     else {
-      dm_traitCollectionDidChange(nil)
+      dmTraitCollectionDidChange(nil)
     }
   }
 }

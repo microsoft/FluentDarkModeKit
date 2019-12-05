@@ -8,12 +8,12 @@ import DarkModeCore
 #endif
 
 extension UIViewController: DMTraitEnvironment {
-  open func dm_traitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
+  open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
     setNeedsStatusBarAppearanceUpdate()
-    presentedViewController?.dm_traitCollectionDidChange(previousTraitCollection)
-    children.forEach { $0.dm_traitCollectionDidChange(previousTraitCollection) }
+    presentedViewController?.dmTraitCollectionDidChange(previousTraitCollection)
+    children.forEach { $0.dmTraitCollectionDidChange(previousTraitCollection) }
     if isViewLoaded {
-      view.dm_traitCollectionDidChange(previousTraitCollection)
+      view.dmTraitCollectionDidChange(previousTraitCollection)
     }
   }
 }
