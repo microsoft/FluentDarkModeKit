@@ -14,8 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 NS_SWIFT_UNAVAILABLE("Use init(_:light:dark:) instead.");
 
 #if __swift__
-+ (UIImage *)dm_namespace:(DMNamespace)namespace lightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage
-NS_SWIFT_NAME(init(_:light:dark:));
++ (UIImage *)dm_imageWithNamespace:(DMNamespace)namespace
+                        lightImage:(UIImage *)lightImage
+                         darkImage:(UIImage *)darkImage NS_SWIFT_NAME(init(_:light:dark:));
 #endif
 
 @end
