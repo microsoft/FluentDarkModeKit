@@ -3,9 +3,13 @@
 ![](https://github.com/microsoft/DarkModeKit/workflows/CI/badge.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-DarkModeKit provides your apps the ability to support dark mode for both iOS 13+ and prior iOS 13.
+DarkModeKit was designed and developed before Apple‘s dark mode official release. It provides your apps the ability to support dark mode for iOS 11+ (including iOS 13).
 
 ## Features
+
+- [x] Dark Mode support for iOS 11+
+- [x] Dynamic theme change within the app without restart
+- [x] Simple API design with minimal changes to your existing code
 
 ## Installation
 
@@ -17,15 +21,75 @@ DarkModeKit provides your apps the ability to support dark mode for both iOS 13+
 
 ### Carthage
 
-To integrate DarkModeKit into your Xcode project using Carthage, specify it in your Cartfile:
+To integrate DarkModeKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```
-github "microsoft/DarkModeKit" ~> 0.1.0
+github "microsoft/DarkModeKit" ~> 0.2.0
+```
+
+### Swift Package Manager
+
+Click "Files -> Swift Package Manager -> Add Package Dependency..." in Xcode's menu and search "https://github.com/microsoft/DarkModeKit"
+
+## Get Started
+
+### How to Use DarkModeKit
+
+The basic idea for adopting DarkModeKit is to provide a pair of colors or images instead of a single value. Simply replace existing colors/images with a pair of light and dark colors/images.
+
+#### Colors
+
+Swift
+```swift
+UIColor(.dm, light: UIColor, dark: UIColor)
+```
+
+Objective-C
+```objc
+[UIColor dm_colorWithLightColor:darkColor:]
+```
+
+#### Images
+
+Swift
+```swift
+UIImage(.dm, light: UIImage, dark: UIImage)
+```
+
+Objective-C
+```objc
+[UIImage dm_imageWithLightImage:darkImage:]
+```
+
+### Others
+
+For more complex scenarios, DarkModeKit is similar as what Apple does in iOS 13 (with slight differences). It maintains a global `DMTraitCollection` which can be accessed through `DMTraitCollection.current` during custom layout. 
+
+For more information on stuff you should handle during layout, please refer to [Apple's documentation](https://developer.apple.com/documentation/xcode/supporting_dark_mode_in_your_interface#2993898).
+
+DarkModeKit will notify views or view controllers in current window when theme changes by calling the following delegate method. 
+
+Swift
+```swift
+@protocol DMTraitEnvironment: NSObject
+
+func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?)
+
+@end
+```
+
+Objective-C
+```objc
+@protocol DMTraitEnvironment <NSObject>
+
+- (void)dmTraitCollectionDidChange:(nullable DMTraitCollection *)previousTraitCollection;
+
+@end
 ```
 
 ## Contributing
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
+This project welcomes contributions and suggestions. Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
 the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
 
@@ -36,3 +100,9 @@ provided by the bot. You will only need to do this once across all repos using o
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+## License
+
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+Licensed under the [MIT](LICENSE) license.
