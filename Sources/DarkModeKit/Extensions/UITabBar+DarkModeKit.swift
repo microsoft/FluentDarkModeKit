@@ -26,12 +26,12 @@ extension UITabBarItem: DMTraitEnvironment {
     static var dynamicSelectedImageKey = "dynamicSelectedImageKey"
   }
 
-  var _dynamicImage: UIImage? {
+  var dm_dynamicImage: UIImage? {
     get { return objc_getAssociatedObject(self, &Constants.UIImageKey) as? UIImage }
     set { objc_setAssociatedObject(self, &Constants.UIImageKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
   }
 
-  var _dynamicSelectedImage: UIImage? {
+  var dm_dynamicSelectedImage: UIImage? {
     get { return objc_getAssociatedObject(self, &Constants.dynamicSelectedImageKey) as? UIImage }
     set { objc_setAssociatedObject(self, &Constants.dynamicSelectedImageKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
   }
@@ -53,31 +53,31 @@ extension UITabBarItem: DMTraitEnvironment {
   }
 
   fileprivate func _updateDynamicImages() {
-    if let dynamicImage = _dynamicImage {
+    if let dynamicImage = dm_dynamicImage {
       image = dynamicImage
     }
 
-    if let dynamicImage = _dynamicSelectedImage {
+    if let dynamicImage = dm_dynamicSelectedImage {
       selectedImage = dynamicImage
     }
   }
 
   @objc dynamic func dm_setImage(_ image: UIImage?) {
     if object_getClass(image) == DMDynamicImageProxy.self {
-      _dynamicImage = image
+      dm_dynamicImage = image
     }
     else {
-      _dynamicImage = nil
+      dm_dynamicImage = nil
     }
     dm_setImage(image)
   }
 
   @objc dynamic func dm_setSelectedImage(_ image: UIImage?) {
     if object_getClass(image) == DMDynamicImageProxy.self {
-      _dynamicSelectedImage = image
+      dm_dynamicSelectedImage = image
     }
     else {
-      _dynamicSelectedImage = nil
+      dm_dynamicSelectedImage = nil
     }
     dm_setSelectedImage(image)
   }
