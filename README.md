@@ -3,7 +3,7 @@
 ![](https://github.com/microsoft/DarkModeKit/workflows/CI/badge.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-DarkModeKit was designed and developed before Apple‘s dark mode official release. It provides your apps the ability to support dark mode for iOS 11+ (including iOS 13).
+DarkModeKit was designed and developed before Apple‘s official dark mode release. It provides a mechanism to support dark mode for apps on iOS 11+ (including iOS 13).
 
 ## Features
 
@@ -35,7 +35,7 @@ Click "Files -> Swift Package Manager -> Add Package Dependency..." in Xcode's m
 
 ### How to Use DarkModeKit
 
-The basic idea for adopting DarkModeKit is to provide a pair of colors or images instead of a single value. Simply replace existing colors/images with a pair of light and dark colors/images.
+To use DarkModeKit, provide a pair of colors or images instead of a single value. Simply replace existing colors/images with a pair of light and dark colors/images.
 
 #### Colors
 
@@ -79,11 +79,11 @@ Objective-C
 
 ### Others
 
-For more complex scenarios, DarkModeKit is similar as what Apple does in iOS 13 (with slight differences). It maintains a global `DMTraitCollection` which can be accessed through `DMTraitCollection.current` during custom layout. 
+For more complex scenarios, DarkModeKit is similar to what Apple does in iOS 13 (some slight differences). It maintains a global `DMTraitCollection` which can be accessed through `DMTraitCollection.current` during custom layout. 
 
-For more information on stuff you should handle during layout, please refer to [Apple's documentation](https://developer.apple.com/documentation/xcode/supporting_dark_mode_in_your_interface#2993898).
+For more information on cases you should handle during layout, please refer to [Apple's documentation](https://developer.apple.com/documentation/xcode/supporting_dark_mode_in_your_interface#2993898).
 
-DarkModeKit will notify views or view controllers in current window when theme changes by calling the following delegate method. 
+DarkModeKit will notify views or view controllers in the current window when the theme changes by calling the following delegate method. 
 
 Swift
 ```swift
