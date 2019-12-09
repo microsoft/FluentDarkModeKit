@@ -8,8 +8,8 @@ import DarkModeCore
 #endif
 
 extension UITextField {
-  override func _updateDynamicColors() {
-    super._updateDynamicColors()
+  override func dm_updateDynamicColors() {
+    super.dm_updateDynamicColors()
 
     if let dynamicTextColor = textColor?.copy() as? DynamicColor {
       textColor = dynamicTextColor
@@ -38,7 +38,7 @@ extension UITextField {
   @objc private dynamic func outlookTextFieldWillMove(toWindow window: UIWindow?) {
     outlookTextFieldWillMove(toWindow: window)
     if window != nil {
-      _updateDynamicColors()
+      dm_updateDynamicColors()
       _updateDynamicImages()
     }
   }

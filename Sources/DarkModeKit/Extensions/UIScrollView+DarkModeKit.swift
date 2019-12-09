@@ -8,8 +8,8 @@ import DarkModeCore
 #endif
 
 extension UIScrollView {
-  override func _updateDynamicColors() {
-    super._updateDynamicColors()
+  override func dm_updateDynamicColors() {
+    super.dm_updateDynamicColors()
 
     indicatorStyle = {
       if DMTraitCollection.current.userInterfaceStyle == .dark {

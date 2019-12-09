@@ -8,8 +8,8 @@ import DarkModeCore
 #endif
 
 extension UINavigationBar {
-  override func _updateDynamicColors() {
-    super._updateDynamicColors()
+  override func dm_updateDynamicColors() {
+    super.dm_updateDynamicColors()
 
     if let dynamicBarTintColor = barTintColor?.copy() as? DynamicColor {
       barTintColor = dynamicBarTintColor

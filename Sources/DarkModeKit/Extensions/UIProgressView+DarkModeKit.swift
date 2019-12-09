@@ -8,8 +8,8 @@ import DarkModeCore
 #endif
 
 extension UIProgressView {
-  override func _updateDynamicColors() {
-    super._updateDynamicColors()
+  override func dm_updateDynamicColors() {
+    super.dm_updateDynamicColors()
 
     if let dynamicProgressTintColor = progressTintColor?.copy() as? DynamicColor {
       progressTintColor = dynamicProgressTintColor

@@ -12,11 +12,11 @@ extension UIView: DMTraitEnvironment {
     subviews.forEach { $0.dmTraitCollectionDidChange(previousTraitCollection) }
     setNeedsLayout()
     setNeedsDisplay()
-    _updateDynamicColors()
+    dm_updateDynamicColors()
     _updateDynamicImages()
   }
 
-  @objc func _updateDynamicColors() {
+  @objc func dm_updateDynamicColors() {
     if let dynamicBackgroundColor = dm_dynamicBackgroundColor {
       backgroundColor = dynamicBackgroundColor
     }
@@ -40,7 +40,7 @@ extension UIView {
   @objc private dynamic func outlookWillMove(toWindow window: UIWindow?) {
     outlookWillMove(toWindow: window)
     if window != nil {
-      _updateDynamicColors()
+      dm_updateDynamicColors()
       _updateDynamicImages()
     }
   }

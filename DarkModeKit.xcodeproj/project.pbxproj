@@ -247,9 +247,9 @@
 		8CDA62772366DAA9004895B5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8CDA627A2366DAA9004895B5 /* UIView+DarkModeKit.swift */,
 				8CDA62782366DAA9004895B5 /* UIToolbar+DarkModeKit.swift */,
 				8CDA62792366DAA9004895B5 /* UIButton+DarkModeKit.swift */,
-				8CDA627A2366DAA9004895B5 /* UIView+DarkModeKit.swift */,
 				8CDA627B2366DAA9004895B5 /* UIWindow+DarkModeKit.swift */,
 				8CDA627C2366DAA9004895B5 /* UIProgressView+DarkModeKit.swift */,
 				8CDA627D2366DAA9004895B5 /* UIScrollView+DarkModeKit.swift */,

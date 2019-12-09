@@ -8,8 +8,8 @@ import DarkModeCore
 #endif
 
 extension UITextView {
-  override func _updateDynamicColors() {
-    super._updateDynamicColors()
+  override func dm_updateDynamicColors() {
+    super.dm_updateDynamicColors()
 
     keyboardAppearance = {
       if DMTraitCollection.current.userInterfaceStyle == .dark {
