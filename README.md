@@ -41,23 +41,19 @@ The basic idea for adopting DarkModeKit is to provide a pair of colors or images
 
 Swift
 ```swift
-// The API
 extension UIColor {
     init(_: DMNamespace, light: UIColor, dark: UIColor)
 }
 
-// An example
 let color = UIColor(.dm, light: .white, dark: .black)
 ```
 
 Objective-C
 ```objc
-// The API
 @interface UIColor (DarkModeKit)
 - (UIColor *)dm_colorWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor;
 @end
 
-// An example
 UIColor *color = [UIColor dm_colorWithLightColor:UIColor.whiteColor darkColor:UIColor.blackColor];
 ```
 
@@ -65,12 +61,10 @@ UIColor *color = [UIColor dm_colorWithLightColor:UIColor.whiteColor darkColor:UI
 
 Swift
 ```swift
-// The API
 extension UIColor {
     init(_: DMNamespace, light: UIImage, dark: UIImage)
 }
 
-// An example
 let lightImage = UIImage(named: "Light")!
 let darkImage = UIImage(named: "Dark")!
 let image = UIImage(.dm, light: lightImage, dark: darkImage)
@@ -78,7 +72,6 @@ let image = UIImage(.dm, light: lightImage, dark: darkImage)
 
 Objective-C
 ```objc
-// The API
 @interface UIImage (DarkModeKit)
 - (UIImage *)dm_imageWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage;
 @end
