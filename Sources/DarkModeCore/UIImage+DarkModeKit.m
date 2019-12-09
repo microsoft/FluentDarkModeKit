@@ -15,7 +15,6 @@
     [UIImage dm_swizzleInstanceMethod:@selector(isEqual:) to:@selector(dm_isEqual:)];
 }
 
-
 + (UIImage *)dm_imageWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage {
     return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:lightImage darkImage:darkImage];
 }
