@@ -8,8 +8,8 @@ import DarkModeCore
 #endif
 
 extension UITextField {
-  override func _updateDynamicColors() {
-    super._updateDynamicColors()
+  override func dm_updateDynamicColors() {
+    super.dm_updateDynamicColors()
 
     if let dynamicTextColor = textColor?.copy() as? DynamicColor {
       textColor = dynamicTextColor
@@ -30,16 +30,16 @@ extension UITextField {
 
   /// `UITextField` will not call `super.willMove(toWindow:)` in its implementation, so we need to swizzle it separately.
   static let swizzleTextFieldWillMoveToWindowOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(willMove(toWindow:)), to: #selector(outlookTextFieldWillMove(toWindow:))) {
+    if !dm_swizzleInstanceMethod(#selector(willMove(toWindow:)), to: #selector(dm_textFieldWillMove(toWindow:))) {
       assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UITextField.self, selector: #selector(willMove(toWindow:))))
     }
   }()
 
-  @objc private dynamic func outlookTextFieldWillMove(toWindow window: UIWindow?) {
-    outlookTextFieldWillMove(toWindow: window)
+  @objc private dynamic func dm_textFieldWillMove(toWindow window: UIWindow?) {
+    dm_textFieldWillMove(toWindow: window)
     if window != nil {
-      _updateDynamicColors()
-      _updateDynamicImages()
+      dm_updateDynamicColors()
+      dm_updateDynamicImages()
     }
   }
 }

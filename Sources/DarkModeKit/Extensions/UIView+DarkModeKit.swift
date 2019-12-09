@@ -12,36 +12,36 @@ extension UIView: DMTraitEnvironment {
     subviews.forEach { $0.dmTraitCollectionDidChange(previousTraitCollection) }
     setNeedsLayout()
     setNeedsDisplay()
-    _updateDynamicColors()
-    _updateDynamicImages()
+    dm_updateDynamicColors()
+    dm_updateDynamicImages()
   }
 
-  @objc func _updateDynamicColors() {
+  @objc func dm_updateDynamicColors() {
     if let dynamicBackgroundColor = dm_dynamicBackgroundColor {
       backgroundColor = dynamicBackgroundColor
     }
-    if let dynamicTintColor = _dynamicTintColor {
+    if let dynamicTintColor = dm_dynamicTintColor {
       tintColor = dynamicTintColor
     }
   }
 
-  @objc func _updateDynamicImages() {
+  @objc func dm_updateDynamicImages() {
     // For subclasses to override.
   }
 }
 
 extension UIView {
   static let swizzleWillMoveToWindowOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(willMove(toWindow:)), to: #selector(outlookWillMove(toWindow:))) {
+    if !dm_swizzleInstanceMethod(#selector(willMove(toWindow:)), to: #selector(dm_willMove(toWindow:))) {
       assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: #selector(willMove(toWindow:))))
     }
   }()
 
-  @objc private dynamic func outlookWillMove(toWindow window: UIWindow?) {
-    outlookWillMove(toWindow: window)
+  @objc private dynamic func dm_willMove(toWindow window: UIWindow?) {
+    dm_willMove(toWindow: window)
     if window != nil {
-      _updateDynamicColors()
-      _updateDynamicImages()
+      dm_updateDynamicColors()
+      dm_updateDynamicImages()
     }
   }
 }
@@ -52,18 +52,18 @@ extension UIView {
   }
 
   static let swizzleSetTintColorOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(setter: tintColor), to: #selector(outlookSetTintColor)) {
+    if !dm_swizzleInstanceMethod(#selector(setter: tintColor), to: #selector(dm_setTintColor)) {
       assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: #selector(setter: tintColor)))
     }
   }()
 
-  private var _dynamicTintColor: DynamicColor? {
+  private var dm_dynamicTintColor: DynamicColor? {
     get { return objc_getAssociatedObject(self, &Constants.dynamicTintColorKey) as? DynamicColor }
     set { objc_setAssociatedObject(self, &Constants.dynamicTintColorKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
   }
 
-  @objc private dynamic func outlookSetTintColor(_ color: UIColor) {
-    _dynamicTintColor = color as? DynamicColor
-    outlookSetTintColor(color)
+  @objc private dynamic func dm_setTintColor(_ color: UIColor) {
+    dm_dynamicTintColor = color as? DynamicColor
+    dm_setTintColor(color)
   }
 }

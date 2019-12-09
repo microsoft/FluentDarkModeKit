@@ -8,8 +8,8 @@ import DarkModeCore
 #endif
 
 extension UISlider {
-  override func _updateDynamicColors() {
-    super._updateDynamicColors()
+  override func dm_updateDynamicColors() {
+    super.dm_updateDynamicColors()
 
     if let dynamicMinimumTrackTintColor = minimumTrackTintColor?.copy() as? DynamicColor {
       minimumTrackTintColor = dynamicMinimumTrackTintColor

@@ -8,8 +8,8 @@ import DarkModeCore
 #endif
 
 extension UIButton {
-  override func _updateDynamicColors() {
-    super._updateDynamicColors()
+  override func dm_updateDynamicColors() {
+    super.dm_updateDynamicColors()
 
     [UIControl.State.normal, .highlighted, .disabled, .selected, .focused].forEach { state in
       if let color = titleColor(for: state)?.copy() as? DynamicColor {
