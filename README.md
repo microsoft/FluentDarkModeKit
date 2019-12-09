@@ -41,24 +41,40 @@ The basic idea for adopting DarkModeKit is to provide a pair of colors or images
 
 Swift
 ```swift
-UIColor(.dm, light: UIColor, dark: UIColor)
+extension UIColor {
+    init(_: DMNamespace, light: UIColor, dark: UIColor)
+}
+
+let color = UIColor(.dm, light: .white, dark: .black)
 ```
 
 Objective-C
 ```objc
-[UIColor dm_colorWithLightColor:darkColor:]
+@interface UIColor (DarkModeKit)
+- (UIColor *)dm_colorWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor;
+@end
+
+UIColor *color = [UIColor dm_colorWithLightColor:UIColor.whiteColor darkColor:UIColor.blackColor];
 ```
 
 #### Images
 
 Swift
 ```swift
-UIImage(.dm, light: UIImage, dark: UIImage)
+extension UIColor {
+    init(_: DMNamespace, light: UIImage, dark: UIImage)
+}
+
+let lightImage = UIImage(named: "Light")!
+let darkImage = UIImage(named: "Dark")!
+let image = UIImage(.dm, light: lightImage, dark: darkImage)
 ```
 
 Objective-C
 ```objc
-[UIImage dm_imageWithLightImage:darkImage:]
+@interface UIImage (DarkModeKit)
+- (UIImage *)dm_imageWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage;
+@end
 ```
 
 ### Others
@@ -71,11 +87,9 @@ DarkModeKit will notify views or view controllers in current window when theme c
 
 Swift
 ```swift
-@protocol DMTraitEnvironment: NSObject
-
-func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?)
-
-@end
+protocol DMTraitEnvironment: NSObjectProtocol {
+    func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?)
+}
 ```
 
 Objective-C
