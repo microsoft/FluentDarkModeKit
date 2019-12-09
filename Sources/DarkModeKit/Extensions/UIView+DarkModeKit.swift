@@ -20,7 +20,7 @@ extension UIView: DMTraitEnvironment {
     if let dynamicBackgroundColor = dm_dynamicBackgroundColor {
       backgroundColor = dynamicBackgroundColor
     }
-    if let dynamicTintColor = _dynamicTintColor {
+    if let dynamicTintColor = dm_dynamicTintColor {
       tintColor = dynamicTintColor
     }
   }
@@ -57,13 +57,13 @@ extension UIView {
     }
   }()
 
-  private var _dynamicTintColor: DynamicColor? {
+  private var dm_dynamicTintColor: DynamicColor? {
     get { return objc_getAssociatedObject(self, &Constants.dynamicTintColorKey) as? DynamicColor }
     set { objc_setAssociatedObject(self, &Constants.dynamicTintColorKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
   }
 
   @objc private dynamic func dm_setTintColor(_ color: UIColor) {
-    _dynamicTintColor = color as? DynamicColor
+    dm_dynamicTintColor = color as? DynamicColor
     dm_setTintColor(color)
   }
 }
