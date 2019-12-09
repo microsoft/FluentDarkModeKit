@@ -37,13 +37,13 @@ extension UITabBarItem: DMTraitEnvironment {
   }
 
   static let swizzleSetImageOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(setter: image), to: #selector(outlookSetImage(_:))) {
+    if !dm_swizzleInstanceMethod(#selector(setter: image), to: #selector(dm_setImage(_:))) {
       assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UITabBarItem.self, selector: #selector(setter: image)))
     }
   }()
 
   static let swizzleSetSelectedImageOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(setter: selectedImage), to: #selector(outlookSetSelectedImage(_:))) {
+    if !dm_swizzleInstanceMethod(#selector(setter: selectedImage), to: #selector(dm_setSelectedImage(_:))) {
       assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UITabBarItem.self, selector: #selector(setter: selectedImage)))
     }
   }()
@@ -62,24 +62,24 @@ extension UITabBarItem: DMTraitEnvironment {
     }
   }
 
-  @objc dynamic func outlookSetImage(_ image: UIImage?) {
+  @objc dynamic func dm_setImage(_ image: UIImage?) {
     if object_getClass(image) == DMDynamicImageProxy.self {
       _dynamicImage = image
     }
     else {
       _dynamicImage = nil
     }
-    outlookSetImage(image)
+    dm_setImage(image)
   }
 
-  @objc dynamic func outlookSetSelectedImage(_ image: UIImage?) {
+  @objc dynamic func dm_setSelectedImage(_ image: UIImage?) {
     if object_getClass(image) == DMDynamicImageProxy.self {
       _dynamicSelectedImage = image
     }
     else {
       _dynamicSelectedImage = nil
     }
-    outlookSetSelectedImage(image)
+    dm_setSelectedImage(image)
   }
 
 }

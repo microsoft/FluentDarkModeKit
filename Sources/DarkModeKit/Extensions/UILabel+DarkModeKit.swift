@@ -13,8 +13,8 @@ extension UILabel {
   }
 
   static let swizzleDidMoveToWindowOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(didMoveToWindow), to: #selector(outlookDidMoveToWindow)) {
-      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UILabel.self, selector: #selector(outlookDidMoveToWindow)))
+    if !dm_swizzleInstanceMethod(#selector(didMoveToWindow), to: #selector(dm_didMoveToWindow)) {
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UILabel.self, selector: #selector(didMoveToWindow)))
     }
   }()
 
@@ -23,8 +23,8 @@ extension UILabel {
     set { objc_setAssociatedObject(self, &Constants.currentThemeKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
   }
 
-  @objc private dynamic func outlookDidMoveToWindow() {
-    outlookDidMoveToWindow()
+  @objc private dynamic func dm_didMoveToWindow() {
+    dm_didMoveToWindow()
     if currentUserInterfaceStyle != DMTraitCollection.current.userInterfaceStyle {
       currentUserInterfaceStyle = DMTraitCollection.current.userInterfaceStyle
       dmTraitCollectionDidChange(nil)

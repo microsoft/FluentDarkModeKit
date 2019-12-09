@@ -19,22 +19,22 @@ extension UIImageView {
   }
 
   static let swizzleSetImageOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(setter: image), to: #selector(outlookSetImage(_:))) {
+    if !dm_swizzleInstanceMethod(#selector(setter: image), to: #selector(dm_setImage(_:))) {
       assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIImageView.self, selector: #selector(setter: image)))
     }
   }()
 
   static let swizzleInitImageOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(UIImageView.init(image:)), to: #selector(UIImageView.outlookInit(image:))) {
+    if !dm_swizzleInstanceMethod(#selector(UIImageView.init(image:)), to: #selector(UIImageView.dm_init(image:))) {
       assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIImageView.self, selector: #selector(setter: image)))
     }
   }()
 
-  @objc dynamic func outlookInit(image: UIImage?) -> UIImageView {
+  @objc dynamic func dm_init(image: UIImage?) -> UIImageView {
     if object_getClass(image) == DMDynamicImageProxy.self {
       _dynamicImage = image
     }
-    return outlookInit(image: image)
+    return dm_init(image: image)
   }
 
   override func dm_updateDynamicImages() {
@@ -45,13 +45,13 @@ extension UIImageView {
     }
   }
 
-  @objc dynamic func outlookSetImage(_ image: UIImage?) {
+  @objc dynamic func dm_setImage(_ image: UIImage?) {
     if object_getClass(image) == DMDynamicImageProxy.self {
       _dynamicImage = image
     }
     else {
       _dynamicImage = nil
     }
-    outlookSetImage(image)
+    dm_setImage(image)
   }
 }

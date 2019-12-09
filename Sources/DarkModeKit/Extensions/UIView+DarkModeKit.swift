@@ -32,13 +32,13 @@ extension UIView: DMTraitEnvironment {
 
 extension UIView {
   static let swizzleWillMoveToWindowOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(willMove(toWindow:)), to: #selector(outlookWillMove(toWindow:))) {
+    if !dm_swizzleInstanceMethod(#selector(willMove(toWindow:)), to: #selector(dm_willMove(toWindow:))) {
       assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: #selector(willMove(toWindow:))))
     }
   }()
 
-  @objc private dynamic func outlookWillMove(toWindow window: UIWindow?) {
-    outlookWillMove(toWindow: window)
+  @objc private dynamic func dm_willMove(toWindow window: UIWindow?) {
+    dm_willMove(toWindow: window)
     if window != nil {
       dm_updateDynamicColors()
       dm_updateDynamicImages()
@@ -52,7 +52,7 @@ extension UIView {
   }
 
   static let swizzleSetTintColorOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(setter: tintColor), to: #selector(outlookSetTintColor)) {
+    if !dm_swizzleInstanceMethod(#selector(setter: tintColor), to: #selector(dm_setTintColor)) {
       assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: #selector(setter: tintColor)))
     }
   }()
@@ -62,8 +62,8 @@ extension UIView {
     set { objc_setAssociatedObject(self, &Constants.dynamicTintColorKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
   }
 
-  @objc private dynamic func outlookSetTintColor(_ color: UIColor) {
+  @objc private dynamic func dm_setTintColor(_ color: UIColor) {
     _dynamicTintColor = color as? DynamicColor
-    outlookSetTintColor(color)
+    dm_setTintColor(color)
   }
 }
