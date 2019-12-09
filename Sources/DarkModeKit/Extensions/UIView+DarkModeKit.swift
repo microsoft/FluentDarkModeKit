@@ -13,7 +13,7 @@ extension UIView: DMTraitEnvironment {
     setNeedsLayout()
     setNeedsDisplay()
     dm_updateDynamicColors()
-    _updateDynamicImages()
+    dm_updateDynamicImages()
   }
 
   @objc func dm_updateDynamicColors() {
@@ -25,7 +25,7 @@ extension UIView: DMTraitEnvironment {
     }
   }
 
-  @objc func _updateDynamicImages() {
+  @objc func dm_updateDynamicImages() {
     // For subclasses to override.
   }
 }
@@ -41,7 +41,7 @@ extension UIView {
     outlookWillMove(toWindow: window)
     if window != nil {
       dm_updateDynamicColors()
-      _updateDynamicImages()
+      dm_updateDynamicImages()
     }
   }
 }

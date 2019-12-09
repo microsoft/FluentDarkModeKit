@@ -39,7 +39,7 @@ extension UITextField {
     outlookTextFieldWillMove(toWindow: window)
     if window != nil {
       dm_updateDynamicColors()
-      _updateDynamicImages()
+      dm_updateDynamicImages()
     }
   }
 }

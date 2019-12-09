@@ -13,8 +13,8 @@ extension UITabBar {
     items?.forEach { $0.dmTraitCollectionDidChange(previousTraitCollection) }
   }
 
-  override func _updateDynamicImages() {
-    super._updateDynamicImages()
+  override func dm_updateDynamicImages() {
+    super.dm_updateDynamicImages()
     items?.forEach { $0._updateDynamicImages() }
   }
 }

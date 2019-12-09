@@ -37,8 +37,8 @@ extension UIImageView {
     return outlookInit(image: image)
   }
 
-  override func _updateDynamicImages() {
-    super._updateDynamicImages()
+  override func dm_updateDynamicImages() {
+    super.dm_updateDynamicImages()
 
     if let dynamicImage = _dynamicImage {
       image = dynamicImage
