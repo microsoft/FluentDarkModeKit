@@ -25,23 +25,23 @@
 		8CDA628E2366DAA9004895B5 /* DMTraitCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62722366DAA9004895B5 /* DMTraitCollection.m */; };
 		8CDA628F2366DAA9004895B5 /* DMDynamicColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62732366DAA9004895B5 /* DMDynamicColor.m */; };
 		8CDA62912366DAA9004895B5 /* DMDynamicImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDA62762366DAA9004895B5 /* DMDynamicImage.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8CDA62922366DAA9004895B5 /* UIToolbar+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62782366DAA9004895B5 /* UIToolbar+Theme.swift */; };
-		8CDA62932366DAA9004895B5 /* UIButton+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62792366DAA9004895B5 /* UIButton+Theme.swift */; };
-		8CDA62942366DAA9004895B5 /* UIView+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA627A2366DAA9004895B5 /* UIView+Theme.swift */; };
-		8CDA62952366DAA9004895B5 /* UIWindow+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA627B2366DAA9004895B5 /* UIWindow+Theme.swift */; };
-		8CDA62962366DAA9004895B5 /* UIProgressView+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA627C2366DAA9004895B5 /* UIProgressView+Theme.swift */; };
-		8CDA62972366DAA9004895B5 /* UIScrollView+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA627D2366DAA9004895B5 /* UIScrollView+Theme.swift */; };
-		8CDA62982366DAA9004895B5 /* UITextView+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA627E2366DAA9004895B5 /* UITextView+Theme.swift */; };
-		8CDA62992366DAA9004895B5 /* UIImageView+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA627F2366DAA9004895B5 /* UIImageView+Theme.swift */; };
-		8CDA629A2366DAA9004895B5 /* UIPageControl+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62802366DAA9004895B5 /* UIPageControl+Theme.swift */; };
-		8CDA629B2366DAA9004895B5 /* UITableView+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62812366DAA9004895B5 /* UITableView+Theme.swift */; };
-		8CDA629C2366DAA9004895B5 /* UINavigationBar+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62822366DAA9004895B5 /* UINavigationBar+Theme.swift */; };
-		8CDA629D2366DAA9004895B5 /* UITabBar+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62832366DAA9004895B5 /* UITabBar+Theme.swift */; };
-		8CDA629E2366DAA9004895B5 /* UIViewController+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62842366DAA9004895B5 /* UIViewController+Theme.swift */; };
-		8CDA629F2366DAA9004895B5 /* UILabel+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62852366DAA9004895B5 /* UILabel+Theme.swift */; };
-		8CDA62A02366DAA9004895B5 /* UISlider+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62862366DAA9004895B5 /* UISlider+Theme.swift */; };
-		8CDA62A12366DAA9004895B5 /* UITextField+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62872366DAA9004895B5 /* UITextField+Theme.swift */; };
-		8CDA62A22366DAA9004895B5 /* UIApplication+Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62882366DAA9004895B5 /* UIApplication+Theme.swift */; };
+		8CDA62922366DAA9004895B5 /* UIToolbar+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62782366DAA9004895B5 /* UIToolbar+DarkModeKit.swift */; };
+		8CDA62932366DAA9004895B5 /* UIButton+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62792366DAA9004895B5 /* UIButton+DarkModeKit.swift */; };
+		8CDA62942366DAA9004895B5 /* UIView+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA627A2366DAA9004895B5 /* UIView+DarkModeKit.swift */; };
+		8CDA62952366DAA9004895B5 /* UIWindow+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA627B2366DAA9004895B5 /* UIWindow+DarkModeKit.swift */; };
+		8CDA62962366DAA9004895B5 /* UIProgressView+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA627C2366DAA9004895B5 /* UIProgressView+DarkModeKit.swift */; };
+		8CDA62972366DAA9004895B5 /* UIScrollView+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA627D2366DAA9004895B5 /* UIScrollView+DarkModeKit.swift */; };
+		8CDA62982366DAA9004895B5 /* UITextView+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA627E2366DAA9004895B5 /* UITextView+DarkModeKit.swift */; };
+		8CDA62992366DAA9004895B5 /* UIImageView+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA627F2366DAA9004895B5 /* UIImageView+DarkModeKit.swift */; };
+		8CDA629A2366DAA9004895B5 /* UIPageControl+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62802366DAA9004895B5 /* UIPageControl+DarkModeKit.swift */; };
+		8CDA629B2366DAA9004895B5 /* UITableView+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62812366DAA9004895B5 /* UITableView+DarkModeKit.swift */; };
+		8CDA629C2366DAA9004895B5 /* UINavigationBar+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62822366DAA9004895B5 /* UINavigationBar+DarkModeKit.swift */; };
+		8CDA629D2366DAA9004895B5 /* UITabBar+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62832366DAA9004895B5 /* UITabBar+DarkModeKit.swift */; };
+		8CDA629E2366DAA9004895B5 /* UIViewController+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62842366DAA9004895B5 /* UIViewController+DarkModeKit.swift */; };
+		8CDA629F2366DAA9004895B5 /* UILabel+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62852366DAA9004895B5 /* UILabel+DarkModeKit.swift */; };
+		8CDA62A02366DAA9004895B5 /* UISlider+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62862366DAA9004895B5 /* UISlider+DarkModeKit.swift */; };
+		8CDA62A12366DAA9004895B5 /* UITextField+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62872366DAA9004895B5 /* UITextField+DarkModeKit.swift */; };
+		8CDA62A22366DAA9004895B5 /* UIApplication+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62882366DAA9004895B5 /* UIApplication+DarkModeKit.swift */; };
 		8CDA62A32366DAA9004895B5 /* DMDynamicImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA62892366DAA9004895B5 /* DMDynamicImage.m */; };
 		8CDA62A42366DAA9004895B5 /* DarkModeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDA628A2366DAA9004895B5 /* DarkModeManager.swift */; };
 		8CDA62A52366DAA9004895B5 /* DMDynamicColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDA628B2366DAA9004895B5 /* DMDynamicColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -100,23 +100,23 @@
 		8CDA62722366DAA9004895B5 /* DMTraitCollection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTraitCollection.m; sourceTree = "<group>"; };
 		8CDA62732366DAA9004895B5 /* DMDynamicColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDynamicColor.m; sourceTree = "<group>"; };
 		8CDA62762366DAA9004895B5 /* DMDynamicImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDynamicImage.h; sourceTree = "<group>"; };
-		8CDA62782366DAA9004895B5 /* UIToolbar+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIToolbar+Theme.swift"; sourceTree = "<group>"; };
-		8CDA62792366DAA9004895B5 /* UIButton+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Theme.swift"; sourceTree = "<group>"; };
-		8CDA627A2366DAA9004895B5 /* UIView+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Theme.swift"; sourceTree = "<group>"; };
-		8CDA627B2366DAA9004895B5 /* UIWindow+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+Theme.swift"; sourceTree = "<group>"; };
-		8CDA627C2366DAA9004895B5 /* UIProgressView+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIProgressView+Theme.swift"; sourceTree = "<group>"; };
-		8CDA627D2366DAA9004895B5 /* UIScrollView+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Theme.swift"; sourceTree = "<group>"; };
-		8CDA627E2366DAA9004895B5 /* UITextView+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Theme.swift"; sourceTree = "<group>"; };
-		8CDA627F2366DAA9004895B5 /* UIImageView+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Theme.swift"; sourceTree = "<group>"; };
-		8CDA62802366DAA9004895B5 /* UIPageControl+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIPageControl+Theme.swift"; sourceTree = "<group>"; };
-		8CDA62812366DAA9004895B5 /* UITableView+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Theme.swift"; sourceTree = "<group>"; };
-		8CDA62822366DAA9004895B5 /* UINavigationBar+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Theme.swift"; sourceTree = "<group>"; };
-		8CDA62832366DAA9004895B5 /* UITabBar+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBar+Theme.swift"; sourceTree = "<group>"; };
-		8CDA62842366DAA9004895B5 /* UIViewController+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Theme.swift"; sourceTree = "<group>"; };
-		8CDA62852366DAA9004895B5 /* UILabel+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Theme.swift"; sourceTree = "<group>"; };
-		8CDA62862366DAA9004895B5 /* UISlider+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISlider+Theme.swift"; sourceTree = "<group>"; };
-		8CDA62872366DAA9004895B5 /* UITextField+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Theme.swift"; sourceTree = "<group>"; };
-		8CDA62882366DAA9004895B5 /* UIApplication+Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Theme.swift"; sourceTree = "<group>"; };
+		8CDA62782366DAA9004895B5 /* UIToolbar+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIToolbar+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA62792366DAA9004895B5 /* UIButton+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA627A2366DAA9004895B5 /* UIView+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA627B2366DAA9004895B5 /* UIWindow+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA627C2366DAA9004895B5 /* UIProgressView+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIProgressView+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA627D2366DAA9004895B5 /* UIScrollView+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA627E2366DAA9004895B5 /* UITextView+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA627F2366DAA9004895B5 /* UIImageView+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA62802366DAA9004895B5 /* UIPageControl+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIPageControl+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA62812366DAA9004895B5 /* UITableView+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA62822366DAA9004895B5 /* UINavigationBar+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA62832366DAA9004895B5 /* UITabBar+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITabBar+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA62842366DAA9004895B5 /* UIViewController+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA62852366DAA9004895B5 /* UILabel+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA62862366DAA9004895B5 /* UISlider+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISlider+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA62872366DAA9004895B5 /* UITextField+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+DarkModeKit.swift"; sourceTree = "<group>"; };
+		8CDA62882366DAA9004895B5 /* UIApplication+DarkModeKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+DarkModeKit.swift"; sourceTree = "<group>"; };
 		8CDA62892366DAA9004895B5 /* DMDynamicImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDynamicImage.m; sourceTree = "<group>"; };
 		8CDA628A2366DAA9004895B5 /* DarkModeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkModeManager.swift; sourceTree = "<group>"; };
 		8CDA628B2366DAA9004895B5 /* DMDynamicColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDynamicColor.h; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				8CDA628A2366DAA9004895B5 /* DarkModeManager.swift */,
-				8CDA62772366DAA9004895B5 /* ThemeableExtensions */,
+				8CDA62772366DAA9004895B5 /* Extensions */,
 				8C1915D22361EFDB004A606A /* Info.plist */,
 			);
 			path = DarkModeKit;
@@ -244,28 +244,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		8CDA62772366DAA9004895B5 /* ThemeableExtensions */ = {
+		8CDA62772366DAA9004895B5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8CDA62782366DAA9004895B5 /* UIToolbar+Theme.swift */,
-				8CDA62792366DAA9004895B5 /* UIButton+Theme.swift */,
-				8CDA627A2366DAA9004895B5 /* UIView+Theme.swift */,
-				8CDA627B2366DAA9004895B5 /* UIWindow+Theme.swift */,
-				8CDA627C2366DAA9004895B5 /* UIProgressView+Theme.swift */,
-				8CDA627D2366DAA9004895B5 /* UIScrollView+Theme.swift */,
-				8CDA627E2366DAA9004895B5 /* UITextView+Theme.swift */,
-				8CDA627F2366DAA9004895B5 /* UIImageView+Theme.swift */,
-				8CDA62802366DAA9004895B5 /* UIPageControl+Theme.swift */,
-				8CDA62812366DAA9004895B5 /* UITableView+Theme.swift */,
-				8CDA62822366DAA9004895B5 /* UINavigationBar+Theme.swift */,
-				8CDA62832366DAA9004895B5 /* UITabBar+Theme.swift */,
-				8CDA62842366DAA9004895B5 /* UIViewController+Theme.swift */,
-				8CDA62852366DAA9004895B5 /* UILabel+Theme.swift */,
-				8CDA62862366DAA9004895B5 /* UISlider+Theme.swift */,
-				8CDA62872366DAA9004895B5 /* UITextField+Theme.swift */,
-				8CDA62882366DAA9004895B5 /* UIApplication+Theme.swift */,
+				8CDA62782366DAA9004895B5 /* UIToolbar+DarkModeKit.swift */,
+				8CDA62792366DAA9004895B5 /* UIButton+DarkModeKit.swift */,
+				8CDA627A2366DAA9004895B5 /* UIView+DarkModeKit.swift */,
+				8CDA627B2366DAA9004895B5 /* UIWindow+DarkModeKit.swift */,
+				8CDA627C2366DAA9004895B5 /* UIProgressView+DarkModeKit.swift */,
+				8CDA627D2366DAA9004895B5 /* UIScrollView+DarkModeKit.swift */,
+				8CDA627E2366DAA9004895B5 /* UITextView+DarkModeKit.swift */,
+				8CDA627F2366DAA9004895B5 /* UIImageView+DarkModeKit.swift */,
+				8CDA62802366DAA9004895B5 /* UIPageControl+DarkModeKit.swift */,
+				8CDA62812366DAA9004895B5 /* UITableView+DarkModeKit.swift */,
+				8CDA62822366DAA9004895B5 /* UINavigationBar+DarkModeKit.swift */,
+				8CDA62832366DAA9004895B5 /* UITabBar+DarkModeKit.swift */,
+				8CDA62842366DAA9004895B5 /* UIViewController+DarkModeKit.swift */,
+				8CDA62852366DAA9004895B5 /* UILabel+DarkModeKit.swift */,
+				8CDA62862366DAA9004895B5 /* UISlider+DarkModeKit.swift */,
+				8CDA62872366DAA9004895B5 /* UITextField+DarkModeKit.swift */,
+				8CDA62882366DAA9004895B5 /* UIApplication+DarkModeKit.swift */,
 			);
-			path = ThemeableExtensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -415,29 +415,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CDA62972366DAA9004895B5 /* UIScrollView+Theme.swift in Sources */,
+				8CDA62972366DAA9004895B5 /* UIScrollView+DarkModeKit.swift in Sources */,
 				8CB63E42238551F3008ABCE2 /* UIView+DarkModeKit.m in Sources */,
-				8CDA62A12366DAA9004895B5 /* UITextField+Theme.swift in Sources */,
-				8CDA62952366DAA9004895B5 /* UIWindow+Theme.swift in Sources */,
-				8CDA629E2366DAA9004895B5 /* UIViewController+Theme.swift in Sources */,
-				8CDA62992366DAA9004895B5 /* UIImageView+Theme.swift in Sources */,
-				8CDA62962366DAA9004895B5 /* UIProgressView+Theme.swift in Sources */,
-				8CDA62A02366DAA9004895B5 /* UISlider+Theme.swift in Sources */,
-				8CDA62A22366DAA9004895B5 /* UIApplication+Theme.swift in Sources */,
+				8CDA62A12366DAA9004895B5 /* UITextField+DarkModeKit.swift in Sources */,
+				8CDA62952366DAA9004895B5 /* UIWindow+DarkModeKit.swift in Sources */,
+				8CDA629E2366DAA9004895B5 /* UIViewController+DarkModeKit.swift in Sources */,
+				8CDA62992366DAA9004895B5 /* UIImageView+DarkModeKit.swift in Sources */,
+				8CDA62962366DAA9004895B5 /* UIProgressView+DarkModeKit.swift in Sources */,
+				8CDA62A02366DAA9004895B5 /* UISlider+DarkModeKit.swift in Sources */,
+				8CDA62A22366DAA9004895B5 /* UIApplication+DarkModeKit.swift in Sources */,
 				8CDA628F2366DAA9004895B5 /* DMDynamicColor.m in Sources */,
 				8CDA62A42366DAA9004895B5 /* DarkModeManager.swift in Sources */,
-				8CDA62982366DAA9004895B5 /* UITextView+Theme.swift in Sources */,
-				8CDA62942366DAA9004895B5 /* UIView+Theme.swift in Sources */,
+				8CDA62982366DAA9004895B5 /* UITextView+DarkModeKit.swift in Sources */,
+				8CDA62942366DAA9004895B5 /* UIView+DarkModeKit.swift in Sources */,
 				8CDA62A32366DAA9004895B5 /* DMDynamicImage.m in Sources */,
 				8CDA628E2366DAA9004895B5 /* DMTraitCollection.m in Sources */,
-				8CDA629C2366DAA9004895B5 /* UINavigationBar+Theme.swift in Sources */,
-				8CDA629D2366DAA9004895B5 /* UITabBar+Theme.swift in Sources */,
-				8CDA62922366DAA9004895B5 /* UIToolbar+Theme.swift in Sources */,
+				8CDA629C2366DAA9004895B5 /* UINavigationBar+DarkModeKit.swift in Sources */,
+				8CDA629D2366DAA9004895B5 /* UITabBar+DarkModeKit.swift in Sources */,
+				8CDA62922366DAA9004895B5 /* UIToolbar+DarkModeKit.swift in Sources */,
 				8C071AED23683BF5001AB7B2 /* NSObject+DarkModeKit.m in Sources */,
-				8CDA629A2366DAA9004895B5 /* UIPageControl+Theme.swift in Sources */,
-				8CDA62932366DAA9004895B5 /* UIButton+Theme.swift in Sources */,
-				8CDA629B2366DAA9004895B5 /* UITableView+Theme.swift in Sources */,
-				8CDA629F2366DAA9004895B5 /* UILabel+Theme.swift in Sources */,
+				8CDA629A2366DAA9004895B5 /* UIPageControl+DarkModeKit.swift in Sources */,
+				8CDA62932366DAA9004895B5 /* UIButton+DarkModeKit.swift in Sources */,
+				8CDA629B2366DAA9004895B5 /* UITableView+DarkModeKit.swift in Sources */,
+				8CDA629F2366DAA9004895B5 /* UILabel+DarkModeKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

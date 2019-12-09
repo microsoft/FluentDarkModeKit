@@ -8,9 +8,9 @@ import DarkModeCore
 #endif
 
 extension UITabBar {
-  override open func themeDidChange() {
-    super.themeDidChange()
-    items?.forEach { $0.themeDidChange() }
+  open override func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
+    super.dmTraitCollectionDidChange(previousTraitCollection)
+    items?.forEach { $0.dmTraitCollectionDidChange(previousTraitCollection) }
   }
 
   override func _updateDynamicImages() {
@@ -19,7 +19,7 @@ extension UITabBar {
   }
 }
 
-extension UITabBarItem: Themeable {
+extension UITabBarItem: DMTraitEnvironment {
 
   private struct Constants {
     static var UIImageKey = "UIImageKey"
@@ -48,7 +48,7 @@ extension UITabBarItem: Themeable {
     }
   }()
 
-  @objc open func themeDidChange() {
+  open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
     // For subclasses to override
   }
 
