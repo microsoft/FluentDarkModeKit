@@ -208,7 +208,9 @@
 				8C1915CF2361EFDB004A606A /* Products */,
 				8CAFD9E623716054001A63B8 /* Frameworks */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		8C1915CF2361EFDB004A606A /* Products */ = {
 			isa = PBXGroup;
