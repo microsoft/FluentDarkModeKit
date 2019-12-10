@@ -8,13 +8,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DMDynamicImageProxy : NSProxy
-@end
 
-@interface UIImage (DynamicImage)
+@property (nonatomic, readonly) UIImage *resolvedImage;
 
-- (instancetype)initWithLightImage:(nullable UIImage *)lightImage darkImage:(nullable UIImage *)darkImage;
-
-- (BOOL)outlookIsEqual:(nullable UIImage *)other;
+- (instancetype)initWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage;
 
 @end
 
