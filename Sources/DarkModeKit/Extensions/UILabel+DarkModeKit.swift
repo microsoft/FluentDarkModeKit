@@ -37,7 +37,7 @@ extension UILabel {
 
   private func updateDynamicColorInAttributedText() {
     guard let attributedText = attributedText else {
-        return
+      return
     }
 
     // Why are we doing this?

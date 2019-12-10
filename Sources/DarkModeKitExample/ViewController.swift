@@ -7,25 +7,26 @@ import DarkModeKit
 import UIKit
 
 final class ViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: .refresh,
-            target: self,
-            action: #selector(refresh)
-        )
+    navigationItem.rightBarButtonItem = UIBarButtonItem(
+      barButtonSystemItem: .refresh,
+      target: self,
+      action: #selector(refresh)
+    )
 
-        view.backgroundColor = .white
+    view.backgroundColor = .white
+  }
+
+  @objc
+  private func refresh() {
+    if DMTraitCollection.current.userInterfaceStyle == .dark {
+      DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .light)
     }
-
-    @objc
-    private func refresh() {
-        if DMTraitCollection.current.userInterfaceStyle == .dark {
-            DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .light)
-        } else {
-            DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .dark)
-        }
-        DarkModeManager.updateAppearance(for: .shared, animated: true)
+    else {
+      DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .dark)
     }
+    DarkModeManager.updateAppearance(for: .shared, animated: true)
+  }
 }
