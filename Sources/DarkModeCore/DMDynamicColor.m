@@ -72,11 +72,13 @@
 
 // MARK: NSCopying
 
-- (id)copy {
+- (id)copy
+{
   return [self copyWithZone:nil];
 }
 
-- (id)copyWithZone:(NSZone *)zone {
+- (id)copyWithZone:(NSZone *)zone
+{
   return [[DMDynamicColorProxy alloc] initWithLightColor:self.lightColor darkColor:self.darkColor];
 }
 
