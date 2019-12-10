@@ -9,11 +9,11 @@
 
 @import ObjectiveC;
 
-// MARK: - DMDynamicImageProxy
-
 @interface DMDynamicImageProxy ()
+
 @property (nonatomic, strong) UIImage *lightImage;
 @property (nonatomic, strong) UIImage *darkImage;
+
 @end
 
 @implementation DMDynamicImageProxy
@@ -46,7 +46,8 @@
   {
     return self.darkImage;
   }
-  else {
+  else
+  {
     return self.lightImage;
   }
 }
@@ -68,32 +69,38 @@
 
 - (UIImage *)resizableImageWithCapInsets:(UIEdgeInsets)capInsets
 {
-  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage resizableImageWithCapInsets:capInsets] darkImage:[self.darkImage resizableImageWithCapInsets:capInsets]];
+  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage resizableImageWithCapInsets:capInsets]
+                                                          darkImage:[self.darkImage resizableImageWithCapInsets:capInsets]];
 }
 
 - (UIImage *)resizableImageWithCapInsets:(UIEdgeInsets)capInsets resizingMode:(UIImageResizingMode)resizingMode
 {
-  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage resizableImageWithCapInsets:capInsets resizingMode:resizingMode] darkImage:[self.darkImage resizableImageWithCapInsets:capInsets resizingMode:resizingMode]];
+  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage resizableImageWithCapInsets:capInsets resizingMode:resizingMode]
+                                                          darkImage:[self.darkImage resizableImageWithCapInsets:capInsets resizingMode:resizingMode]];
 }
 
 - (UIImage *)imageWithAlignmentRectInsets:(UIEdgeInsets)alignmentInsets
 {
-  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageWithAlignmentRectInsets:alignmentInsets] darkImage:[self.darkImage imageWithAlignmentRectInsets:alignmentInsets]];
+  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageWithAlignmentRectInsets:alignmentInsets]
+                                                          darkImage:[self.darkImage imageWithAlignmentRectInsets:alignmentInsets]];
 }
 
 - (UIImage *)imageWithRenderingMode:(UIImageRenderingMode)renderingMode
 {
-  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageWithRenderingMode:renderingMode] darkImage:[self.darkImage imageWithRenderingMode:renderingMode]];
+  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageWithRenderingMode:renderingMode]
+                                                          darkImage:[self.darkImage imageWithRenderingMode:renderingMode]];
 }
 
 - (UIImage *)imageFlippedForRightToLeftLayoutDirection
 {
-  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageFlippedForRightToLeftLayoutDirection] darkImage:[self.darkImage imageFlippedForRightToLeftLayoutDirection]];
+  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageFlippedForRightToLeftLayoutDirection]
+                                                          darkImage:[self.darkImage imageFlippedForRightToLeftLayoutDirection]];
 }
 
 - (UIImage *)imageWithHorizontallyFlippedOrientation
 {
-  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageWithHorizontallyFlippedOrientation] darkImage:[self.darkImage imageWithHorizontallyFlippedOrientation]];
+  return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageWithHorizontallyFlippedOrientation]
+                                                          darkImage:[self.darkImage imageWithHorizontallyFlippedOrientation]];
 }
 
 - (id)copy

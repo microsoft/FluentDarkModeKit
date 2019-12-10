@@ -10,7 +10,7 @@ import DarkModeCore
 extension UITextView {
   override func dm_updateDynamicColors() {
     super.dm_updateDynamicColors()
-
+    
     keyboardAppearance = {
       if DMTraitCollection.current.userInterfaceStyle == .dark {
         return .dark

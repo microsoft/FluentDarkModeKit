@@ -5,6 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, DMNamespace) {
-    DMNamespaceDM NS_SWIFT_NAME(dm),
+typedef NS_ENUM(NSInteger, DMNamespace)
+{
+  DMNamespaceDM NS_SWIFT_NAME(dm),
 };

@@ -6,5 +6,5 @@
 import UIKit
 
 final class NavigationController: UINavigationController {
-    override var prefersStatusBarHidden: Bool { true }
+  override var prefersStatusBarHidden: Bool { true }
 }

@@ -8,31 +8,31 @@ import UIKit
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
-    var window: UIWindow?
+  var window: UIWindow?
 
-    func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
-    ) -> Bool {
-        DarkModeManager.setup()
-        setUpAppearance()
+  func application(
+    _ application: UIApplication,
+    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+  ) -> Bool {
+    DarkModeManager.setup()
+    setUpAppearance()
 
-        window = UIWindow()
-        window?.rootViewController = {
-            let tabBarController = UITabBarController()
-            tabBarController.viewControllers = [
-                NavigationController(rootViewController: ViewController()),
-                NavigationController(rootViewController: ViewController()),
-            ]
-            return tabBarController
-        }()
-        window?.makeKeyAndVisible()
+    window = UIWindow()
+    window?.rootViewController = {
+      let tabBarController = UITabBarController()
+      tabBarController.viewControllers = [
+        NavigationController(rootViewController: ViewController()),
+        NavigationController(rootViewController: ViewController()),
+      ]
+      return tabBarController
+    }()
+    window?.makeKeyAndVisible()
 
-        return true
-    }
+    return true
+  }
 
-    private func setUpAppearance() {
-        UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().barTintColor = DynamicColor(lightColor: .white, darkColor: .darkGray)
-    }
+  private func setUpAppearance() {
+    UINavigationBar.appearance().isTranslucent = false
+    UINavigationBar.appearance().barTintColor = DynamicColor(lightColor: .white, darkColor: .darkGray)
+  }
 }
