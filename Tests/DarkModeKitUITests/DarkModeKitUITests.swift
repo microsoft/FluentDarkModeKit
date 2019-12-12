@@ -37,7 +37,31 @@ final class DarkModeKitUITests: XCTestCase {
 
     let screenshot2 = app.screenshot()
 
-    print(compare(screenshot1.image, screenshot2.image, precision: 1))
+    XCTAssertTrue(compare(screenshot1.image, screenshot2.image, precision: 1))
+  }
+
+  func testUIActivityIndictorView() {
+    let app = XCUIApplication()
+    let refreshButton = app.navigationBars["DarkModeKitExample.MainView"].buttons["Refresh"]
+    refreshButton.tap()
+
+    let uiviewStaticText = app.tables.staticTexts["UIActivityIndictorView"]
+    uiviewStaticText.tap()
+
+    let screenshot1 = app.screenshot()
+
+    app.navigationBars["DarkModeKitExample.UIActivityIndictorViewVC"].buttons["Back"].tap()
+    refreshButton.tap()
+    uiviewStaticText.tap()
+
+    let tabBarsQuery = app.tabBars
+    tabBarsQuery.children(matching: .button).element(boundBy: 1).tap()
+    app.navigationBars["DarkModeKitExample.View"].buttons["Refresh"].tap()
+    tabBarsQuery.children(matching: .button).element(boundBy: 0).tap()
+
+    let screenshot2 = app.screenshot()
+
+    XCTAssertTrue(compare(screenshot1.image, screenshot2.image, precision: 1))
   }
 }
 

@@ -6,7 +6,17 @@
 import UIKit
 
 final class MainViewController: ViewController {
-  private lazy var tableView: UITableView = {
+  struct Row {
+    var name: String
+    var vcType: UIViewController.Type
+  }
+
+  let rows = [
+    Row(name: "UIView", vcType: UIViewVC.self),
+    Row(name: "UIActivityIndicatorView", vcType: UIActivityIndicatorViewVC.self)
+  ]
+
+  lazy var tableView: UITableView = {
     let tableView = UITableView(frame: .zero, style: .grouped)
     tableView.dataSource = self
     tableView.delegate = self
@@ -20,12 +30,14 @@ final class MainViewController: ViewController {
 
 extension MainViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    1
+    rows.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let row = rows[indexPath.row]
+
     let cell = UITableViewCell()
-    cell.textLabel?.text = "UIView"
+    cell.textLabel?.text = row.name
     cell.accessoryType = .disclosureIndicator
     return cell
   }
@@ -33,7 +45,8 @@ extension MainViewController: UITableViewDataSource {
 
 extension MainViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let vc = UIViewVC()
+    let row = rows[indexPath.row]
+    let vc = row.vcType.init()
     show(vc, sender: self)
   }
 }
