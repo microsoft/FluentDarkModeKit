@@ -6,7 +6,7 @@
 import DarkModeKit
 import UIKit
 
-final class ViewController: UIViewController {
+class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -15,8 +15,6 @@ final class ViewController: UIViewController {
       target: self,
       action: #selector(refresh)
     )
-
-    view.backgroundColor = .white
   }
 
   @objc

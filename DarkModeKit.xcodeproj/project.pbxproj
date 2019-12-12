@@ -12,6 +12,8 @@
 		8C1915D82361EFDB004A606A /* DarkModeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1915CE2361EFDB004A606A /* DarkModeKit.framework */; };
 		8C1915DD2361EFDB004A606A /* DarkModeKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1915DC2361EFDB004A606A /* DarkModeKitTests.swift */; };
 		8C7B24FB23A21E97002E2558 /* DarkModeKitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B24FA23A21E97002E2558 /* DarkModeKitUITests.swift */; };
+		8C7B250423A22060002E2558 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B250223A22034002E2558 /* MainViewController.swift */; };
+		8C7B250723A2224D002E2558 /* UIViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B250523A22235002E2558 /* UIViewVC.swift */; };
 		8CAFD9D523715FAA001A63B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAFD9D423715FAA001A63B8 /* AppDelegate.swift */; };
 		8CAFD9D923715FAA001A63B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAFD9D823715FAA001A63B8 /* ViewController.swift */; };
 		8CAFD9DE23715FAB001A63B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CAFD9DD23715FAB001A63B8 /* Assets.xcassets */; };
@@ -102,6 +104,8 @@
 		8C7B24F823A21E97002E2558 /* DarkModeKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DarkModeKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C7B24FA23A21E97002E2558 /* DarkModeKitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeKitUITests.swift; sourceTree = "<group>"; };
 		8C7B24FC23A21E97002E2558 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C7B250223A22034002E2558 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		8C7B250523A22235002E2558 /* UIViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewVC.swift; sourceTree = "<group>"; };
 		8CAFD9D223715FAA001A63B8 /* DarkModeKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DarkModeKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CAFD9D423715FAA001A63B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CAFD9D823715FAA001A63B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -276,6 +280,8 @@
 				8CAFD9D423715FAA001A63B8 /* AppDelegate.swift */,
 				8CAFD9EC2371606D001A63B8 /* NavigationController.swift */,
 				8CAFD9D823715FAA001A63B8 /* ViewController.swift */,
+				8C7B250223A22034002E2558 /* MainViewController.swift */,
+				8C7B250523A22235002E2558 /* UIViewVC.swift */,
 				8CAFD9DD23715FAB001A63B8 /* Assets.xcassets */,
 				8CAFD9DF23715FAB001A63B8 /* LaunchScreen.storyboard */,
 				8CAFD9E223715FAB001A63B8 /* Info.plist */,
@@ -545,6 +551,8 @@
 				8CAFD9D923715FAA001A63B8 /* ViewController.swift in Sources */,
 				8CAFD9ED2371606D001A63B8 /* NavigationController.swift in Sources */,
 				8CAFD9D523715FAA001A63B8 /* AppDelegate.swift in Sources */,
+				8C7B250423A22060002E2558 /* MainViewController.swift in Sources */,
+				8C7B250723A2224D002E2558 /* UIViewVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
