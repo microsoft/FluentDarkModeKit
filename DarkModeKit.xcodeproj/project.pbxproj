@@ -12,6 +12,7 @@
 		8C1915D82361EFDB004A606A /* DarkModeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1915CE2361EFDB004A606A /* DarkModeKit.framework */; };
 		8C1915DD2361EFDB004A606A /* DarkModeKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1915DC2361EFDB004A606A /* DarkModeKitTests.swift */; };
 		8C63F64323A36B2700D93CF4 /* UIButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C63F64123A36B0900D93CF4 /* UIButtonVC.swift */; };
+		8C63F64623A374D300D93CF4 /* UIPageControlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C63F64423A374CF00D93CF4 /* UIPageControlVC.swift */; };
 		8C7B24FB23A21E97002E2558 /* DarkModeKitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B24FA23A21E97002E2558 /* DarkModeKitUITests.swift */; };
 		8C7B250423A22060002E2558 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B250223A22034002E2558 /* MainViewController.swift */; };
 		8C7B250723A2224D002E2558 /* UIViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B250523A22235002E2558 /* UIViewVC.swift */; };
@@ -104,6 +105,7 @@
 		8C1915DC2361EFDB004A606A /* DarkModeKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeKitTests.swift; sourceTree = "<group>"; };
 		8C1915DE2361EFDB004A606A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C63F64123A36B0900D93CF4 /* UIButtonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonVC.swift; sourceTree = "<group>"; };
+		8C63F64423A374CF00D93CF4 /* UIPageControlVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageControlVC.swift; sourceTree = "<group>"; };
 		8C7B24F823A21E97002E2558 /* DarkModeKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DarkModeKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C7B24FA23A21E97002E2558 /* DarkModeKitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeKitUITests.swift; sourceTree = "<group>"; };
 		8C7B24FC23A21E97002E2558 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				8C7B250523A22235002E2558 /* UIViewVC.swift */,
 				8C7B250A23A22A70002E2558 /* UIActivityIndicatorViewVC.swift */,
 				8C63F64123A36B0900D93CF4 /* UIButtonVC.swift */,
+				8C63F64423A374CF00D93CF4 /* UIPageControlVC.swift */,
 				8CAFD9DD23715FAB001A63B8 /* Assets.xcassets */,
 				8CAFD9DF23715FAB001A63B8 /* LaunchScreen.storyboard */,
 				8CAFD9E223715FAB001A63B8 /* Info.plist */,
@@ -559,6 +562,7 @@
 				8C63F64323A36B2700D93CF4 /* UIButtonVC.swift in Sources */,
 				8CAFD9ED2371606D001A63B8 /* NavigationController.swift in Sources */,
 				8CAFD9D523715FAA001A63B8 /* AppDelegate.swift in Sources */,
+				8C63F64623A374D300D93CF4 /* UIPageControlVC.swift in Sources */,
 				8C7B250423A22060002E2558 /* MainViewController.swift in Sources */,
 				8C7B250723A2224D002E2558 /* UIViewVC.swift in Sources */,
 			);

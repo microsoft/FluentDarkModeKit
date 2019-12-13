@@ -27,6 +27,10 @@ final class DarkModeKitUITests: XCTestCase {
     _test("UIButton")
   }
 
+  func testUIPageControl() {
+    _test("UIPageControl")
+  }
+
   func _test(_ className: String) {
     let app = XCUIApplication()
     let refreshButton = app.navigationBars["DarkModeKitExample.MainView"].buttons["Refresh"]
