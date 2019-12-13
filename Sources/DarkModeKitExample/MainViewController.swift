@@ -13,7 +13,8 @@ final class MainViewController: ViewController {
 
   let rows = [
     Row(name: "UIView", vcType: UIViewVC.self),
-    Row(name: "UIActivityIndicatorView", vcType: UIActivityIndicatorViewVC.self)
+    Row(name: "UIActivityIndicatorView", vcType: UIActivityIndicatorViewVC.self),
+    Row(name: "UIButton", vcType: UIButtonVC.self),
   ]
 
   lazy var tableView: UITableView = {

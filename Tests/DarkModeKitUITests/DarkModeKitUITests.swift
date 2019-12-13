@@ -16,41 +16,28 @@ final class DarkModeKitUITests: XCTestCase {
   }
 
   func testUIView() {
-
-    let app = XCUIApplication()
-    let refreshButton = app.navigationBars["DarkModeKitExample.MainView"].buttons["Refresh"]
-    refreshButton.tap()
-
-    let uiviewStaticText = app.tables.staticTexts["UIView"]
-    uiviewStaticText.tap()
-
-    let screenshot1 = app.screenshot()
-
-    app.navigationBars["DarkModeKitExample.UIViewVC"].buttons["Back"].tap()
-    refreshButton.tap()
-    uiviewStaticText.tap()
-
-    let tabBarsQuery = app.tabBars
-    tabBarsQuery.children(matching: .button).element(boundBy: 1).tap()
-    app.navigationBars["DarkModeKitExample.View"].buttons["Refresh"].tap()
-    tabBarsQuery.children(matching: .button).element(boundBy: 0).tap()
-
-    let screenshot2 = app.screenshot()
-
-    XCTAssertTrue(compare(screenshot1.image, screenshot2.image, precision: 1))
+    _test("UIView")
   }
 
   func testUIActivityIndictorView() {
+    _test("UIActivityIndictorView")
+  }
+
+  func testUIButton() {
+    _test("UIButton")
+  }
+
+  func _test(_ className: String) {
     let app = XCUIApplication()
     let refreshButton = app.navigationBars["DarkModeKitExample.MainView"].buttons["Refresh"]
     refreshButton.tap()
 
-    let uiviewStaticText = app.tables.staticTexts["UIActivityIndictorView"]
+    let uiviewStaticText = app.tables.staticTexts[className]
     uiviewStaticText.tap()
 
     let screenshot1 = app.screenshot()
 
-    app.navigationBars["DarkModeKitExample.UIActivityIndictorViewVC"].buttons["Back"].tap()
+    app.navigationBars["DarkModeKitExample.\(className)VC"].buttons["Back"].tap()
     refreshButton.tap()
     uiviewStaticText.tap()
 
