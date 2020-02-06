@@ -11,6 +11,12 @@
 		8C071AED23683BF5001AB7B2 /* NSObject+DarkModeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C071AEB23683BF5001AB7B2 /* NSObject+DarkModeKit.m */; };
 		8C1915D82361EFDB004A606A /* DarkModeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C1915CE2361EFDB004A606A /* DarkModeKit.framework */; };
 		8C1915DD2361EFDB004A606A /* DarkModeKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1915DC2361EFDB004A606A /* DarkModeKitTests.swift */; };
+		8C63F64323A36B2700D93CF4 /* UIButtonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C63F64123A36B0900D93CF4 /* UIButtonVC.swift */; };
+		8C63F64623A374D300D93CF4 /* UIPageControlVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C63F64423A374CF00D93CF4 /* UIPageControlVC.swift */; };
+		8C7B24FB23A21E97002E2558 /* DarkModeKitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B24FA23A21E97002E2558 /* DarkModeKitUITests.swift */; };
+		8C7B250423A22060002E2558 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B250223A22034002E2558 /* MainViewController.swift */; };
+		8C7B250723A2224D002E2558 /* UIViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B250523A22235002E2558 /* UIViewVC.swift */; };
+		8C7B250C23A22A80002E2558 /* UIActivityIndicatorViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7B250A23A22A70002E2558 /* UIActivityIndicatorViewVC.swift */; };
 		8CAFD9D523715FAA001A63B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAFD9D423715FAA001A63B8 /* AppDelegate.swift */; };
 		8CAFD9D923715FAA001A63B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAFD9D823715FAA001A63B8 /* ViewController.swift */; };
 		8CAFD9DE23715FAB001A63B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CAFD9DD23715FAB001A63B8 /* Assets.xcassets */; };
@@ -60,6 +66,13 @@
 			remoteGlobalIDString = 8C1915CD2361EFDB004A606A;
 			remoteInfo = DarkModeKit;
 		};
+		8C7B24FD23A21E97002E2558 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C1915C52361EFDB004A606A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CAFD9D123715FAA001A63B8;
+			remoteInfo = DarkModeKitExample;
+		};
 		8CAFD9E923716054001A63B8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8C1915C52361EFDB004A606A /* Project object */;
@@ -91,6 +104,14 @@
 		8C1915D72361EFDB004A606A /* DarkModeKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DarkModeKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C1915DC2361EFDB004A606A /* DarkModeKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeKitTests.swift; sourceTree = "<group>"; };
 		8C1915DE2361EFDB004A606A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C63F64123A36B0900D93CF4 /* UIButtonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonVC.swift; sourceTree = "<group>"; };
+		8C63F64423A374CF00D93CF4 /* UIPageControlVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPageControlVC.swift; sourceTree = "<group>"; };
+		8C7B24F823A21E97002E2558 /* DarkModeKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DarkModeKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C7B24FA23A21E97002E2558 /* DarkModeKitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkModeKitUITests.swift; sourceTree = "<group>"; };
+		8C7B24FC23A21E97002E2558 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C7B250223A22034002E2558 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		8C7B250523A22235002E2558 /* UIViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewVC.swift; sourceTree = "<group>"; };
+		8C7B250A23A22A70002E2558 /* UIActivityIndicatorViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorViewVC.swift; sourceTree = "<group>"; };
 		8CAFD9D223715FAA001A63B8 /* DarkModeKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DarkModeKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CAFD9D423715FAA001A63B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8CAFD9D823715FAA001A63B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +169,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C7B24F523A21E97002E2558 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CAFD9CF23715FAA001A63B8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -173,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				8C1915DB2361EFDB004A606A /* DarkModeKitTests */,
+				8C7B24F923A21E97002E2558 /* DarkModeKitUITests */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -218,6 +247,7 @@
 				8C1915CE2361EFDB004A606A /* DarkModeKit.framework */,
 				8C1915D72361EFDB004A606A /* DarkModeKitTests.xctest */,
 				8CAFD9D223715FAA001A63B8 /* DarkModeKitExample.app */,
+				8C7B24F823A21E97002E2558 /* DarkModeKitUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -241,12 +271,26 @@
 			path = DarkModeKitTests;
 			sourceTree = "<group>";
 		};
+		8C7B24F923A21E97002E2558 /* DarkModeKitUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8C7B24FA23A21E97002E2558 /* DarkModeKitUITests.swift */,
+				8C7B24FC23A21E97002E2558 /* Info.plist */,
+			);
+			path = DarkModeKitUITests;
+			sourceTree = "<group>";
+		};
 		8CAFD9D323715FAA001A63B8 /* DarkModeKitExample */ = {
 			isa = PBXGroup;
 			children = (
 				8CAFD9D423715FAA001A63B8 /* AppDelegate.swift */,
 				8CAFD9EC2371606D001A63B8 /* NavigationController.swift */,
 				8CAFD9D823715FAA001A63B8 /* ViewController.swift */,
+				8C7B250223A22034002E2558 /* MainViewController.swift */,
+				8C7B250523A22235002E2558 /* UIViewVC.swift */,
+				8C7B250A23A22A70002E2558 /* UIActivityIndicatorViewVC.swift */,
+				8C63F64123A36B0900D93CF4 /* UIButtonVC.swift */,
+				8C63F64423A374CF00D93CF4 /* UIPageControlVC.swift */,
 				8CAFD9DD23715FAB001A63B8 /* Assets.xcassets */,
 				8CAFD9DF23715FAB001A63B8 /* LaunchScreen.storyboard */,
 				8CAFD9E223715FAB001A63B8 /* Info.plist */,
@@ -343,6 +387,24 @@
 			productReference = 8C1915D72361EFDB004A606A /* DarkModeKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		8C7B24F723A21E97002E2558 /* DarkModeKitUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C7B250123A21E97002E2558 /* Build configuration list for PBXNativeTarget "DarkModeKitUITests" */;
+			buildPhases = (
+				8C7B24F423A21E97002E2558 /* Sources */,
+				8C7B24F523A21E97002E2558 /* Frameworks */,
+				8C7B24F623A21E97002E2558 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C7B24FE23A21E97002E2558 /* PBXTargetDependency */,
+			);
+			name = DarkModeKitUITests;
+			productName = DarkModeKitUITests;
+			productReference = 8C7B24F823A21E97002E2558 /* DarkModeKitUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		8CAFD9D123715FAA001A63B8 /* DarkModeKitExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8CAFD9E523715FAB001A63B8 /* Build configuration list for PBXNativeTarget "DarkModeKitExample" */;
@@ -368,7 +430,7 @@
 		8C1915C52361EFDB004A606A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1110;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "Microsoft Corporation";
 				TargetAttributes = {
@@ -378,6 +440,10 @@
 					};
 					8C1915D62361EFDB004A606A = {
 						CreatedOnToolsVersion = 11.1;
+					};
+					8C7B24F723A21E97002E2558 = {
+						CreatedOnToolsVersion = 11.2.1;
+						TestTargetID = 8CAFD9D123715FAA001A63B8;
 					};
 					8CAFD9D123715FAA001A63B8 = {
 						CreatedOnToolsVersion = 11.1;
@@ -400,6 +466,7 @@
 				8C1915CD2361EFDB004A606A /* DarkModeKit */,
 				8C1915D62361EFDB004A606A /* DarkModeKitTests */,
 				8CAFD9D123715FAA001A63B8 /* DarkModeKitExample */,
+				8C7B24F723A21E97002E2558 /* DarkModeKitUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -413,6 +480,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8C1915D52361EFDB004A606A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C7B24F623A21E97002E2558 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -471,13 +545,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8C7B24F423A21E97002E2558 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C7B24FB23A21E97002E2558 /* DarkModeKitUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8CAFD9CE23715FAA001A63B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C7B250C23A22A80002E2558 /* UIActivityIndicatorViewVC.swift in Sources */,
 				8CAFD9D923715FAA001A63B8 /* ViewController.swift in Sources */,
+				8C63F64323A36B2700D93CF4 /* UIButtonVC.swift in Sources */,
 				8CAFD9ED2371606D001A63B8 /* NavigationController.swift in Sources */,
 				8CAFD9D523715FAA001A63B8 /* AppDelegate.swift in Sources */,
+				8C63F64623A374D300D93CF4 /* UIPageControlVC.swift in Sources */,
+				8C7B250423A22060002E2558 /* MainViewController.swift in Sources */,
+				8C7B250723A2224D002E2558 /* UIViewVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +575,11 @@
 			isa = PBXTargetDependency;
 			target = 8C1915CD2361EFDB004A606A /* DarkModeKit */;
 			targetProxy = 8C1915D92361EFDB004A606A /* PBXContainerItemProxy */;
+		};
+		8C7B24FE23A21E97002E2558 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CAFD9D123715FAA001A63B8 /* DarkModeKitExample */;
+			targetProxy = 8C7B24FD23A21E97002E2558 /* PBXContainerItemProxy */;
 		};
 		8CAFD9EA23716054001A63B8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -717,6 +809,44 @@
 			};
 			name = Release;
 		};
+		8C7B24FF23A21E97002E2558 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/DarkModeKitUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.microsoft.DarkModeKitUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DarkModeKitExample;
+			};
+			name = Debug;
+		};
+		8C7B250023A21E97002E2558 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/DarkModeKitUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.microsoft.DarkModeKitUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DarkModeKitExample;
+			};
+			name = Release;
+		};
 		8CAFD9E323715FAB001A63B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -779,6 +909,15 @@
 			buildConfigurations = (
 				8C1915E62361EFDB004A606A /* Debug */,
 				8C1915E72361EFDB004A606A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C7B250123A21E97002E2558 /* Build configuration list for PBXNativeTarget "DarkModeKitUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C7B24FF23A21E97002E2558 /* Debug */,
+				8C7B250023A21E97002E2558 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

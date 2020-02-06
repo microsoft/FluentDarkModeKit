@@ -15,13 +15,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
     DarkModeManager.setup()
-    setUpAppearance()
 
     window = UIWindow()
     window?.rootViewController = {
       let tabBarController = UITabBarController()
       tabBarController.viewControllers = [
-        NavigationController(rootViewController: ViewController()),
+        NavigationController(rootViewController: MainViewController()),
         NavigationController(rootViewController: ViewController()),
       ]
       return tabBarController
@@ -29,10 +28,5 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     window?.makeKeyAndVisible()
 
     return true
-  }
-
-  private func setUpAppearance() {
-    UINavigationBar.appearance().isTranslucent = false
-    UINavigationBar.appearance().barTintColor = DynamicColor(lightColor: .white, darkColor: .darkGray)
   }
 }
