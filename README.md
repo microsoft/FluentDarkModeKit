@@ -61,7 +61,7 @@ UIColor *color = [UIColor dm_colorWithLightColor:UIColor.whiteColor darkColor:UI
 
 Swift
 ```swift
-extension UIColor {
+extension UIImage {
     init(_: DMNamespace, light: UIImage, dark: UIImage)
 }
 
