@@ -9,28 +9,23 @@
 
 static DMTraitCollection *_currentTraitCollection = nil;
 
-+ (DMTraitCollection *)currentTraitCollection
-{
++ (DMTraitCollection *)currentTraitCollection {
   return _currentTraitCollection;
 }
 
-+ (void)setCurrentTraitCollection:(DMTraitCollection *)currentTraitCollection
-{
++ (void)setCurrentTraitCollection:(DMTraitCollection *)currentTraitCollection {
   _currentTraitCollection = currentTraitCollection;
 }
 
-+ (DMTraitCollection *)traitCollectionWithUserInterfaceStyle:(DMUserInterfaceStyle)userInterfaceStyle
-{
++ (DMTraitCollection *)traitCollectionWithUserInterfaceStyle:(DMUserInterfaceStyle)userInterfaceStyle {
   DMTraitCollection *traitCollection = [[DMTraitCollection alloc] init];
   traitCollection->_userInterfaceStyle = userInterfaceStyle;
   return traitCollection;
 }
 
-- (instancetype)init
-{
+- (instancetype)init {
   self = [super init];
-  if (self)
-  {
+  if (self) {
     _userInterfaceStyle = DMUserInterfaceStyleUnspecified;
   }
   return self;
