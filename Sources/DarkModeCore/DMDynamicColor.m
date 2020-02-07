@@ -18,50 +18,41 @@
 @implementation DMDynamicColorProxy
 
 // TODO: We need a more generic initializer.
-- (instancetype)initWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor
-{
+- (instancetype)initWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor {
   self.lightColor = lightColor;
   self.darkColor = darkColor;
 
   return self;
 }
 
-- (UIColor *)resolvedColor
-{
-  if (DMTraitCollection.currentTraitCollection.userInterfaceStyle == DMUserInterfaceStyleDark)
-  {
+- (UIColor *)resolvedColor {
+  if (DMTraitCollection.currentTraitCollection.userInterfaceStyle == DMUserInterfaceStyleDark) {
     return self.darkColor;
-  }
-  else
-  {
+  } else {
     return self.lightColor;
   }
 }
 
 // MARK: UIColor
 
-- (UIColor *)colorWithAlphaComponent:(CGFloat)alpha
-{
+- (UIColor *)colorWithAlphaComponent:(CGFloat)alpha {
   return [[DMDynamicColor alloc] initWithLightColor:[self.lightColor colorWithAlphaComponent:alpha]
                                           darkColor:[self.darkColor colorWithAlphaComponent:alpha]];
 }
 
 // MARK: NSProxy
 
-- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel
-{
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
   return [self.resolvedColor methodSignatureForSelector:sel];
 }
 
-- (void)forwardInvocation:(NSInvocation *)invocation
-{
+- (void)forwardInvocation:(NSInvocation *)invocation {
   [invocation invokeWithTarget:self.resolvedColor];
 }
 
 // MARK: NSObject
 
-- (BOOL)isKindOfClass:(Class)aClass
-{
+- (BOOL)isKindOfClass:(Class)aClass {
   static DMDynamicColor *dynamicColor = nil;
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
@@ -72,13 +63,11 @@
 
 // MARK: NSCopying
 
-- (id)copy
-{
+- (id)copy {
   return [self copyWithZone:nil];
 }
 
-- (id)copyWithZone:(NSZone *)zone
-{
+- (id)copyWithZone:(NSZone *)zone {
   return [[DMDynamicColorProxy alloc] initWithLightColor:self.lightColor darkColor:self.darkColor];
 }
 
@@ -88,19 +77,16 @@
 
 @implementation DMDynamicColor
 
-- (UIColor *)initWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor
-{
+- (UIColor *)initWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor {
   return (DMDynamicColor *)[[DMDynamicColorProxy alloc] initWithLightColor:lightColor darkColor:darkColor];
 }
 
-- (UIColor *)lightColor
-{
+- (UIColor *)lightColor {
   NSAssert(NO, @"This should never be called");
   return nil;
 }
 
-- (UIColor *)darkColor
-{
+- (UIColor *)darkColor {
   NSAssert(NO, @"This should never be called");
   return nil;
 }
