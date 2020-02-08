@@ -31,7 +31,7 @@ github "microsoft/DarkModeKit" ~> 0.2.0
 
 Click "Files -> Swift Package Manager -> Add Package Dependency..." in Xcode's menu and search "https://github.com/microsoft/DarkModeKit"
 
-### Cocoapods
+### CocoaPods
 
 To integrate DarkModeKit into your Xcode project using Cocoapods, specify it in your `Podfile`:
 
