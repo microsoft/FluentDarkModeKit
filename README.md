@@ -33,7 +33,7 @@ Click "Files -> Swift Package Manager -> Add Package Dependency..." in Xcode's m
 
 ### CocoaPods
 
-To integrate DarkModeKit into your Xcode project using Cocoapods, specify it in your `Podfile`:
+To integrate DarkModeKit into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```
 pod "DarkModeKit"
