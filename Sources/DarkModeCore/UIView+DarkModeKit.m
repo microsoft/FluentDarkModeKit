@@ -78,11 +78,16 @@ static void dm_traitCollectionDidChange(UIView *self, SEL _cmd, UITraitCollectio
 #pragma mark -
 
 - (void)dmTraitCollectionDidChange:(DMTraitCollection *)previousTraitCollection {
-  for (UIView *subview in self.subviews) {
-    [subview dmTraitCollectionDidChange:previousTraitCollection];
+  if (@available(iOS 13 *)) {
+    // No need to propagate by ourself.
+  } else {
+    for (UIView *subview in self.subviews) {
+      [subview dmTraitCollectionDidChange:previousTraitCollection];
+    }
+    [self setNeedsLayout];
+    [self setNeedsDisplay];
   }
-  [self setNeedsLayout];
-  [self setNeedsDisplay];
+
   [self dm_updateDynamicColors];
   [self dm_updateDynamicImages];
 }
