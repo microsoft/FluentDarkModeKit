@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)dm_swizzleSetBackgroundColor;
 
 @property (nonatomic, copy, nullable) DMDynamicColor *dm_dynamicBackgroundColor;
+@property (nonatomic, copy, nullable) DMDynamicColor *dm_dynamicTintColor;
 
 @end
 

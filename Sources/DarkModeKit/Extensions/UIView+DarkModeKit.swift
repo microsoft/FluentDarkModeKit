@@ -47,20 +47,11 @@ extension UIView {
 }
 
 extension UIView {
-  private struct Constants {
-    static var dynamicTintColorKey = "dynamicTintColorKey"
-  }
-
   static let swizzleSetTintColorOnce: Void = {
     if !dm_swizzleInstanceMethod(#selector(setter: tintColor), to: #selector(dm_setTintColor)) {
       assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: #selector(setter: tintColor)))
     }
   }()
-
-  private var dm_dynamicTintColor: DynamicColor? {
-    get { return objc_getAssociatedObject(self, &Constants.dynamicTintColorKey) as? DynamicColor }
-    set { objc_setAssociatedObject(self, &Constants.dynamicTintColorKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
-  }
 
   @objc private dynamic func dm_setTintColor(_ color: UIColor) {
     dm_dynamicTintColor = color as? DynamicColor

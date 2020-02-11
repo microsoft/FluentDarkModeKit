@@ -31,6 +31,8 @@ static void dm_setBackgroundColor(UIView *self, SEL _cmd, UIColor *color) {
   });
 }
 
+#pragma mark -
+
 - (DMDynamicColor *)dm_dynamicBackgroundColor {
   return objc_getAssociatedObject(self, _cmd);
 }
@@ -39,6 +41,19 @@ static void dm_setBackgroundColor(UIView *self, SEL _cmd, UIColor *color) {
   objc_setAssociatedObject(self,
                            @selector(dm_dynamicBackgroundColor),
                            dm_dynamicBackgroundColor,
+                           OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+#pragma mark -
+
+- (DMDynamicColor *)dm_dynamicTintColor {
+  return objc_getAssociatedObject(self, _cmd);
+}
+
+- (void)setDm_dynamicTintColor:(DMDynamicColor *)dm_dynamicTintColor {
+  objc_setAssociatedObject(self,
+                           @selector(dm_dynamicTintColor),
+                           dm_dynamicTintColor,
                            OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
