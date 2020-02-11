@@ -7,29 +7,6 @@
 import DarkModeCore
 #endif
 
-extension UIView: DMTraitEnvironment {
-  open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
-    subviews.forEach { $0.dmTraitCollectionDidChange(previousTraitCollection) }
-    setNeedsLayout()
-    setNeedsDisplay()
-    dm_updateDynamicColors()
-    dm_updateDynamicImages()
-  }
-
-  @objc func dm_updateDynamicColors() {
-    if let dynamicBackgroundColor = dm_dynamicBackgroundColor {
-      backgroundColor = dynamicBackgroundColor
-    }
-    if let dynamicTintColor = dm_dynamicTintColor {
-      tintColor = dynamicTintColor
-    }
-  }
-
-  @objc func dm_updateDynamicImages() {
-    // For subclasses to override.
-  }
-}
-
 extension UIView {
   static let swizzleWillMoveToWindowOnce: Void = {
     if !dm_swizzleInstanceMethod(#selector(willMove(toWindow:)), to: #selector(dm_willMove(toWindow:))) {

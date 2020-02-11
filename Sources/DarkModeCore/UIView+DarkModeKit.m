@@ -57,4 +57,29 @@ static void dm_setBackgroundColor(UIView *self, SEL _cmd, UIColor *color) {
                            OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
+#pragma mark -
+
+- (void)dmTraitCollectionDidChange:(DMTraitCollection *)previousTraitCollection {
+  for (UIView *subview in self.subviews) {
+    [subview dmTraitCollectionDidChange:previousTraitCollection];
+  }
+  [self setNeedsLayout];
+  [self setNeedsDisplay];
+  [self dm_updateDynamicColors];
+  [self dm_updateDynamicImages];
+}
+
+- (void)dm_updateDynamicColors {
+  if (self.dm_dynamicBackgroundColor) {
+    self.backgroundColor = self.dm_dynamicBackgroundColor;
+  }
+  if (self.dm_dynamicTintColor) {
+    self.tintColor = self.dm_dynamicTintColor;
+  }
+}
+
+- (void)dm_updateDynamicImages {
+  // For subclasses to override.
+}
+
 @end

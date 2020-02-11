@@ -37,7 +37,7 @@ extension UIImageView {
     return dm_init(image: image)
   }
 
-  override func dm_updateDynamicImages() {
+  open override func dm_updateDynamicImages() {
     super.dm_updateDynamicImages()
 
     if let dynamicImage = dm_dynamicImage {

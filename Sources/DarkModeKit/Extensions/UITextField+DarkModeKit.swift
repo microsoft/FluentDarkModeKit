@@ -8,7 +8,7 @@ import DarkModeCore
 #endif
 
 extension UITextField {
-  override func dm_updateDynamicColors() {
+  open override func dm_updateDynamicColors() {
     super.dm_updateDynamicColors()
 
     if let dynamicTextColor = textColor?.copy() as? DynamicColor {

@@ -8,7 +8,7 @@ import DarkModeCore
 #endif
 
 extension UITableView {
-  override func dm_updateDynamicColors() {
+  open override func dm_updateDynamicColors() {
     super.dm_updateDynamicColors()
     
     if let dynamicSectionIndexColor = sectionIndexColor?.copy() as? DynamicColor {
