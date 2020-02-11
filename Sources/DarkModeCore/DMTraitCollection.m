@@ -10,7 +10,11 @@
 static DMTraitCollection *_currentTraitCollection = nil;
 
 + (DMTraitCollection *)currentTraitCollection {
-  return _currentTraitCollection;
+  if (@available(iOS 13, *)) {
+    return (DMTraitCollection *)UITraitCollection.currentTraitCollection;
+  } else {
+    return _currentTraitCollection;
+  }
 }
 
 + (void)setCurrentTraitCollection:(DMTraitCollection *)currentTraitCollection {

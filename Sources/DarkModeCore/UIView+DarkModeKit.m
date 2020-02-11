@@ -33,6 +33,24 @@ static void dm_setBackgroundColor(UIView *self, SEL _cmd, UIColor *color) {
 
 #pragma mark -
 
+static void (*dm_original_traitCollectionDidChange)(UIView *, SEL, UITraitCollection *);
+
+static void dm_traitCollectionDidChange(UIView *self, SEL _cmd, UITraitCollection *previousTraitCollection) {
+  dm_original_traitCollectionDidChange(self, _cmd, previousTraitCollection);
+  [self dmTraitCollectionDidChange:(DMTraitCollection *)previousTraitCollection];
+}
+
++ (void)dm_swizzleTraitCollectionDidChange {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    Method method = class_getInstanceMethod(self, @selector(traitCollectionDidChange:));
+    dm_original_traitCollectionDidChange = (void *)method_getImplementation(method);
+    method_setImplementation(method, (IMP)dm_traitCollectionDidChange);
+  });
+}
+
+#pragma mark -
+
 - (DMDynamicColor *)dm_dynamicBackgroundColor {
   return objc_getAssociatedObject(self, _cmd);
 }

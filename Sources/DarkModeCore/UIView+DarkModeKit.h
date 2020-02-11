@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UIView (DarkModeKit) <DMTraitEnvironment>
 
 + (void)dm_swizzleSetBackgroundColor;
++ (void)dm_swizzleTraitCollectionDidChange;
 
 @property (nonatomic, copy, nullable) DMDynamicColor *dm_dynamicBackgroundColor;
 @property (nonatomic, copy, nullable) DMDynamicColor *dm_dynamicTintColor;
