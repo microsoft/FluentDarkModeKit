@@ -39,13 +39,16 @@ final class DarkModeKitUITests: XCTestCase {
     let uiviewStaticText = app.tables.staticTexts[className]
     uiviewStaticText.tap()
 
+    let tabBarsQuery = app.tabBars
+    tabBarsQuery.children(matching: .button).element(boundBy: 1).tap()
+    tabBarsQuery.children(matching: .button).element(boundBy: 0).tap()
+
     let screenshot1 = app.screenshot()
 
     app.navigationBars["DarkModeKitExample.\(className)VC"].buttons["Back"].tap()
     refreshButton.tap()
     uiviewStaticText.tap()
 
-    let tabBarsQuery = app.tabBars
     tabBarsQuery.children(matching: .button).element(boundBy: 1).tap()
     app.navigationBars["DarkModeKitExample.View"].buttons["Refresh"].tap()
     tabBarsQuery.children(matching: .button).element(boundBy: 0).tap()
