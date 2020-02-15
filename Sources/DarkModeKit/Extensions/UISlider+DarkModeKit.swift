@@ -17,5 +17,8 @@ extension UISlider {
     if let dynamicMaximumTrackTintColor = maximumTrackTintColor?.copy() as? DynamicColor {
       maximumTrackTintColor = dynamicMaximumTrackTintColor
     }
+    if let thumbTintColor = thumbTintColor?.copy() as? DynamicColor {
+      self.thumbTintColor = thumbTintColor
+    }
   }
 }
