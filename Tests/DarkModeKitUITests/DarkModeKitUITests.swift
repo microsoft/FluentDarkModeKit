@@ -19,8 +19,8 @@ final class DarkModeKitUITests: XCTestCase {
     _test("UIView")
   }
 
-  func testUIActivityIndictorView() {
-    _test("UIActivityIndictorView")
+  func testUIActivityIndicatorView() {
+    _test("UIActivityIndicatorView")
   }
 
   func testUIButton() {
