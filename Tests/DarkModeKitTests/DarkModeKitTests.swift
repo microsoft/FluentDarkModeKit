@@ -23,6 +23,12 @@ final class DarkModeKitTests: XCTestCase {
     XCTAssertEqual(color.rgba, UIColor.black.rgba)
   }
 
+  func testImageInitializer() {
+    let lightImage = UIImage()
+    let darkImage = UIImage()
+    _ = UIImage(.dm, light: lightImage, dark: darkImage)
+  }
+
   func testColorPropertySetters() {
     let color = UIColor(.dm, light: .white, dark: .black)
 
