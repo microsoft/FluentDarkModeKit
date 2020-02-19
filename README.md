@@ -24,7 +24,7 @@ DarkModeKit was designed and developed before Apple‘s official dark mode relea
 To integrate DarkModeKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```
-github "microsoft/DarkModeKit" ~> 0.2.0
+github "microsoft/DarkModeKit"
 ```
 
 ### Swift Package Manager
