@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "DarkModeKit"
-  s.version          = "0.3.0"
+  s.version          = "0.4.0"
   s.summary          = "A library for backporting Dark Mode in iOS"
 
   s.description      = <<-DESC
