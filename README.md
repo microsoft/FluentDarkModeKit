@@ -1,4 +1,4 @@
-![Fluent Dark Mode Kit](https://raw.githubusercontent.com/microsoft/DarkModeKit/master/Asset/DarkModeKit_Masthead.png)
+![Fluent Dark Mode Kit](Asset/DarkModeKit_Masthead.png)
 
 ![](https://github.com/microsoft/DarkModeKit/workflows/CI/badge.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
