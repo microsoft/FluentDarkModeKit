@@ -14,8 +14,7 @@ extension UIScrollView {
     indicatorStyle = {
       if DMTraitCollection.current.userInterfaceStyle == .dark {
         return .black
-      }
-      else {
+      } else {
         return .default
       }
     }()

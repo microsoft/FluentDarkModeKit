@@ -409,6 +409,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8CAFD9E523715FAB001A63B8 /* Build configuration list for PBXNativeTarget "DarkModeKitExample" */;
 			buildPhases = (
+				D9718F932418E52B00E3D3AC /* SwiftLint */,
 				8CAFD9CE23715FAA001A63B8 /* Sources */,
 				8CAFD9CF23715FAA001A63B8 /* Frameworks */,
 				8CAFD9D023715FAA001A63B8 /* Resources */,
@@ -503,6 +504,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D9718F932418E52B00E3D3AC /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8C1915CA2361EFDB004A606A /* Sources */ = {

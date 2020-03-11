@@ -13,26 +13,28 @@ extension UIImageView {
     static var dynamicImageKey = "dynamicImageKey"
   }
 
-  var dm_dynamicImage: UIImage? {
+  var dmDynamicImage: UIImage? {
     get { return objc_getAssociatedObject(self, &Constants.dynamicImageKey) as? UIImage }
     set { objc_setAssociatedObject(self, &Constants.dynamicImageKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
   }
 
   static let swizzleSetImageOnce: Void = {
     if !dm_swizzleInstanceMethod(#selector(setter: image), to: #selector(dm_setImage(_:))) {
-      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIImageView.self, selector: #selector(setter: image)))
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIImageView.self,
+                                                                 selector: #selector(setter: image)))
     }
   }()
 
   static let swizzleInitImageOnce: Void = {
     if !dm_swizzleInstanceMethod(#selector(UIImageView.init(image:)), to: #selector(UIImageView.dm_init(image:))) {
-      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIImageView.self, selector: #selector(setter: image)))
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIImageView.self,
+                                                                 selector: #selector(setter: image)))
     }
   }()
 
   @objc dynamic func dm_init(image: UIImage?) -> UIImageView {
     if object_getClass(image) == DMDynamicImageProxy.self {
-      dm_dynamicImage = image
+      dmDynamicImage = image
     }
     return dm_init(image: image)
   }
@@ -40,17 +42,16 @@ extension UIImageView {
   override func dm_updateDynamicImages() {
     super.dm_updateDynamicImages()
 
-    if let dynamicImage = dm_dynamicImage {
+    if let dynamicImage = dmDynamicImage {
       image = dynamicImage
     }
   }
 
   @objc dynamic func dm_setImage(_ image: UIImage?) {
     if object_getClass(image) == DMDynamicImageProxy.self {
-      dm_dynamicImage = image
-    }
-    else {
-      dm_dynamicImage = nil
+      dmDynamicImage = image
+    } else {
+      dmDynamicImage = nil
     }
     dm_setImage(image)
   }

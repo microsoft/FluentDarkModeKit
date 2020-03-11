@@ -31,6 +31,7 @@ final class DarkModeKitUITests: XCTestCase {
     _test("UIPageControl")
   }
 
+  // swiftlint:disable identifier_name
   func _test(_ className: String) {
     let app = XCUIApplication()
     let refreshButton = app.navigationBars["DarkModeKitExample.MainView"].buttons["Refresh"]
@@ -54,17 +55,20 @@ final class DarkModeKitUITests: XCTestCase {
 
     XCTAssertTrue(compare(screenshot1.image, screenshot2.image, precision: 1))
   }
+  // swiftlint:enable identifier_name
 }
 
+// swiftlint:disable cyclomatic_complexity
 private func compare(_ old: UIImage, _ new: UIImage, precision: Float) -> Bool {
-  guard let oldCgImage = old.cgImage else { return false }
-  guard let newCgImage = new.cgImage else { return false }
-  guard oldCgImage.width != 0 else { return false }
-  guard newCgImage.width != 0 else { return false }
-  guard oldCgImage.width == newCgImage.width else { return false }
-  guard oldCgImage.height != 0 else { return false }
-  guard newCgImage.height != 0 else { return false }
-  guard oldCgImage.height == newCgImage.height else { return false }
+
+  guard let oldCgImage = old.cgImage,
+        let newCgImage = new.cgImage else { return false }
+
+  guard oldCgImage.width != 0, newCgImage.width != 0,
+        oldCgImage.width == newCgImage.width,
+        oldCgImage.height != 0, newCgImage.height != 0,
+        oldCgImage.height == newCgImage.height else { return false }
+  
   // Values between images may differ due to padding to multiple of 64 bytes per row,
   // because of that a freshly taken view snapshot may differ from one stored as PNG.
   // At this point we're sure that size of both images is the same, so we can go with minimal `bytesPerRow` value
@@ -81,7 +85,10 @@ private func compare(_ old: UIImage, _ new: UIImage, precision: Float) -> Bool {
   let newer = UIImage(data: new.pngData()!)!
   guard let newerCgImage = newer.cgImage else { return false }
   var newerBytes = [UInt8](repeating: 0, count: byteCount)
-  guard let newerContext = context(for: newerCgImage, bytesPerRow: minBytesPerRow, data: &newerBytes) else { return false }
+  guard let newerContext = context(for: newerCgImage,
+                                   bytesPerRow: minBytesPerRow,
+                                   data: &newerBytes) else { return false }
+
   guard let newerData = newerContext.data else { return false }
   if memcmp(oldData, newerData, byteCount) == 0 { return true }
   if precision >= 1 { return false }
@@ -89,10 +96,11 @@ private func compare(_ old: UIImage, _ new: UIImage, precision: Float) -> Bool {
   let threshold = 1 - precision
   for byte in 0..<byteCount {
     if oldBytes[byte] != newerBytes[byte] { differentPixelCount += 1 }
-    if Float(differentPixelCount) / Float(byteCount) > threshold { return false}
+    if Float(differentPixelCount) / Float(byteCount) > threshold { return false }
   }
   return true
 }
+// swiftlint:enable cyclomatic_complexity
 
 private func context(for cgImage: CGImage, bytesPerRow: Int, data: UnsafeMutableRawPointer? = nil) -> CGContext? {
   guard

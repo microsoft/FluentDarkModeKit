@@ -62,11 +62,10 @@ extension DMTraitEnvironment {
 
       UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.25, delay: 0, options: [], animations: {
         snapshotViews.forEach { $0.alpha = 0 }
-      }) { _ in
+      }, completion: { ( _ ) in
         snapshotViews.forEach { $0.removeFromSuperview() }
-      }
-    }
-    else {
+      })
+    } else {
       dmTraitCollectionDidChange(nil)
     }
   }

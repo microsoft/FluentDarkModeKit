@@ -48,7 +48,7 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let row = rows[indexPath.row]
-    let vc = row.vcType.init()
-    show(vc, sender: self)
+    let viewController = row.vcType.init()
+    show(viewController, sender: self)
   }
 }

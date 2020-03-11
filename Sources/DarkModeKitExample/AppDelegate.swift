@@ -21,7 +21,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
       let tabBarController = UITabBarController()
       tabBarController.viewControllers = [
         NavigationController(rootViewController: MainViewController()),
-        NavigationController(rootViewController: ViewController()),
+        NavigationController(rootViewController: ViewController())
       ]
       return tabBarController
     }()

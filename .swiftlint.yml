@@ -1,0 +1,32 @@
+# Disable linter files and folders
+excluded:
+  - .git
+  - Package.swift
+
+# Max and min line length
+line_length:
+  warning: 140
+  error: 155
+
+# Max function body
+function_body_length:
+  - 140
+  - 180
+
+# Nested complex code
+cyclomatic_complexity:
+- 9 # warning
+- 11 # error
+
+# Variable Name lowercase letter
+lowercase_constants:
+    name: "Lowercase Constants"
+    regex: '[ \t]let[ \t]*[A-Z][\w]*[ \t]*(=|:)'
+    message: "Constants should begin with a lowercase character."
+    severity: warning
+    match_kinds:
+      - argument
+      - comment.mark
+      - comment.url
+      - identifier
+      - typeidentifier

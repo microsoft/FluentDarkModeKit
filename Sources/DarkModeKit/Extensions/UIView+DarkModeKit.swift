@@ -20,7 +20,7 @@ extension UIView: DMTraitEnvironment {
     if let dynamicBackgroundColor = dm_dynamicBackgroundColor {
       backgroundColor = dynamicBackgroundColor
     }
-    if let dynamicTintColor = dm_dynamicTintColor {
+    if let dynamicTintColor = dmDynamicTintColor {
       tintColor = dynamicTintColor
     }
   }
@@ -52,18 +52,18 @@ extension UIView {
   }
 
   static let swizzleSetTintColorOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(setter: tintColor), to: #selector(dm_setTintColor)) {
+    if !dm_swizzleInstanceMethod(#selector(setter: tintColor), to: #selector(dmSetTintColor)) {
       assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: #selector(setter: tintColor)))
     }
   }()
 
-  private var dm_dynamicTintColor: DynamicColor? {
+  private var dmDynamicTintColor: DynamicColor? {
     get { return objc_getAssociatedObject(self, &Constants.dynamicTintColorKey) as? DynamicColor }
     set { objc_setAssociatedObject(self, &Constants.dynamicTintColorKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
   }
 
-  @objc private dynamic func dm_setTintColor(_ color: UIColor) {
-    dm_dynamicTintColor = color as? DynamicColor
-    dm_setTintColor(color)
+  @objc private dynamic func dmSetTintColor(_ color: UIColor) {
+    dmDynamicTintColor = color as? DynamicColor
+    dmSetTintColor(color)
   }
 }
