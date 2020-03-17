@@ -4,7 +4,7 @@
 //
 
 import XCTest
-@testable import DarkModeKit
+@testable import FluentDarkModeKit
 
 final class DarkModeKitTests: XCTestCase {
   func testSetBackgroundColorSwizzling() {

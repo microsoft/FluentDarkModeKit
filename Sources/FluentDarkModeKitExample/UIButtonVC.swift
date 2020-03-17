@@ -3,7 +3,7 @@
 //  Licensed under the MIT License.
 //
 
-import DarkModeKit
+import FluentDarkModeKit
 
 final class UIButtonVC: ViewController {
   let button: UIButton = {

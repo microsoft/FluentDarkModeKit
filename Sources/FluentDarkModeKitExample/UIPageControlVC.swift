@@ -3,7 +3,7 @@
 //  Licensed under the MIT License.
 //
 
-import DarkModeKit
+import FluentDarkModeKit
 
 final class UIPageControlVC: ViewController {
   let pageControl: UIPageControl = {

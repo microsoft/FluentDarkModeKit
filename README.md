@@ -1,9 +1,9 @@
 ![Fluent Dark Mode Kit](Assets/DarkModeKit_Masthead.png)
 
-![](https://github.com/microsoft/DarkModeKit/workflows/CI/badge.svg)
+![](https://github.com/microsoft/FluentDarkModeKit/workflows/CI/badge.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-DarkModeKit was designed and developed before Apple‘s official dark mode release. It provides a mechanism to support dark mode for apps on iOS 11+ (including iOS 13).
+FluentDarkModeKit was designed and developed before Apple‘s official dark mode release. It provides a mechanism to support dark mode for apps on iOS 11+ (including iOS 13).
 
 ## Features
 
@@ -21,29 +21,29 @@ DarkModeKit was designed and developed before Apple‘s official dark mode relea
 
 ### Carthage
 
-To integrate DarkModeKit into your Xcode project using Carthage, specify it in your `Cartfile`:
+To integrate FluentDarkModeKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```
-github "microsoft/DarkModeKit"
+github "microsoft/FluentDarkModeKit"
 ```
 
 ### Swift Package Manager
 
-Click "Files -> Swift Package Manager -> Add Package Dependency..." in Xcode's menu and search "https://github.com/microsoft/DarkModeKit"
+Click "Files -> Swift Package Manager -> Add Package Dependency..." in Xcode's menu and search "https://github.com/microsoft/FluentDarkModeKit"
 
 ### CocoaPods
 
-To integrate DarkModeKit into your Xcode project using CocoaPods, specify it in your `Podfile`:
+To integrate FluentDarkModeKit into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```
-pod "DarkModeKit"
+pod "FluentDarkModeKit"
 ```
 
 ## Get Started
 
-### How to Use DarkModeKit
+### How to Use FluentDarkModeKit
 
-To use DarkModeKit, provide a pair of colors or images instead of a single value. Simply replace existing colors/images with a pair of light and dark colors/images.
+To use FluentDarkModeKit, provide a pair of colors or images instead of a single value. Simply replace existing colors/images with a pair of light and dark colors/images.
 
 #### Colors
 
@@ -58,7 +58,7 @@ let color = UIColor(.dm, light: .white, dark: .black)
 
 Objective-C
 ```objc
-@interface UIColor (DarkModeKit)
+@interface UIColor (FluentDarkModeKit)
 - (UIColor *)dm_colorWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor;
 @end
 
@@ -80,18 +80,18 @@ let image = UIImage(.dm, light: lightImage, dark: darkImage)
 
 Objective-C
 ```objc
-@interface UIImage (DarkModeKit)
+@interface UIImage (FluentDarkModeKit)
 - (UIImage *)dm_imageWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage;
 @end
 ```
 
 ### Others
 
-For more complex scenarios, DarkModeKit is similar to what Apple does in iOS 13 (some slight differences). It maintains a global `DMTraitCollection` which can be accessed through `DMTraitCollection.current` during custom layout. 
+For more complex scenarios, FluentDarkModeKit is similar to what Apple does in iOS 13 (some slight differences). It maintains a global `DMTraitCollection` which can be accessed through `DMTraitCollection.current` during custom layout. 
 
 For more information on cases you should handle during layout, please refer to [Apple's documentation](https://developer.apple.com/documentation/xcode/supporting_dark_mode_in_your_interface#2993898).
 
-DarkModeKit will notify views or view controllers in the current window when the theme changes by calling the following delegate method. 
+FluentDarkModeKit will notify views or view controllers in the current window when the theme changes by calling the following delegate method. 
 
 Swift
 ```swift

@@ -3,7 +3,7 @@
 //  Licensed under the MIT License.
 //
 
-import DarkModeKit
+import FluentDarkModeKit
 import UIKit
 
 class ViewController: UIViewController {
