@@ -4,7 +4,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <DarkModeKit/DMNamespace.h>
+#import <FluentDarkModeKit/DMNamespace.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

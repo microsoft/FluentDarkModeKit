@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8C1915CD2361EFDB004A606A"
-               BuildableName = "DarkModeKit.framework"
-               BlueprintName = "DarkModeKit"
-               ReferencedContainer = "container:DarkModeKit.xcodeproj">
+               BlueprintIdentifier = "8CAFD9D123715FAA001A63B8"
+               BuildableName = "FluentDarkModeKitExample.app"
+               BlueprintName = "FluentDarkModeKitExample"
+               ReferencedContainer = "container:FluentDarkModeKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8C1915D62361EFDB004A606A"
-               BuildableName = "DarkModeKitTests.xctest"
-               BlueprintName = "DarkModeKitTests"
-               ReferencedContainer = "container:DarkModeKit.xcodeproj">
+               BlueprintIdentifier = "8C7B24F723A21E97002E2558"
+               BuildableName = "FluentDarkModeKitUITests.xctest"
+               BlueprintName = "FluentDarkModeKitUITests"
+               ReferencedContainer = "container:FluentDarkModeKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -50,6 +50,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "8CAFD9D123715FAA001A63B8"
+            BuildableName = "FluentDarkModeKitExample.app"
+            BlueprintName = "FluentDarkModeKitExample"
+            ReferencedContainer = "container:FluentDarkModeKit.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -57,15 +67,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8C1915CD2361EFDB004A606A"
-            BuildableName = "DarkModeKit.framework"
-            BlueprintName = "DarkModeKit"
-            ReferencedContainer = "container:DarkModeKit.xcodeproj">
+            BlueprintIdentifier = "8CAFD9D123715FAA001A63B8"
+            BuildableName = "FluentDarkModeKitExample.app"
+            BlueprintName = "FluentDarkModeKitExample"
+            ReferencedContainer = "container:FluentDarkModeKit.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

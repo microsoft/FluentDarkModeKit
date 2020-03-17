@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
   s.frameworks       = 'UIKit', 'Foundation'
   s.swift_version    = '5.0'
 
-  s.source_files     = 'Sources/DarkModeCore/*.{h,m}', 'Sources/DarkModeKit/**/*.swift'
+  s.source_files     = 'Sources/DarkModeCore/*.{h,m}', 'Sources/FluentDarkModeKit/**/*.swift'
 end

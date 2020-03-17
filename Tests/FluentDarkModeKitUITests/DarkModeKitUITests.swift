@@ -19,8 +19,8 @@ final class DarkModeKitUITests: XCTestCase {
     _test("UIView")
   }
 
-  func testUIActivityIndictorView() {
-    _test("UIActivityIndictorView")
+  func testUIActivityIndicatorView() {
+    _test("UIActivityIndicatorView")
   }
 
   func testUIButton() {
@@ -33,7 +33,7 @@ final class DarkModeKitUITests: XCTestCase {
 
   func _test(_ className: String) {
     let app = XCUIApplication()
-    let refreshButton = app.navigationBars["DarkModeKitExample.MainView"].buttons["Refresh"]
+    let refreshButton = app.navigationBars["FluentDarkModeKitExample.MainView"].buttons["Refresh"]
     refreshButton.tap()
 
     let uiviewStaticText = app.tables.staticTexts[className]
@@ -41,13 +41,13 @@ final class DarkModeKitUITests: XCTestCase {
 
     let screenshot1 = app.screenshot()
 
-    app.navigationBars["DarkModeKitExample.\(className)VC"].buttons["Back"].tap()
+    app.navigationBars["FluentDarkModeKitExample.\(className)VC"].buttons["Back"].tap()
     refreshButton.tap()
     uiviewStaticText.tap()
 
     let tabBarsQuery = app.tabBars
     tabBarsQuery.children(matching: .button).element(boundBy: 1).tap()
-    app.navigationBars["DarkModeKitExample.View"].buttons["Refresh"].tap()
+    app.navigationBars["FluentDarkModeKitExample.View"].buttons["Refresh"].tap()
     tabBarsQuery.children(matching: .button).element(boundBy: 0).tap()
 
     let screenshot2 = app.screenshot()

@@ -3,17 +3,17 @@
 import PackageDescription
 
 let package = Package(
-    name: "DarkModeKit",
+    name: "FluentDarkModeKit",
     platforms: [.iOS(.v11)],
     products: [
-        .library(name: "DarkModeKit", targets: [
+        .library(name: "FluentDarkModeKit", targets: [
             "DarkModeCore",
-            "DarkModeKit",
+            "FluentDarkModeKit",
         ])
     ],
     targets: [
         .target(name: "DarkModeCore"),
-        .target(name: "DarkModeKit", dependencies: ["DarkModeCore"]),
-        .testTarget(name: "DarkModeKitTests", dependencies: ["DarkModeKit"]),
+        .target(name: "FluentDarkModeKit", dependencies: ["DarkModeCore"]),
+        .testTarget(name: "FluentDarkModeKitTests", dependencies: ["FluentDarkModeKit"]),
     ]
 )
