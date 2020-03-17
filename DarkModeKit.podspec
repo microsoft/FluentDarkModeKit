@@ -1,15 +1,15 @@
 Pod::Spec.new do |s|
-  s.name             = "DarkModeKit"
+  s.name             = "FluentDarkModeKit"
   s.version          = "0.4.0"
   s.summary          = "A library for backporting Dark Mode in iOS"
 
   s.description      = <<-DESC
-                       DarkModeKit provides a mechanism to support dark mode for apps on iOS 11+ (including iOS 13).
+                       FluentDarkModeKit provides a mechanism to support dark mode for apps on iOS 11+ (including iOS 13).
                        DESC
-  s.homepage         = "https://github.com/microsoft/DarkModeKit"
+  s.homepage         = "https://github.com/microsoft/FluentDarkModeKit"
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = "Microsoft Corporation"
-  s.source           = { :git => "https://github.com/microsoft/DarkModeKit.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/microsoft/FluentDarkModeKit.git", :tag => s.version.to_s }
   s.platform         = :ios, '11.0'
   s.requires_arc     = true
   s.frameworks       = 'UIKit', 'Foundation'
