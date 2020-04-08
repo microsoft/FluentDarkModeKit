@@ -13,7 +13,7 @@ extension UIScrollView {
 
     indicatorStyle = {
       if DMTraitCollection.current.userInterfaceStyle == .dark {
-        return .black
+        return .white
       }
       else {
         return .default
