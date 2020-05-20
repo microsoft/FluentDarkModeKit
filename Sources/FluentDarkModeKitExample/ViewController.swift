@@ -17,8 +17,7 @@ class ViewController: UIViewController {
     )
   }
 
-  @objc
-  private func refresh() {
+  @objc private func refresh() {
     if DMTraitCollection.current.userInterfaceStyle == .dark {
       DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .light)
     }

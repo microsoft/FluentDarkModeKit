@@ -10,7 +10,7 @@ import DarkModeCore
 extension UIPageControl {
   override func dm_updateDynamicColors() {
     super.dm_updateDynamicColors()
-    
+
     if let dynamicPageIndicatorTintColor = pageIndicatorTintColor?.copy() as? DynamicColor {
       pageIndicatorTintColor = dynamicPageIndicatorTintColor
     }

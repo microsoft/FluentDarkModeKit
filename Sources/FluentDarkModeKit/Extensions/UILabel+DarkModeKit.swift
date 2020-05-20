@@ -31,7 +31,7 @@ extension UILabel {
     }
   }
 
-  open override func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
+  override open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
     super.dmTraitCollectionDidChange(previousTraitCollection)
   }
 
