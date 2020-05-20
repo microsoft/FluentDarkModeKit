@@ -17,7 +17,14 @@ FluentDarkModeKit was designed and developed before Apple‘s official dark mode
 
 - iOS 11.0+
 - Xcode 11.0+
-- Swift 5+
+- Swift 5.0+
+- Git LFS
+
+You can use Homebrew to install Git LFS
+
+```
+brew install git-lfs
+```
 
 ### Carthage
 
