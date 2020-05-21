@@ -1,0 +1,466 @@
+swiftlint_version: 0.39.2
+
+# these must match project setting values, checks that we don't have redundant availability checks.
+deployment_target:
+  iOS_deployment_target: 11.0
+
+disabled_rules:
+  # These rules can be revisited as options are added
+
+  # Closure parameters should be on the same line as opening brace.
+  - closure_parameter_position
+
+  # ensure calls to NSLocalizedString specify the bundle where the strings file
+  # is located. we do not support localization retargeting (yet?)
+  - nslocalizedstring_require_bundle
+
+  # Trailing closure syntax should not be used when passing more than one
+  # closure argument
+  - multiple_closures_with_trailing_closure
+
+  # An object should only remove itself as an observer in `deinit`.
+  - notification_center_detachment
+
+  # Combine multiple pattern matching bindings by moving keywords out of tuples.
+  - pattern_matching_keywords
+
+  # String enum values can be omitted when they are equal to the enumcase name.
+  - redundant_string_enum_value
+
+  # TODOs and FIXMEs should be avoided.
+  - todo
+
+  # Enforces a class, struct or enum definition to be 200 lines or less
+  # (excluding whitespace and comments)
+  - type_body_length
+
+  # Rules to re-enable as soon as possible (either once bugs have been fixed, or once better options have been added)
+
+  # Prefer the new block based KVO API with keypaths when using Swift 3.2 or later.
+  - block_based_kvo
+
+  # Delegate protocols should be class-only so they can be weakly referenced.
+  - class_delegate_protocol
+
+  # Complexity of function bodies should be limited.
+  # This can now be configured to ignore case statements, so we should enable
+  - cyclomatic_complexity
+
+  # Identifier names should only contain alphanumeric characters and start with
+  # a lowercase character or should only contain capital letters. In an
+  # exception to the above, variable names may start with a capital letter when
+  # they are declared static and immutable. Variable names should not be too
+  # long or too short.
+  # Gives us some extra optimization, so should be enabled once it is generating
+  # less false positives
+  # Currently failing due to upper case enum values
+  - identifier_name
+
+  # Imports should be sorted.
+  - sorted_imports
+
+  # collection literals can include trailing comas.
+  - trailing_comma
+
+  # a custom setter with no defined parameter does not use the default
+  # `newValue`:  var aValue: String { set { foo = aValue } }
+  # _NOTE_: will be a swift error soon.
+  - unused_setter_value
+
+  - file_length
+  - function_body_length
+
+opt_in_rules:
+  # Prefer using `AnyObject` over `class` for class-only protocols.
+  - anyobject_protocol
+
+  # Prefer using Array(seq) than seq.map { $0 } to convert a sequence into an Array.
+  - array_init
+
+  # Closure end should have the same indentation as the line that started it.
+  - closure_end_indentation
+
+  # Closure expressions should have a single space inside each brace.
+  - closure_spacing
+
+  # All elements in a collection literal should be vertically aligned
+  - collection_alignment
+
+  # Conditional statements should always return on the next line
+  - conditional_returns_on_newline
+
+  # prefer `contains` over comparing `filter(where:).count` to 0
+  - contains_over_filter_count
+
+  # prefer `contains` over comparing `filter(where:).isEmpty`
+  - contains_over_filter_is_empty
+
+  # prefer contains(where:) over first(where:) != nil
+  - contains_over_first_not_nil
+
+  # prefer contains over comparison of `range(of:)` to `nil`
+  - contains_over_range_nil_comparison
+
+  # as we move to block based vs @objc based notification handling this will come in handy.
+  - discarded_notification_center_observer
+
+  # Encourages initializers over object literals
+  - discouraged_object_literal
+
+  # Prefer checking `isEmpty` over comparing collection to an empty array or dictionary literal
+  - empty_collection_literal
+
+  # Prefer checking `isEmpty` over comparing `count` to zero.
+  - empty_count
+
+  # Prefer checking `.isEmpty` on strings over comparing against ""
+  - empty_string
+
+  # Empty XCTest methods should be avoided.
+  - empty_xctest_method
+
+  # Explicitly calling .init() should be avoided.
+  - explicit_init
+
+  # should be avoided
+  - fallthrough
+
+  # ?
+  - file_header
+
+  # Prefer using `.first(where:)` over `.filter { }.first` in collections.
+  - first_where
+
+  # Prefer handling thrown errors or optional binding instead of try!
+  - force_try
+
+  # Prefer using `flatMap` over `map { ... }.reduce([], +)`
+  - flatmap_over_map_reduce
+
+  # Comparing two identical operands is likely a mistake.
+  - identical_operands
+
+  # Discouraged explicit usage of the default separator.
+  - joined_default_parameter
+
+  # encourage the use of Swift 4.2's new hashing interface.
+  - legacy_hashing
+
+  # Prefer using `type.random(in:)` over legacy functions.
+  - legacy_random
+
+  # Let and var should be separated from other statements by a blank line.
+  - let_var_whitespace
+
+  # Array and dictionary literal end should have the same indentation as the line that started it.
+  - literal_expression_end_indentation
+
+  # MARK comment should be in valid format.
+  - mark
+
+  # Modifier order should be consistent
+  - modifier_order
+
+  # nsobject subclasses should override isequals. not ==
+  - nsobject_prefer_isequal
+
+  # Matching an enum case against an optional enum without '?' is supported on Swift 5.1 and above.
+  - optional_enum_case_matching
+
+  # Some overridden methods should always call super
+  - overridden_super_call
+
+  # Combine multiple pattern matching bindings by moving keywords out of tuples.
+  - pattern_matching_keywords
+
+  # Prefer `Self` over `type(of: self)` when accessing properties or calling methods.
+  - prefer_self_type_over_type_of_self
+
+  # Encourages top level constants to be prefixed by k
+  - prefixed_toplevel_constant
+
+  # Checks that all IBActions are private rather than public
+  - private_action
+
+  # Creating views using Interface Builder should be avoided.
+  - prohibited_interface_builder
+
+  # Some methods should not call super
+  - prohibited_super_call
+
+  # prefer simpler constructs over reduce(Boolean).
+  - reduce_boolean
+
+  # mutable reference can be faster than repeated copying
+  - reduce_into
+
+  # nil coalescing operator is only evaluated if the lhs is nil, coalescing operator with nil as rhs is redundant
+  - redundant_nil_coalescing
+
+  # Test files should contain a single QuickSpec or XCTestCase class.
+  - single_test_class
+
+  # Prefer using min() or max() over sorted().first or sorted().last
+  - sorted_first_last
+
+  # Operators should be declared as static functions, not free functions.
+  - static_operator
+
+  # Parentheses are not needed when declaring closure arguments.
+  - unneeded_parentheses_in_closure_argument
+
+  # Checks for yoda conditions
+  - yoda_condition
+
+  # Rules we should enable
+
+  # Attributes should be on their own lines in functions and types, but on the same line as variables and imports.
+  # - attributes
+
+  # Top-level declarations should specify Access Control Level keywords explicitly.
+  # - explicit_top_level_acl
+
+  # A fatalError call should have a message.
+  # - fatal_error_message
+
+  # Multiline arguments should have their surrounding brackets in a new line.
+  # - multiline_arguments_brackets
+
+  # Multiline literals should have their surrounding brackets in a new line.
+  # - multiline_literal_brackets
+
+  # Multiline parameters should have their surrounding brackets in a new line.
+  # - multiline_parameters_brackets
+
+  # Trailing closure syntax should be used whenever possible.
+  # - trailing_closure
+
+  # attempts to find internal/public/open/private/fileprivate declarations that are not used
+  # - unused_declaration
+
+  # Function parameters should be aligned vertically if they're in multiple lines in a method call.
+  # - vertical_parameter_alignment_on_call
+
+
+analyzer_rules:  # these require a path to the full build log _NOT_ incremental
+  - unused_import  # If you import a framework you should use it.
+  - unused_declaration  # Declarations should be referenced at least ones within all files linted.
+
+excluded:
+  - Assets/
+  - Package.swift
+
+conditional_returns_on_newline:
+  if_only: true
+
+# trailing_comma:
+#   mandatory_comma: true
+
+nesting:
+  type_level: 2
+  statement_level: 5
+
+large_tuple:
+  warning: 3
+  error: 3
+
+function_parameter_count:
+  warning: 10
+  error: 10
+
+type_name:
+  max_length:
+    warning: 75
+    error: 75
+
+# file_length:
+#   warning: 2000  # Try and reduce these
+#   error: 2000
+
+line_length:
+  warning: 400
+  error: 400
+
+# function_body_length:
+#   warning: 100
+#   error: 100
+
+identifier_name:
+  min_length: 2
+  max_length:
+    warning: 60
+    error: 80
+
+statement_position:
+  statement_mode: uncuddled_else
+
+unused_declaration:
+  include_public_and_open: true
+
+file_header:
+  required_string: |
+    //
+    //  Copyright (c) Microsoft Corporation. All rights reserved.
+    //  Licensed under the MIT License.
+    //
+
+custom_rules:
+  arc4random:
+    included: '.*\.swift'
+    name: "arc4random"
+    regex: 'arc4random\('
+    message: >
+      Usually `arc4random()` isn't necessary. Instead of using
+      `arc4random() % X`, use `arc4random_uniform(X)` which doesn't cause a
+      bias
+    severity: error
+  closure_parameter_parentheses:
+    included: '.*\.swift'
+    name: "Closure Parameter Parentheses"
+    regex: '\{ *\([^,:]*\) *in *$'
+    message: >
+      Closures with single parameters should not have these parameters enclosed
+      in parentheses
+    severity: error
+  dispatch_execute:
+    included: '.*\.swift'
+    name: "Dispatch Execute"
+    regex: '\.a?sync\(execute\: \{'
+    message: >
+      Don't specify the closure argument explicitly when executing on a
+      DispatchQueue. Use the implicit form instead.
+    severity: error
+  image_literals:
+    included: '.*\.swift'
+    name: "Image Literals"
+    regex: '\#imageLiteral\('
+    message: "Don't use image literals."
+    severity: error
+  opening_brace:
+    included: '.*\.swift'
+    name: "Opening Brace"
+    regex: '\{[^ \r\n\}]'
+    message: >
+      Opening braces should only be succeeded by a space, a new line or a
+      closing brace.
+    severity: error
+    match_kinds:
+      - argument
+      - identifier
+      - keyword
+      - number
+      - objectliteral
+      - parameter
+      - placeholder
+      - typeidentifier
+  redundant_ternary:
+    included: '.*\.swift'
+    name: "Redundant ternary"
+    regex: ' *? *(?:true|false) *\: *(?:true|false)'
+    message: >
+      Don't use a ternary where none is required. E.g. `X ? false : true` can be
+      shortened to just `!X`
+    severity: error
+  revert_before_commit:
+    included: '.*\.swift'
+    name: "Revert before commit"
+    regex: '(?i)REVERTME'
+    message: >
+      Must remove the code that's marked with REVERTME: before committing the
+      change.
+    serverity: error
+  same_line_function_attributes:
+    included: '.*\.swift'
+    name: "Same line function attributes"
+    regex: ' +(@[a-zA-Z\(\):]* *)+\n'
+    message: "Function attributes should be on the same line as the definition."
+    severity: error
+  yyyy_date_format:
+    included: '.*\.swift'
+    name: "YYYYDateFormat"
+    regex: 'YYYY'
+    message: "Usage of 'YYYY' is usually incorrect. Use 'yyyy' instead."
+    severity: error
+  xctassert_fail:
+    included: '.*\.swift'
+    name: "Use XCTFail"
+    regex: '(XCTAssert|XCTAssertTrue)\(false'
+    message: "Prefer XCTFail over XCTAssertTrue(false)."
+    severity: error
+  xctassert_pass:
+    included: '.*\.swift'
+    name: "Unnecessary pass"
+    regex: '(XCTAssert|XCTAssertTrue)\(true[,)]+'
+    message: "Asserting true is unnecessary"
+    severity: error
+  xctassert_equal:
+    included: '.*\.swift'
+    name: "Use XCTAssertEqual"
+    regex: '(XCTAssert|XCTAssertTrue)\([^{\n]+? == .+?\)'
+    message: >
+      XCTassertEqual will show the value that failed making it easier to debug
+      failing test cases than XCTAssert( == ).
+    severity: error
+  notification_name_shorthand:
+    included: '.*\.swift'
+    name: "Use shorthand notification name"
+    regex: '\.post\(name: Notification\.Name\.'
+    message: >
+      Prefer the more concise `.post(name: .` vs
+      `.post(name: Notification.Name.`
+    severity: error
+  notification_name_observer_shorthand:
+    included: '.*\.swift'
+    name: "Use shorthand notification name"
+    regex: 'addObserver\(.*, name: Notification\.Name\.'
+    message: >
+      Prefer the more concise `.addObserver(name: .` vs
+      `.addObserver(name: Notification.Name.`"
+    severity: error
+  ns_notification:
+    included: '.*\.swift'
+    name: "Notification over NSNotification"
+    regex: 'NSNotification'
+    message: "Prefer Notification over NSNotification"
+    severity: error
+  equality_parens:
+    included: '.*\.swift'
+    name: "Don't unnecessarily wrap inequality statements"
+    regex: '!\([^{&|]+? ===? [^}&|]+?\)'
+    message: "Prefer != instead of wrapping it in parentheses"
+  computed_static_font_getter:
+    included: '.*\.swift'
+    name: "Use computed static properties for fonts"
+    regex: 'static\s+let\s+(\w+\s*:\s*UIFont\s*=\s*|\w+\s+=\s*UIFont\.)'
+    message: >
+      Prefer using `UIFontMetrics`. Alternatively, use a computed variable when
+      storing a font as a static property to automatically handle accessibility
+      text scaling.
+    severity: error
+  prefer_ui_graphics_image_renderer:
+    included: '.*\.swift'
+    name: "Use UIGraphicsImageRenderer"
+    regex: 'UIGraphicsBeginImageContextWithOptions'
+    message: >
+      Prefer using `UIGraphicsImageRenderer` over
+      `UIGraphicsBeginImageContextWithOptions`"
+    severity: error
+  notification_name:
+    included: '.*\.swift'
+    name: "Use Notification.Name()"
+    # we want to catch `static let FooNotification = "Foo"` but not `case fooNotification = "foo"`
+    regex: '(Notification.Name\(rawValue)|(let\s\w+Notification = \"\w)'
+    message: >
+      Notification.Name(\"notification\") is the preferred way to define
+      notification Names
+    severity: error
+  init_space:
+    included: '.*\.swift'
+    name: "Extra space after init"
+    regex: 'init \('
+    message: "Remove the extra space after `init`"
+  unnecessary_internal:
+    included: '.*\.swift'
+    name: "Unnecessary use of internal"
+    regex: 'internal (var|let|func|static) '
+    message: "Internal access level is the default, no need to specify it."

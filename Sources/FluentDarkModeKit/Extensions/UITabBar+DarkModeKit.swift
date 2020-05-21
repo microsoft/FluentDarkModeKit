@@ -8,7 +8,7 @@ import DarkModeCore
 #endif
 
 extension UITabBar {
-  open override func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
+  override open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
     super.dmTraitCollectionDidChange(previousTraitCollection)
     items?.forEach { $0.dmTraitCollectionDidChange(previousTraitCollection) }
   }

@@ -6,6 +6,7 @@
 import XCTest
 
 final class DarkModeKitUITests: XCTestCase {
+  // swiftlint:disable overridden_super_call
   override func setUp() {
     // In UI tests it is usually best to stop immediately when a failure occurs.
     continueAfterFailure = false
@@ -76,20 +77,28 @@ private func compare(_ old: UIImage, _ new: UIImage, precision: Float) -> Bool {
   guard let oldContext = context(for: oldCgImage, bytesPerRow: minBytesPerRow, data: &oldBytes) else { return false }
   guard let oldData = oldContext.data else { return false }
   if let newContext = context(for: newCgImage, bytesPerRow: minBytesPerRow), let newData = newContext.data {
-    if memcmp(oldData, newData, byteCount) == 0 { return true }
+    if memcmp(oldData, newData, byteCount) == 0 {
+      return true
+    }
   }
   let newer = UIImage(data: new.pngData()!)!
   guard let newerCgImage = newer.cgImage else { return false }
   var newerBytes = [UInt8](repeating: 0, count: byteCount)
   guard let newerContext = context(for: newerCgImage, bytesPerRow: minBytesPerRow, data: &newerBytes) else { return false }
   guard let newerData = newerContext.data else { return false }
-  if memcmp(oldData, newerData, byteCount) == 0 { return true }
-  if precision >= 1 { return false }
+  if memcmp(oldData, newerData, byteCount) == 0 {
+    return true
+  }
+  if precision >= 1 {
+    return false
+  }
   var differentPixelCount = 0
   let threshold = 1 - precision
   for byte in 0..<byteCount {
     if oldBytes[byte] != newerBytes[byte] { differentPixelCount += 1 }
-    if Float(differentPixelCount) / Float(byteCount) > threshold { return false}
+    if Float(differentPixelCount) / Float(byteCount) > threshold {
+      return false
+    }
   }
   return true
 }
