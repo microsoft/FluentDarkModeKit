@@ -17,4 +17,4 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Build
-        run: xcodebuild -scheme FluentDarkModeKit -destination generic/platform=iOS -configuration Release GCC_TREAT_WARNINGS_AS_ERRORS="YES" SWIFT_TREAT_WARNINGS_AS_ERRORS="YES" | xcpretty -s && exit ${PIPESTATUS[0]}
+        run: xcodebuild -scheme FluentDarkModeKit -destination generic/platform=iOS -configuration Release | xcpretty -s && exit ${PIPESTATUS[0]}
