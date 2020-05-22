@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_PACKAGE
+import DarkModeCore
+#endif
 
 extension UIApplication: DMTraitEnvironment {
   open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {

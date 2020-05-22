@@ -4,7 +4,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#ifdef SWIFT_PACKAGE
+#import "DMNamespace.h"
+#else
 #import <FluentDarkModeKit/DMNamespace.h>
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -4,6 +4,9 @@
 //
 
 import UIKit
+#if SWIFT_PACKAGE
+import DarkModeCore
+#endif
 
 public final class DarkModeManager: NSObject {
   public static func setup() {
