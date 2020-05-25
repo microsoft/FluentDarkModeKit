@@ -5,7 +5,7 @@
 
 import UIKit
 #if SWIFT_PACKAGE
-import DarkModeCore
+@_exported import DarkModeCore
 #endif
 
 public final class DarkModeManager: NSObject {

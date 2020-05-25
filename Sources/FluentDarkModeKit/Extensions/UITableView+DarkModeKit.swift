@@ -3,10 +3,6 @@
 //  Licensed under the MIT License.
 //
 
-#if SWIFT_PACKAGE
-import DarkModeCore
-#endif
-
 extension UITableView {
   override func dm_updateDynamicColors() {
     super.dm_updateDynamicColors()
