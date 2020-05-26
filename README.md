@@ -38,6 +38,12 @@ github "microsoft/FluentDarkModeKit"
 
 Click "Files -> Swift Package Manager -> Add Package Dependency..." in Xcode's menu and search "https://github.com/microsoft/FluentDarkModeKit"
 
+Since Xcode uses its own tools to handle swifft packages, git-lfs might not be picked up if it is installed via Homebrew. Run the following command to create a symbolic link if Xcode fails to fetch the package:
+
+```
+ln -s /usr/local/bin/git-lfs $(xcode-select -p)/usr/bin/git-lfs
+```
+
 ### CocoaPods
 
 To integrate FluentDarkModeKit into your Xcode project using CocoaPods, specify it in your `Podfile`:

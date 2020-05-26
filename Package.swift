@@ -12,7 +12,7 @@ let package = Package(
         ])
     ],
     targets: [
-        .target(name: "DarkModeCore"),
+        .target(name: "DarkModeCore", cSettings: [.define("SWIFT_PACKAGE")]),
         .target(name: "FluentDarkModeKit", dependencies: ["DarkModeCore"]),
         .testTarget(name: "FluentDarkModeKitTests", dependencies: ["FluentDarkModeKit"]),
     ]

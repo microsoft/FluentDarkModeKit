@@ -3,8 +3,6 @@
 //  Licensed under the MIT License.
 //
 
-import UIKit
-
 extension UIWindow {
   override open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
     super.dmTraitCollectionDidChange(previousTraitCollection)

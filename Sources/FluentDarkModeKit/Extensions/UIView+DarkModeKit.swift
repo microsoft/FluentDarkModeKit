@@ -3,10 +3,6 @@
 //  Licensed under the MIT License.
 //
 
-#if SWIFT_PACKAGE
-import DarkModeCore
-#endif
-
 extension UIView: DMTraitEnvironment {
   open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
     subviews.forEach { $0.dmTraitCollectionDidChange(previousTraitCollection) }

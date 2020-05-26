@@ -3,10 +3,6 @@
 //  Licensed under the MIT License.
 //
 
-#if SWIFT_PACKAGE
-import DarkModeCore
-#endif
-
 extension UIViewController: DMTraitEnvironment {
   open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
     setNeedsStatusBarAppearanceUpdate()
