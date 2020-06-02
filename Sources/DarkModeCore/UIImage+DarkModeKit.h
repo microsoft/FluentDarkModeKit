@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface UIImage (DarkModeKit)
 
++ (void)dm_swizzleIsEqual;
+
 + (UIImage *)dm_imageWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage
 NS_SWIFT_UNAVAILABLE("Use init(_:light:dark:) instead.");
 

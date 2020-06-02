@@ -9,22 +9,24 @@ extension UILabel {
   }
 
   static let swizzleDidMoveToWindowOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(didMoveToWindow), to: #selector(dm_didMoveToWindow)) {
-      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UILabel.self, selector: #selector(didMoveToWindow)))
+    let selector = #selector(didMoveToWindow)
+    if !dm_swizzleSelector(selector, with: { container -> Any in
+      return { (self: UILabel) -> Void in
+        let oldIMP = unsafeBitCast(container.imp, to: (@convention(c) (UILabel, Selector) -> Void).self)
+        oldIMP(self, selector)
+        if self.currentUserInterfaceStyle != DMTraitCollection.current.userInterfaceStyle {
+          self.currentUserInterfaceStyle = DMTraitCollection.current.userInterfaceStyle
+          self.dmTraitCollectionDidChange(nil)
+        }
+      } as @convention(block) (UILabel) -> Void
+    }) {
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UILabel.self, selector: selector))
     }
   }()
 
   private var currentUserInterfaceStyle: DMUserInterfaceStyle? {
     get { return objc_getAssociatedObject(self, &Constants.currentThemeKey) as? DMUserInterfaceStyle }
     set { objc_setAssociatedObject(self, &Constants.currentThemeKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
-  }
-
-  @objc private dynamic func dm_didMoveToWindow() {
-    dm_didMoveToWindow()
-    if currentUserInterfaceStyle != DMTraitCollection.current.userInterfaceStyle {
-      currentUserInterfaceStyle = DMTraitCollection.current.userInterfaceStyle
-      dmTraitCollectionDidChange(nil)
-    }
   }
 
   override open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {

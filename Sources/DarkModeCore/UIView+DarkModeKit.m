@@ -5,29 +5,26 @@
 
 #import "UIView+DarkModeKit.h"
 #import "DMDynamicColor.h"
+#import "NSObject+DarkModeKit.h"
 
 @import ObjectiveC;
 
 @implementation UIView (DarkModeKit)
 
-static void (*dm_original_setBackgroundColor)(UIView *, SEL, UIColor *);
-
-static void dm_setBackgroundColor(UIView *self, SEL _cmd, UIColor *color) {
-  if ([color isKindOfClass:[DMDynamicColor class]]) {
-    self.dm_dynamicBackgroundColor = (DMDynamicColor *)color;
-  } else {
-    self.dm_dynamicBackgroundColor = nil;
-  }
-  dm_original_setBackgroundColor(self, _cmd, color);
-}
-
-// https://stackoverflow.com/questions/42677534/swizzling-on-properties-that-conform-to-ui-appearance-selector
 + (void)dm_swizzleSetBackgroundColor {
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    Method method = class_getInstanceMethod(self, @selector(setBackgroundColor:));
-    dm_original_setBackgroundColor = (void *)method_getImplementation(method);
-    method_setImplementation(method, (IMP)dm_setBackgroundColor);
+    SEL selector = @selector(setBackgroundColor:);
+    [self dm_swizzleSelector:selector withBlock:^id _Nonnull(IMPContainer * _Nonnull container) {
+      return ^(UIView *self, UIColor *backgroundColor) {
+        if ([backgroundColor isKindOfClass:[DMDynamicColor class]]) {
+          self.dm_dynamicBackgroundColor = (DMDynamicColor *)backgroundColor;
+        } else {
+          self.dm_dynamicBackgroundColor = nil;
+        }
+        ((void (*)(UIView *, SEL, UIColor *))container.imp)(self, selector, backgroundColor);
+      };
+    }];
   });
 }
 

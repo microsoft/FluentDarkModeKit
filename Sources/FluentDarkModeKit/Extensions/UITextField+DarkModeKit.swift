@@ -26,16 +26,18 @@ extension UITextField {
 
   /// `UITextField` will not call `super.willMove(toWindow:)` in its implementation, so we need to swizzle it separately.
   static let swizzleTextFieldWillMoveToWindowOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(willMove(toWindow:)), to: #selector(dm_textFieldWillMove(toWindow:))) {
-      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UITextField.self, selector: #selector(willMove(toWindow:))))
+    let selector = #selector(willMove(toWindow:))
+    if !dm_swizzleSelector(selector, with: { container -> Any in
+      return { (self: UITextField, window: UIWindow?) -> Void in
+        let oldIMP = unsafeBitCast(container.imp, to: (@convention(c) (UITextField, Selector, UIWindow?) -> Void).self)
+        oldIMP(self, selector, window)
+        if window != nil {
+          self.dm_updateDynamicColors()
+          self.dm_updateDynamicImages()
+        }
+      } as @convention(block) (UITextField, UIWindow?) -> Void
+    }) {
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UITextField.self, selector: selector))
     }
   }()
-
-  @objc private dynamic func dm_textFieldWillMove(toWindow window: UIWindow?) {
-    dm_textFieldWillMove(toWindow: window)
-    if window != nil {
-      dm_updateDynamicColors()
-      dm_updateDynamicImages()
-    }
-  }
 }

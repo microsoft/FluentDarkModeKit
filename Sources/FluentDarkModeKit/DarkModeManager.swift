@@ -18,6 +18,7 @@ public final class DarkModeManager: NSObject {
     UILabel.swizzleDidMoveToWindowOnce
 
     // Images
+    UIImage.dm_swizzleIsEqual()
     UIImageView.swizzleSetImageOnce
     UIImageView.swizzleInitImageOnce
     UITabBarItem.swizzleSetImageOnce

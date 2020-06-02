@@ -15,23 +15,37 @@ extension UIImageView {
   }
 
   static let swizzleSetImageOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(setter: image), to: #selector(dm_setImage(_:))) {
-      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIImageView.self, selector: #selector(setter: image)))
+    let selector = #selector(setter: image)
+    if !dm_swizzleSelector(selector, with: { container -> Any in
+      return { (self: UIImageView, image: UIImage?) -> Void in
+        if object_getClass(image) == DMDynamicImageProxy.self {
+          self.dm_dynamicImage = image
+        }
+        else {
+          self.dm_dynamicImage = nil
+        }
+        let oldIMP = unsafeBitCast(container.imp, to: (@convention(c) (UIImageView, Selector, UIImage?) -> Void).self)
+        oldIMP(self, selector, image)
+      } as @convention(block) (UIImageView, UIImage?) -> Void
+    }) {
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIImageView.self, selector: selector))
     }
   }()
 
   static let swizzleInitImageOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(UIImageView.init(image:)), to: #selector(UIImageView.dm_init(image:))) {
-      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIImageView.self, selector: #selector(setter: image)))
+    let selector = #selector(UIImageView.init(image:))
+    if !dm_swizzleSelector(selector, with: { container -> Any in
+      return { (self: UIImageView, image: UIImage?) -> UIImageView in
+        if object_getClass(image) == DMDynamicImageProxy.self {
+          self.dm_dynamicImage = image
+        }
+        let oldIMP = unsafeBitCast(container.imp, to: (@convention(c) (UIImageView, Selector, UIImage?) -> UIImageView).self)
+        return oldIMP(self, selector, image)
+      } as @convention(block) (UIImageView, UIImage?) -> UIImageView
+    }) {
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIImageView.self, selector: selector))
     }
   }()
-
-  @objc dynamic func dm_init(image: UIImage?) -> UIImageView {
-    if object_getClass(image) == DMDynamicImageProxy.self {
-      dm_dynamicImage = image
-    }
-    return dm_init(image: image)
-  }
 
   override func dm_updateDynamicImages() {
     super.dm_updateDynamicImages()
@@ -39,15 +53,5 @@ extension UIImageView {
     if let dynamicImage = dm_dynamicImage {
       image = dynamicImage
     }
-  }
-
-  @objc dynamic func dm_setImage(_ image: UIImage?) {
-    if object_getClass(image) == DMDynamicImageProxy.self {
-      dm_dynamicImage = image
-    }
-    else {
-      dm_dynamicImage = nil
-    }
-    dm_setImage(image)
   }
 }
