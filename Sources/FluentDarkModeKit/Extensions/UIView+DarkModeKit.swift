@@ -29,18 +29,20 @@ extension UIView: DMTraitEnvironment {
 extension UIView {
   static let swizzleWillMoveToWindowOnce: Void = {
     let selector = #selector(willMove(toWindow:))
-    if !dm_swizzleSelector(selector, with: { container -> Any in
-      return { (self: UIView, window: UIWindow?) -> Void in
-        let oldIMP = unsafeBitCast(container.imp, to: (@convention(c) (UIView, Selector, UIWindow?) -> Void).self)
-        oldIMP(self, selector, window)
-        if window != nil {
-          self.dm_updateDynamicColors()
-          self.dm_updateDynamicImages()
-        }
-      } as @convention(block) (UIView, UIWindow?) -> Void
-    }) {
+    guard let method = class_getInstanceMethod(UIView.self, selector) else {
       assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: selector))
+      return
     }
+
+    let imp = method_getImplementation(method)
+    class_replaceMethod(UIView.self, selector, imp_implementationWithBlock({ (self: UIView, window: UIWindow?) -> Void in
+      let oldIMP = unsafeBitCast(imp, to: (@convention(c) (UIView, Selector, UIWindow?) -> Void).self)
+      oldIMP(self, selector, window)
+      if window != nil {
+        self.dm_updateDynamicColors()
+        self.dm_updateDynamicImages()
+      }
+    } as @convention(block) (UIView, UIWindow?) -> Void), method_getTypeEncoding(method))
   }()
 }
 
@@ -51,15 +53,17 @@ extension UIView {
 
   static let swizzleSetTintColorOnce: Void = {
     let selector = #selector(setter: tintColor)
-    if !dm_swizzleSelector(selector, with: { container -> Any in
-      return { (self: UIView, tintColor: UIColor) -> Void in
-        self.dm_dynamicTintColor = tintColor as? DynamicColor
-        let oldIMP = unsafeBitCast(container.imp, to: (@convention(c) (UIView, Selector, UIColor) -> Void).self)
-        oldIMP(self, selector, tintColor)
-      } as @convention(block) (UIView, UIColor) -> Void
-    }) {
+    guard let method = class_getInstanceMethod(UIView.self, selector) else {
       assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: selector))
+      return
     }
+
+    let imp = method_getImplementation(method)
+    class_replaceMethod(UIView.self, selector, imp_implementationWithBlock({ (self: UIView, tintColor: UIColor) -> Void in
+      self.dm_dynamicTintColor = tintColor as? DynamicColor
+      let oldIMP = unsafeBitCast(imp, to: (@convention(c) (UIView, Selector, UIColor) -> Void).self)
+      oldIMP(self, selector, tintColor)
+    } as @convention(block) (UIView, UIColor) -> Void), method_getTypeEncoding(method))
   }()
 
   private var dm_dynamicTintColor: DynamicColor? {

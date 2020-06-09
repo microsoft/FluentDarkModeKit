@@ -10,18 +10,20 @@ extension UILabel {
 
   static let swizzleDidMoveToWindowOnce: Void = {
     let selector = #selector(didMoveToWindow)
-    if !dm_swizzleSelector(selector, with: { container -> Any in
-      return { (self: UILabel) -> Void in
-        let oldIMP = unsafeBitCast(container.imp, to: (@convention(c) (UILabel, Selector) -> Void).self)
+    guard let method = class_getInstanceMethod(UILabel.self, selector) else {
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UILabel.self, selector: selector))
+      return
+    }
+
+    let imp = method_getImplementation(method)
+    class_replaceMethod(UILabel.self, selector, imp_implementationWithBlock({ (self: UILabel) -> Void in
+        let oldIMP = unsafeBitCast(imp, to: (@convention(c) (UILabel, Selector) -> Void).self)
         oldIMP(self, selector)
         if self.currentUserInterfaceStyle != DMTraitCollection.current.userInterfaceStyle {
           self.currentUserInterfaceStyle = DMTraitCollection.current.userInterfaceStyle
           self.dmTraitCollectionDidChange(nil)
         }
-      } as @convention(block) (UILabel) -> Void
-    }) {
-      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UILabel.self, selector: selector))
-    }
+      } as @convention(block) (UILabel) -> Void), method_getTypeEncoding(method))
   }()
 
   private var currentUserInterfaceStyle: DMUserInterfaceStyle? {
