@@ -56,6 +56,7 @@
 		8CDA62A52366DAA9004895B5 /* DMDynamicColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDA628B2366DAA9004895B5 /* DMDynamicColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8CE066CF239E5582002CE16D /* UIColor+DarkModeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC8D86C2398E4EC0043276A /* UIColor+DarkModeKit.m */; };
 		8CE066D0239E5586002CE16D /* UIImage+DarkModeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC8D8722398E7A30043276A /* UIImage+DarkModeKit.m */; };
+		EA7316F1248F5055009AE037 /* UILabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7316EF248F5050009AE037 /* UILabelVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -151,6 +152,7 @@
 		8CDA62892366DAA9004895B5 /* DMDynamicImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDynamicImage.m; sourceTree = "<group>"; };
 		8CDA628A2366DAA9004895B5 /* DarkModeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkModeManager.swift; sourceTree = "<group>"; };
 		8CDA628B2366DAA9004895B5 /* DMDynamicColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDynamicColor.h; sourceTree = "<group>"; };
+		EA7316EF248F5050009AE037 /* UILabelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +293,7 @@
 				8C7B250A23A22A70002E2558 /* UIActivityIndicatorViewVC.swift */,
 				8C63F64123A36B0900D93CF4 /* UIButtonVC.swift */,
 				8C63F64423A374CF00D93CF4 /* UIPageControlVC.swift */,
+				EA7316EF248F5050009AE037 /* UILabelVC.swift */,
 				8CAFD9DD23715FAB001A63B8 /* Assets.xcassets */,
 				8CAFD9DF23715FAB001A63B8 /* LaunchScreen.storyboard */,
 				8CAFD9E223715FAB001A63B8 /* Info.plist */,
@@ -582,6 +585,7 @@
 				8C7B250C23A22A80002E2558 /* UIActivityIndicatorViewVC.swift in Sources */,
 				8CAFD9D923715FAA001A63B8 /* ViewController.swift in Sources */,
 				8C63F64323A36B2700D93CF4 /* UIButtonVC.swift in Sources */,
+				EA7316F1248F5055009AE037 /* UILabelVC.swift in Sources */,
 				8CAFD9ED2371606D001A63B8 /* NavigationController.swift in Sources */,
 				8CAFD9D523715FAA001A63B8 /* AppDelegate.swift in Sources */,
 				8C63F64623A374D300D93CF4 /* UIPageControlVC.swift in Sources */,

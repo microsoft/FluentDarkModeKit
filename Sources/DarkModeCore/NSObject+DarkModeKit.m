@@ -25,8 +25,6 @@
 
 @end
 
-OBJC_EXPORT id objc_msgSendSuper2(struct objc_super *super, SEL op, ...);
-
 @implementation NSObject (DarkModeKit)
 
 + (BOOL)dm_swizzleSelector:(SEL)selector withBlock:(id (^)(IMPContainer *))implementationCreationBlock {
@@ -44,14 +42,13 @@ static IMP swizzleSelector(Class clazz, SEL selector, IMP newImplementation) {
     return NULL;
 
   const char *types = method_getTypeEncoding(method);
-  // Make sure the class implements the method. If this is not the case, inject an implementation, only calling 'super'.
-  // https://gist.github.com/steipete/1d308fad786399b58875cd12e4b9bba2
-  class_addMethod(clazz, selector, imp_implementationWithBlock(^(__unsafe_unretained id self, va_list argp) {
-      struct objc_super super = {self, clazz};
-      return ((id(*)(struct objc_super *, SEL, va_list))objc_msgSendSuper2)(&super, selector, argp);
-  }), types);
+  // Get current implementation and return in order to call original
+  // implementation in swizzling
+  IMP previousImplementation = method_getImplementation(method);
 
-  return class_replaceMethod(clazz, selector, newImplementation, types);
+  class_replaceMethod(clazz, selector, newImplementation, types);
+
+  return previousImplementation;
 }
 
 @end
