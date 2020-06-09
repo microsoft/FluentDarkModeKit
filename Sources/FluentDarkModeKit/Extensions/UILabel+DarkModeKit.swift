@@ -31,6 +31,12 @@ extension UILabel {
 
   override open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
     super.dmTraitCollectionDidChange(previousTraitCollection)
+
+    guard #available(iOS 12.0, *) else {
+      // Fix for iOS 11.x
+      updateDynamicColorInAttributedText()
+      return
+    }
   }
 
   private func updateDynamicColorInAttributedText() {
