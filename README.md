@@ -54,7 +54,13 @@ pod "FluentDarkModeKit"
 
 ## Get Started
 
-### How to Use FluentDarkModeKit
+### Add FluentDarkModeKit to your code
+
+```
+DarkModeManager.setup()
+```
+
+### How to Use
 
 To use FluentDarkModeKit, provide a pair of colors or images instead of a single value. Simply replace existing colors/images with a pair of light and dark colors/images.
 
