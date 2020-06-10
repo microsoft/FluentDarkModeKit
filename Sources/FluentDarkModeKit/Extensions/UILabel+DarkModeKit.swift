@@ -9,9 +9,21 @@ extension UILabel {
   }
 
   static let swizzleDidMoveToWindowOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(didMoveToWindow), to: #selector(dm_didMoveToWindow)) {
-      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UILabel.self, selector: #selector(didMoveToWindow)))
+    let selector = #selector(didMoveToWindow)
+    guard let method = class_getInstanceMethod(UILabel.self, selector) else {
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UILabel.self, selector: selector))
+      return
     }
+
+    let imp = method_getImplementation(method)
+    class_replaceMethod(UILabel.self, selector, imp_implementationWithBlock({ (self: UILabel) -> Void in
+        let oldIMP = unsafeBitCast(imp, to: (@convention(c) (UILabel, Selector) -> Void).self)
+        oldIMP(self, selector)
+        if self.currentUserInterfaceStyle != DMTraitCollection.current.userInterfaceStyle {
+          self.currentUserInterfaceStyle = DMTraitCollection.current.userInterfaceStyle
+          self.dmTraitCollectionDidChange(nil)
+        }
+      } as @convention(block) (UILabel) -> Void), method_getTypeEncoding(method))
   }()
 
   private var currentUserInterfaceStyle: DMUserInterfaceStyle? {
@@ -19,16 +31,14 @@ extension UILabel {
     set { objc_setAssociatedObject(self, &Constants.currentThemeKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
   }
 
-  @objc private dynamic func dm_didMoveToWindow() {
-    dm_didMoveToWindow()
-    if currentUserInterfaceStyle != DMTraitCollection.current.userInterfaceStyle {
-      currentUserInterfaceStyle = DMTraitCollection.current.userInterfaceStyle
-      dmTraitCollectionDidChange(nil)
-    }
-  }
-
   override open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
     super.dmTraitCollectionDidChange(previousTraitCollection)
+
+    guard #available(iOS 12.0, *) else {
+      // Fix for iOS 11.x
+      updateDynamicColorInAttributedText()
+      return
+    }
   }
 
   private func updateDynamicColorInAttributedText() {

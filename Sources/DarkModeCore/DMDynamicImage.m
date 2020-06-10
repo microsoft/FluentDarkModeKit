@@ -5,7 +5,6 @@
 
 #import "DMDynamicImage.h"
 #import "DMTraitCollection.h"
-#import "NSObject+DarkModeKit.h"
 
 @import ObjectiveC;
 

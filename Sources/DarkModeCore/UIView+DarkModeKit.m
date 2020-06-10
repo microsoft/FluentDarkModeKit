@@ -10,24 +10,24 @@
 
 @implementation UIView (DarkModeKit)
 
-static void (*dm_original_setBackgroundColor)(UIView *, SEL, UIColor *);
-
-static void dm_setBackgroundColor(UIView *self, SEL _cmd, UIColor *color) {
-  if ([color isKindOfClass:[DMDynamicColor class]]) {
-    self.dm_dynamicBackgroundColor = (DMDynamicColor *)color;
-  } else {
-    self.dm_dynamicBackgroundColor = nil;
-  }
-  dm_original_setBackgroundColor(self, _cmd, color);
-}
-
-// https://stackoverflow.com/questions/42677534/swizzling-on-properties-that-conform-to-ui-appearance-selector
 + (void)dm_swizzleSetBackgroundColor {
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    Method method = class_getInstanceMethod(self, @selector(setBackgroundColor:));
-    dm_original_setBackgroundColor = (void *)method_getImplementation(method);
-    method_setImplementation(method, (IMP)dm_setBackgroundColor);
+    SEL selector = @selector(setBackgroundColor:);
+    Method method = class_getInstanceMethod(self, selector);
+    if (!method)
+      NSAssert(NO, @"Method not found for [UIView setBackgroundColor:]");
+
+    IMP imp = method_getImplementation(method);
+    class_replaceMethod(self, selector, imp_implementationWithBlock(^(UIView *self, UIColor *backgroundColor) {
+      if ([backgroundColor isKindOfClass:[DMDynamicColor class]]) {
+        self.dm_dynamicBackgroundColor = (DMDynamicColor *)backgroundColor;
+      }
+      else {
+        self.dm_dynamicBackgroundColor = nil;
+      }
+      ((void (*)(UIView *, SEL, UIColor *))imp)(self, selector, backgroundColor);
+    }), method_getTypeEncoding(method));
   });
 }
 

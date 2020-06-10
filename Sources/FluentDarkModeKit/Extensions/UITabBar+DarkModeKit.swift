@@ -33,15 +33,43 @@ extension UITabBarItem: DMTraitEnvironment {
   }
 
   static let swizzleSetImageOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(setter: image), to: #selector(dm_setImage(_:))) {
-      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UITabBarItem.self, selector: #selector(setter: image)))
+    let selector = #selector(setter: image)
+    guard let method = class_getInstanceMethod(UITabBarItem.self, selector) else {
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UITabBarItem.self, selector: selector))
+      return
     }
+
+    let imp = method_getImplementation(method)
+    class_replaceMethod(UITabBarItem.self, selector, imp_implementationWithBlock({ (self: UITabBarItem, image: UIImage?) -> Void in
+      if object_getClass(image) == DMDynamicImageProxy.self {
+        self.dm_dynamicImage = image
+      }
+      else {
+        self.dm_dynamicImage = nil
+      }
+      let oldIMP = unsafeBitCast(imp, to: (@convention(c) (UITabBarItem, Selector, UIImage?) -> Void).self)
+      oldIMP(self, selector, image)
+    } as @convention(block) (UITabBarItem, UIImage?) -> Void), method_getTypeEncoding(method))
   }()
 
   static let swizzleSetSelectedImageOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(setter: selectedImage), to: #selector(dm_setSelectedImage(_:))) {
-      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UITabBarItem.self, selector: #selector(setter: selectedImage)))
+    let selector = #selector(setter: selectedImage)
+    guard let method = class_getInstanceMethod(UITabBarItem.self, selector) else {
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UITabBarItem.self, selector: selector))
+      return
     }
+
+    let imp = method_getImplementation(method)
+    class_replaceMethod(UITabBarItem.self, selector, imp_implementationWithBlock({ (self: UITabBarItem, image: UIImage?) -> Void in
+      if object_getClass(image) == DMDynamicImageProxy.self {
+        self.dm_dynamicSelectedImage = image
+      }
+      else {
+        self.dm_dynamicSelectedImage = nil
+      }
+      let oldIMP = unsafeBitCast(imp, to: (@convention(c) (UITabBarItem, Selector, UIImage?) -> Void).self)
+      oldIMP(self, selector, image)
+    } as @convention(block) (UITabBarItem, UIImage?) -> Void), method_getTypeEncoding(method))
   }()
 
   open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
@@ -56,26 +84,6 @@ extension UITabBarItem: DMTraitEnvironment {
     if let dynamicImage = dm_dynamicSelectedImage {
       selectedImage = dynamicImage
     }
-  }
-
-  @objc dynamic func dm_setImage(_ image: UIImage?) {
-    if object_getClass(image) == DMDynamicImageProxy.self {
-      dm_dynamicImage = image
-    }
-    else {
-      dm_dynamicImage = nil
-    }
-    dm_setImage(image)
-  }
-
-  @objc dynamic func dm_setSelectedImage(_ image: UIImage?) {
-    if object_getClass(image) == DMDynamicImageProxy.self {
-      dm_dynamicSelectedImage = image
-    }
-    else {
-      dm_dynamicSelectedImage = nil
-    }
-    dm_setSelectedImage(image)
   }
 
 }

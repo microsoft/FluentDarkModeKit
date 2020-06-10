@@ -28,18 +28,22 @@ extension UIView: DMTraitEnvironment {
 
 extension UIView {
   static let swizzleWillMoveToWindowOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(willMove(toWindow:)), to: #selector(dm_willMove(toWindow:))) {
-      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: #selector(willMove(toWindow:))))
+    let selector = #selector(willMove(toWindow:))
+    guard let method = class_getInstanceMethod(UIView.self, selector) else {
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: selector))
+      return
     }
-  }()
 
-  @objc private dynamic func dm_willMove(toWindow window: UIWindow?) {
-    dm_willMove(toWindow: window)
-    if window != nil {
-      dm_updateDynamicColors()
-      dm_updateDynamicImages()
-    }
-  }
+    let imp = method_getImplementation(method)
+    class_replaceMethod(UIView.self, selector, imp_implementationWithBlock({ (self: UIView, window: UIWindow?) -> Void in
+      let oldIMP = unsafeBitCast(imp, to: (@convention(c) (UIView, Selector, UIWindow?) -> Void).self)
+      oldIMP(self, selector, window)
+      if window != nil {
+        self.dm_updateDynamicColors()
+        self.dm_updateDynamicImages()
+      }
+    } as @convention(block) (UIView, UIWindow?) -> Void), method_getTypeEncoding(method))
+  }()
 }
 
 extension UIView {
@@ -48,18 +52,22 @@ extension UIView {
   }
 
   static let swizzleSetTintColorOnce: Void = {
-    if !dm_swizzleInstanceMethod(#selector(setter: tintColor), to: #selector(dm_setTintColor)) {
-      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: #selector(setter: tintColor)))
+    let selector = #selector(setter: tintColor)
+    guard let method = class_getInstanceMethod(UIView.self, selector) else {
+      assertionFailure(DarkModeManager.messageForSwizzlingFailed(class: UIView.self, selector: selector))
+      return
     }
+
+    let imp = method_getImplementation(method)
+    class_replaceMethod(UIView.self, selector, imp_implementationWithBlock({ (self: UIView, tintColor: UIColor) -> Void in
+      self.dm_dynamicTintColor = tintColor as? DynamicColor
+      let oldIMP = unsafeBitCast(imp, to: (@convention(c) (UIView, Selector, UIColor) -> Void).self)
+      oldIMP(self, selector, tintColor)
+    } as @convention(block) (UIView, UIColor) -> Void), method_getTypeEncoding(method))
   }()
 
   private var dm_dynamicTintColor: DynamicColor? {
     get { return objc_getAssociatedObject(self, &Constants.dynamicTintColorKey) as? DynamicColor }
     set { objc_setAssociatedObject(self, &Constants.dynamicTintColorKey, newValue, .OBJC_ASSOCIATION_COPY_NONATOMIC) }
-  }
-
-  @objc private dynamic func dm_setTintColor(_ color: UIColor) {
-    dm_dynamicTintColor = color as? DynamicColor
-    dm_setTintColor(color)
   }
 }
