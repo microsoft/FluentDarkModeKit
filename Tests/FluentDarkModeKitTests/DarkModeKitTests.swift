@@ -29,6 +29,22 @@ final class DarkModeKitTests: XCTestCase {
     _ = UIImage(.dm, light: lightImage, dark: darkImage)
   }
 
+  func testDynamicColor() {
+    let color = UIColor(.dm) {
+      $0.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
+    }
+
+    DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .light)
+    XCTAssertEqual(color.rgba, UIColor.white.rgba)
+
+    DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .dark)
+    XCTAssertEqual(color.rgba, UIColor.black.rgba)
+
+    // Test color fetched from specific trait collections
+    XCTAssertEqual(color.resolvedColor(.dm, with: DMTraitCollection(userInterfaceStyle: .dark)).rgba, UIColor.black.rgba)
+    XCTAssertEqual(color.resolvedColor(.dm, with: DMTraitCollection(userInterfaceStyle: .light)).rgba, UIColor.white.rgba)
+  }
+
   func testColorPropertySetters() {
     let color = UIColor(.dm, light: .white, dark: .black)
 
