@@ -54,7 +54,7 @@
 		8CE066CF239E5582002CE16D /* UIColor+DarkModeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC8D86C2398E4EC0043276A /* UIColor+DarkModeKit.m */; };
 		8CE066D0239E5586002CE16D /* UIImage+DarkModeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC8D8722398E7A30043276A /* UIImage+DarkModeKit.m */; };
 		EA7316F1248F5055009AE037 /* UILabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7316EF248F5050009AE037 /* UILabelVC.swift */; };
-		EAF483E02497505300E5B817 /* UIApplication+DarkModeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF483DE2497505300E5B817 /* UIApplication+DarkModeKit.h */; };
+		EAF483E02497505300E5B817 /* UIApplication+DarkModeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EAF483DE2497505300E5B817 /* UIApplication+DarkModeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAF483E12497505300E5B817 /* UIApplication+DarkModeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = EAF483DF2497505300E5B817 /* UIApplication+DarkModeKit.m */; };
 /* End PBXBuildFile section */
 
@@ -337,8 +337,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CC8D86D2398E4EC0043276A /* UIColor+DarkModeKit.h in Headers */,
-				8CC8D8702398E7520043276A /* DMNamespace.h in Headers */,
 				EAF483E02497505300E5B817 /* UIApplication+DarkModeKit.h in Headers */,
+				8CC8D8702398E7520043276A /* DMNamespace.h in Headers */,
 				8CDA628D2366DAA9004895B5 /* DMTraitCollection.h in Headers */,
 				8CDA628C2366DAA9004895B5 /* FluentDarkModeKit.h in Headers */,
 				8CB63E41238551F3008ABCE2 /* UIView+DarkModeKit.h in Headers */,

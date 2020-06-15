@@ -9,6 +9,11 @@
 @implementation UIColor (DarkModeKit)
 
 + (UIColor *)dm_colorWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor {
+  if (@available(iOS 13.0, *)) {
+    return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+      return traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark ? darkColor : lightColor;
+    }];
+  }
   return [DMDynamicColor colorWithLightColor:lightColor darkColor:darkColor];
 }
 
@@ -19,6 +24,11 @@
 }
 
 + (UIColor *)dm_colorWithDynamicProvider:(UIColor *(^)(DMTraitCollection *))dynamicProvider {
+  if (@available(iOS 13.0, *)) {
+    return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+      return dynamicProvider([DMTraitCollection traitCollectionWithUITraitCollection:traitCollection]);
+    }];
+  }
   return [DMDynamicColor colorWithDynamicProvider:dynamicProvider];
 }
 

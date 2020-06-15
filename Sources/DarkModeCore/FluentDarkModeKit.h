@@ -6,6 +6,7 @@
 #import <FluentDarkModeKit/DMDynamicColor.h>
 #import <FluentDarkModeKit/DMDynamicImage.h>
 #import <FluentDarkModeKit/DMTraitCollection.h>
+#import <FluentDarkModeKit/UIApplication+DarkModeKit.h>
 #import <FluentDarkModeKit/UIColor+DarkModeKit.h>
 #import <FluentDarkModeKit/UIImage+DarkModeKit.h>
 #import <FluentDarkModeKit/UIView+DarkModeKit.h>

@@ -99,12 +99,6 @@
 }
 
 + (UIColor *)colorWithDynamicProvider:(UIColor * _Nonnull (^)(DMTraitCollection * _Nonnull))dynamicProvider {
-  if (@available(iOS 13.0, *)) {
-    // Use the UIColor dynamic mechanism here
-    return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
-      return dynamicProvider([DMTraitCollection traitCollectionWithUITraitCollection:traitCollection]);
-    }];
-  }
   return (DMDynamicColor *)[[DMDynamicColorProxy alloc] initWithDynamicProvider:dynamicProvider];
 }
 
