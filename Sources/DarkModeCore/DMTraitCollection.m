@@ -4,12 +4,20 @@
 //
 
 #import "DMTraitCollection.h"
+#import "DMDarkModeManager.h"
+#import <UIKit/UIKit.h>
 
 @implementation DMTraitCollection
 
 static DMTraitCollection *_currentTraitCollection = nil;
 
 + (DMTraitCollection *)currentTraitCollection {
+  if (@available(iOS 13, *)) {
+    if (DMDarkModeManager.interoperableWithUIKit) {
+      return (DMTraitCollection *)UITraitCollection.currentTraitCollection;
+    }
+  }
+  
   return _currentTraitCollection;
 }
 

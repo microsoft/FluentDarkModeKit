@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+#import <FluentDarkModeKit/DMDarkModeManager.h>
 #import <FluentDarkModeKit/DMDynamicColor.h>
 #import <FluentDarkModeKit/DMDynamicImage.h>
 #import <FluentDarkModeKit/DMTraitCollection.h>

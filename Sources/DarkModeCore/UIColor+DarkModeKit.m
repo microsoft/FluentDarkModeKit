@@ -5,10 +5,24 @@
 
 #import "UIColor+DarkModeKit.h"
 #import "DMDynamicColor.h"
+#import "DMDarkModeManager.h"
 
 @implementation UIColor (DarkModeKit)
 
 + (UIColor *)dm_colorWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor {
+  if (@available(iOS 13, *)) {
+    if (DMDarkModeManager.interoperableWithUIKit) {
+      return [UIColor colorWithDynamicProvider:^UIColor * (UITraitCollection *traitCollection) {
+        if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+          return darkColor;
+        }
+        else {
+          return lightColor;
+        }
+      }];
+    }
+  }
+
   return (UIColor *)[[DMDynamicColor alloc] initWithLightColor:lightColor darkColor:darkColor];
 }
 

@@ -8,8 +8,12 @@ import UIKit
 @_exported import DarkModeCore
 #endif
 
-public final class DarkModeManager: NSObject {
+public final class DarkModeManager: DMDarkModeManager {
   public static func setup() {
+    if #available(iOS 13, *), interoperableWithUIKit {
+      return
+    }
+
     // Colors
     UIView.swizzleWillMoveToWindowOnce
     UIView.dm_swizzleSetBackgroundColor()
@@ -32,6 +36,12 @@ public final class DarkModeManager: NSObject {
   ///   - animated: Use animation or not.
   @objc public static func updateAppearance(for application: UIApplication, animated: Bool) {
     application.updateAppearance(with: application.windows, animated: animated)
+
+    if #available(iOS 13, *) {
+      for window in application.windows {
+        window.overrideUserInterfaceStyle = DMTraitCollection.current.userInterfaceStyle.uiUserInterfaceStyle
+      }
+    }
   }
 
   // MARK: - Internal
@@ -39,6 +49,22 @@ public final class DarkModeManager: NSObject {
   static func messageForSwizzlingFailed(class cls: AnyClass, selector: Selector) -> String {
     return "Method swizzling for theme failed! Class: \(cls), Selector: \(selector)"
   }
+}
+
+// MARK: -
+
+extension DMUserInterfaceStyle {
+
+  @available(iOS 13, *)
+  var uiUserInterfaceStyle: UIUserInterfaceStyle {
+    switch self {
+    case .unspecified: return .unspecified
+    case .dark: return .dark
+    case .light: return .light
+    @unknown default: return .unspecified
+    }
+  }
+
 }
 
 // MARK: -

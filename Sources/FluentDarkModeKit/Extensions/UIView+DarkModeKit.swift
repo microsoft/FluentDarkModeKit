@@ -6,6 +6,11 @@
 extension UIView: DMTraitEnvironment {
   open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
     subviews.forEach { $0.dmTraitCollectionDidChange(previousTraitCollection) }
+
+    if #available(iOS 13, *), DarkModeManager.interoperableWithUIKit {
+      return
+    }
+
     setNeedsLayout()
     setNeedsDisplay()
     dm_updateDynamicColors()

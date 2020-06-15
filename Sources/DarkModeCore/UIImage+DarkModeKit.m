@@ -5,6 +5,7 @@
 
 #import "UIImage+DarkModeKit.h"
 #import "DMDynamicImage.h"
+#import "DMDarkModeManager.h"
 
 @import ObjectiveC;
 
@@ -36,6 +37,14 @@
 }
 
 + (UIImage *)dm_imageWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage {
+  if (@available(iOS 13, *)) {
+    if (DMDarkModeManager.interoperableWithUIKit) {
+      UIImage *image = [lightImage copy];
+      [image.imageAsset registerImage:darkImage withTraitCollection:[UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleDark]];
+      return image;
+    }
+  }
+
   return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:lightImage darkImage:darkImage];
 }
 

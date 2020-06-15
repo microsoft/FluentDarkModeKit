@@ -5,6 +5,7 @@
 
 #import "UIView+DarkModeKit.h"
 #import "DMDynamicColor.h"
+#import "DMDarkModeManager.h"
 
 @import ObjectiveC;
 
@@ -13,6 +14,12 @@
 + (void)dm_swizzleSetBackgroundColor {
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
+    if (@available(iOS 13, *)) {
+      if (DMDarkModeManager.interoperableWithUIKit) {
+        return;
+      }
+    }
+
     SEL selector = @selector(setBackgroundColor:);
     Method method = class_getInstanceMethod(self, selector);
     if (!method)
