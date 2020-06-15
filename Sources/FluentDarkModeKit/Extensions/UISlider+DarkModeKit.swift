@@ -4,7 +4,7 @@
 //
 
 extension UISlider {
-  override func dm_updateDynamicColors() {
+  override open func dm_updateDynamicColors() {
     super.dm_updateDynamicColors()
 
     if let dynamicMinimumTrackTintColor = minimumTrackTintColor?.copy() as? DynamicColor {

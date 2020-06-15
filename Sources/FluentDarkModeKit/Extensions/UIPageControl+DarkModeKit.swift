@@ -4,7 +4,7 @@
 //
 
 extension UIPageControl {
-  override func dm_updateDynamicColors() {
+  override open func dm_updateDynamicColors() {
     super.dm_updateDynamicColors()
 
     if let dynamicPageIndicatorTintColor = pageIndicatorTintColor?.copy() as? DynamicColor {

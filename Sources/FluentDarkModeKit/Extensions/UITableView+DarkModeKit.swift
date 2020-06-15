@@ -4,7 +4,7 @@
 //
 
 extension UITableView {
-  override func dm_updateDynamicColors() {
+  override open func dm_updateDynamicColors() {
     super.dm_updateDynamicColors()
 
     if let dynamicSectionIndexColor = sectionIndexColor?.copy() as? DynamicColor {

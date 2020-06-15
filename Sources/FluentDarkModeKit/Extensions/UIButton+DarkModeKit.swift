@@ -4,7 +4,7 @@
 //
 
 extension UIButton {
-  override func dm_updateDynamicColors() {
+  override open func dm_updateDynamicColors() {
     super.dm_updateDynamicColors()
 
     [UIControl.State.normal, .highlighted, .disabled, .selected, .focused].forEach { state in
