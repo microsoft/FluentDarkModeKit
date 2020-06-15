@@ -6,6 +6,7 @@
 #import "UIImage+DarkModeKit.h"
 #import "DMDynamicImage.h"
 #import "DMDarkModeManager.h"
+#import "DMTraitCollection.h"
 
 @import ObjectiveC;
 
@@ -39,9 +40,14 @@
 + (UIImage *)dm_imageWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage {
   if (@available(iOS 13, *)) {
     if (DMDarkModeManager.interoperableWithUIKit) {
-      UIImage *image = [lightImage copy];
-      [image.imageAsset registerImage:darkImage withTraitCollection:[UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleDark]];
-      return image;
+      UITraitCollection *lightTraitCollection = [UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleLight];
+      UITraitCollection *darkTraitCollection = [UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleDark];
+
+      UIImageAsset *imageAsset = [[UIImageAsset alloc] init];
+      [imageAsset registerImage:lightImage withTraitCollection:lightTraitCollection];
+      [imageAsset registerImage:darkImage withTraitCollection:darkTraitCollection];
+
+      return [imageAsset imageWithTraitCollection:(UITraitCollection *)DMTraitCollection.currentTraitCollection];
     }
   }
 
