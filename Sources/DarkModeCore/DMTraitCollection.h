@@ -3,7 +3,7 @@
 //  Licensed under the MIT License.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @class UITraitCollection;
 
@@ -17,7 +17,8 @@ typedef NS_ENUM(NSInteger, DMUserInterfaceStyle) {
 
 @interface DMTraitCollection : NSObject
 
-@property (class, nonatomic, strong) DMTraitCollection *currentTraitCollection;
+@property (class, nonatomic, readonly) DMTraitCollection *currentTraitCollection;
+@property (class, nonatomic, readonly) DMTraitCollection *lastManuallySetTraitCollection;
 
 + (DMTraitCollection *)traitCollectionWithUserInterfaceStyle:(DMUserInterfaceStyle)userInterfaceStyle;
 + (DMTraitCollection *)traitCollectionWithUITraitCollection:(UITraitCollection *)traitCollection API_AVAILABLE(ios(13.0));
@@ -26,6 +27,10 @@ typedef NS_ENUM(NSInteger, DMUserInterfaceStyle) {
 @property (nonatomic, readonly) UITraitCollection *uiTraitCollection API_AVAILABLE(ios(13.0));
 
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
+
++ (void)registerApplication:(nullable UIApplication *)application;
++ (void)setCurrentTraitCollection:(DMTraitCollection *)currentTraitCollection animated:(BOOL)animated;
++ (void)swizzleUIScreenTraitCollectionDidChange API_AVAILABLE(ios(13.0));
 
 @end
 

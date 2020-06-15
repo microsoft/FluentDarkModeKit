@@ -15,6 +15,7 @@ extension UIView {
     class_replaceMethod(UIView.self, selector, imp_implementationWithBlock({ (self: UIView, window: UIWindow?) -> Void in
       let oldIMP = unsafeBitCast(imp, to: (@convention(c) (UIView, Selector, UIWindow?) -> Void).self)
       oldIMP(self, selector, window)
+
       if window != nil {
         self.dm_updateDynamicColors()
         self.dm_updateDynamicImages()

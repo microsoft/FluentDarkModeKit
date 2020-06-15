@@ -6,6 +6,11 @@
 extension UITabBar {
   override open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
     super.dmTraitCollectionDidChange(previousTraitCollection)
+
+    if #available(iOS 13.0, *) {
+      return
+    }
+
     items?.forEach { $0.dmTraitCollectionDidChange(previousTraitCollection) }
   }
 

@@ -101,6 +101,7 @@
   if (@available(iOS 13.0, *)) {
     return;
   }
+
   [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
     [view dmTraitCollectionDidChange:previousTraitCollection];
   }];

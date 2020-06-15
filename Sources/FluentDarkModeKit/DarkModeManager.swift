@@ -9,70 +9,33 @@ import UIKit
 #endif
 
 public final class DarkModeManager: NSObject {
-  public static func setup() {
-    // Colors
-    UIView.swizzleWillMoveToWindowOnce
-    UIView.dm_swizzleSetBackgroundColor()
-    UIView.dm_swizzleSetTintColor()
-    UIView.dm_swizzleTraitCollectionDidChange()
-    UITextField.swizzleTextFieldWillMoveToWindowOnce
-    UILabel.swizzleDidMoveToWindowOnce
+  public static func setup(with application: UIApplication?) {
+    DMTraitCollection.register(application)
 
-    // Images
-    UIImage.dm_swizzleIsEqual()
-    UIImageView.swizzleSetImageOnce
-    UIImageView.swizzleInitImageOnce
-    UITabBarItem.swizzleSetImageOnce
-    UITabBarItem.swizzleSetSelectedImageOnce
-  }
+    if #available(iOS 13.0, *) {
+      DMTraitCollection.swizzleUIScreenTraitCollectionDidChange()
+      UIView.dm_swizzleTraitCollectionDidChange()
+    }
+    else {
+      // Colors
+      UIView.swizzleWillMoveToWindowOnce
+      UIView.dm_swizzleSetBackgroundColor()
+      UIView.dm_swizzleSetTintColor()
+      UITextField.swizzleTextFieldWillMoveToWindowOnce
+      UILabel.swizzleDidMoveToWindowOnce
 
-  /// Update application's appearance based on current theme (This method is for main app.)
-  ///
-  /// - Parameters:
-  ///   - application: The application needs to update.
-  ///   - animated: Use animation or not.
-  @objc public static func updateAppearance(for application: UIApplication, animated: Bool) {
-    application.updateAppearance(with: application.windows, animated: animated)
+      // Images
+      UIImage.dm_swizzleIsEqual()
+      UIImageView.swizzleSetImageOnce
+      UIImageView.swizzleInitImageOnce
+      UITabBarItem.swizzleSetImageOnce
+      UITabBarItem.swizzleSetSelectedImageOnce
+    }
   }
 
   // MARK: - Internal
 
   static func messageForSwizzlingFailed(class cls: AnyClass, selector: Selector) -> String {
     return "Method swizzling for theme failed! Class: \(cls), Selector: \(selector)"
-  }
-}
-
-// MARK: -
-
-extension DMTraitEnvironment {
-  /// Trigger `themeDidChange()`.
-  ///
-  /// - Parameters:
-  ///   - views: Views visiable by user, will be snapshoted if use animation.
-  ///   - animated: Use animation or not.
-  fileprivate func updateAppearance(with views: [UIView], animated: Bool) {
-    assert(Thread.isMainThread)
-
-    if animated {
-      var snapshotViews: [UIView] = []
-      views.forEach { view in
-        guard let snapshotView = view.snapshotView(afterScreenUpdates: false) else {
-          return
-        }
-        view.addSubview(snapshotView)
-        snapshotViews.append(snapshotView)
-      }
-
-      dmTraitCollectionDidChange(nil)
-
-      UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.25, delay: 0, options: [], animations: {
-        snapshotViews.forEach { $0.alpha = 0 }
-      }) { _ in
-        snapshotViews.forEach { $0.removeFromSuperview() }
-      }
-    }
-    else {
-      dmTraitCollectionDidChange(nil)
-    }
   }
 }

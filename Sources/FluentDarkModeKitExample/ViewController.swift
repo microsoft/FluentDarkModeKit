@@ -19,11 +19,10 @@ class ViewController: UIViewController {
 
   @objc private func refresh() {
     if DMTraitCollection.current.userInterfaceStyle == .dark {
-      DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .light)
+      DMTraitCollection.setCurrent(DMTraitCollection(userInterfaceStyle: .light), animated: true)
     }
     else {
-      DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .dark)
+      DMTraitCollection.setCurrent(DMTraitCollection(userInterfaceStyle: .dark), animated: true)
     }
-    DarkModeManager.updateAppearance(for: .shared, animated: true)
   }
 }
