@@ -18,11 +18,44 @@ class ViewController: UIViewController {
   }
 
   @objc private func refresh() {
-    if DMTraitCollection.current.userInterfaceStyle == .dark {
-      DMTraitCollection.setCurrent(DMTraitCollection(userInterfaceStyle: .light), animated: true)
+    // Loop throught the available styles
+    DMTraitCollection.setCurrent(DMTraitCollection(userInterfaceStyle: DMTraitCollection.lastManuallySet.userInterfaceStyle.next), animated: true)
+    showUserSetInterfaceStyle()
+  }
+
+  private func showUserSetInterfaceStyle() {
+    let alert = UIAlertController(title: DMTraitCollection.lastManuallySet.userInterfaceStyle.description, message: nil, preferredStyle: .alert)
+    if alert.popoverPresentationController != nil {
+      alert.popoverPresentationController?.sourceRect = .zero
+      alert.popoverPresentationController?.sourceView = view
     }
-    else {
-      DMTraitCollection.setCurrent(DMTraitCollection(userInterfaceStyle: .dark), animated: true)
+    present(alert, animated: true, completion: nil)
+    Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] _ in
+      self?.dismiss(animated: true, completion: nil)
+    }
+  }
+}
+
+private extension DMUserInterfaceStyle {
+  var description: String {
+    switch self {
+    case .dark:
+      return "dark"
+    case .light:
+      return "light"
+    default:
+      return "unspecified"
+    }
+  }
+
+  var next: DMUserInterfaceStyle {
+    switch self {
+    case .light:
+      return .dark
+    case .dark:
+      return .unspecified
+    default:
+      return .light
     }
   }
 }

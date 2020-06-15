@@ -27,9 +27,11 @@
 }
 
 - (UIColor *)dm_resolvedColorWithTraitCollection:(DMTraitCollection *)traitCollection {
-  // Here we just need to take care of UIColor that is not DMDynamicColor
-  // since DMDynamicColor methods are all forwarded, simply return self
-  // before we need to bridge iOS 13's color mechanism
+  if (@available(iOS 13.0, *)) {
+    // Here we just need to take care of UIColor that is not DMDynamicColor
+    // since DMDynamicColor methods are all forwarded
+    return [self resolvedColorWithTraitCollection:traitCollection.uiTraitCollection];
+  }
   return self;
 }
 

@@ -35,21 +35,25 @@ final class DarkModeKitUITests: XCTestCase {
   func _test(_ className: String) {
     let app = XCUIApplication()
     let refreshButton = app.navigationBars["FluentDarkModeKitExample.MainView"].buttons["Refresh"]
-    refreshButton.tap()
+    refreshButton.tap() // light mode
+    refreshButton.tap() // dark mode
 
     let uiviewStaticText = app.tables.staticTexts[className]
     uiviewStaticText.tap()
 
+    sleep(2)
+
     let screenshot1 = app.screenshot()
 
     app.navigationBars["FluentDarkModeKitExample.\(className)VC"].buttons["Back"].tap()
-    refreshButton.tap()
+    refreshButton.tap() // unspecified
+    refreshButton.tap() // light mode
     uiviewStaticText.tap()
 
     let tabBarsQuery = app.tabBars
     tabBarsQuery.children(matching: .button).element(boundBy: 1).tap()
     app.navigationBars["FluentDarkModeKitExample.View"].buttons["Refresh"].tap()
-    tabBarsQuery.children(matching: .button).element(boundBy: 0).tap()
+    tabBarsQuery.children(matching: .button).element(boundBy: 0).tap() // dark mode
 
     let screenshot2 = app.screenshot()
 

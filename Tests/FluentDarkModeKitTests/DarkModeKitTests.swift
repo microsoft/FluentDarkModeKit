@@ -9,17 +9,17 @@ import XCTest
 final class DarkModeKitTests: XCTestCase {
   func testSetBackgroundColorSwizzling() {
     UIWindow.appearance().backgroundColor = .white
-    DarkModeManager.setup()
+    DarkModeManager.setup(with: UIApplication.shared)
     _ = UIWindow()
   }
 
   func testColorInitializer() {
     let color = UIColor(.dm, light: .white, dark: .black)
 
-    DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .light)
+    DMTraitCollection.setCurrent(DMTraitCollection(userInterfaceStyle: .light), animated: false)
     XCTAssertEqual(color.rgba, UIColor.white.rgba)
 
-    DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .dark)
+    DMTraitCollection.setCurrent(DMTraitCollection(userInterfaceStyle: .dark), animated: false)
     XCTAssertEqual(color.rgba, UIColor.black.rgba)
   }
 
@@ -34,10 +34,10 @@ final class DarkModeKitTests: XCTestCase {
       $0.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
     }
 
-    DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .light)
+    DMTraitCollection.setCurrent(DMTraitCollection(userInterfaceStyle: .light), animated: false)
     XCTAssertEqual(color.rgba, UIColor.white.rgba)
 
-    DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .dark)
+    DMTraitCollection.setCurrent(DMTraitCollection(userInterfaceStyle: .dark), animated: false)
     XCTAssertEqual(color.rgba, UIColor.black.rgba)
 
     // Test color fetched from specific trait collections
