@@ -9,7 +9,7 @@
 @implementation UIColor (DarkModeKit)
 
 + (UIColor *)dm_colorWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor {
-  return (UIColor *)[[DMDynamicColor alloc] initWithLightColor:lightColor darkColor:darkColor];
+  return [DMDynamicColor colorWithLightColor:lightColor darkColor:darkColor];
 }
 
 + (UIColor *)dm_namespace:(DMNamespace)namespace
@@ -19,7 +19,7 @@
 }
 
 + (UIColor *)dm_colorWithDynamicProvider:(UIColor *(^)(DMTraitCollection *))dynamicProvider {
-  return (UIColor *)[[DMDynamicColor alloc] initWithDynamicProvider:dynamicProvider];
+  return [DMDynamicColor colorWithDynamicProvider:dynamicProvider];
 }
 
 + (UIColor *)dm_namespace:(DMNamespace)namespace dynamicProvider:(UIColor *(^)(DMTraitCollection *))dynamicProvider {

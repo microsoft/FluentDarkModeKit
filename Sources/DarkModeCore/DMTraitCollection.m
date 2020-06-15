@@ -4,6 +4,7 @@
 //
 
 #import "DMTraitCollection.h"
+#import <UIKit/UITraitCollection.h>
 
 @implementation DMTraitCollection
 
@@ -21,6 +22,40 @@ static DMTraitCollection *_currentTraitCollection = nil;
   DMTraitCollection *traitCollection = [[DMTraitCollection alloc] init];
   traitCollection->_userInterfaceStyle = userInterfaceStyle;
   return traitCollection;
+}
+
++ (DMTraitCollection *)traitCollectionWithUITraitCollection:(UITraitCollection *)traitCollection {
+  DMUserInterfaceStyle style = DMUserInterfaceStyleUnspecified;
+  switch (traitCollection.userInterfaceStyle) {
+    case UIUserInterfaceStyleLight:
+      style = DMUserInterfaceStyleLight;
+      break;
+    case UIUserInterfaceStyleDark:
+      style = DMUserInterfaceStyleDark;
+      break;
+    case UIUserInterfaceStyleUnspecified:
+    default:
+      style = DMUserInterfaceStyleUnspecified;
+      break;
+  }
+  return [self traitCollectionWithUserInterfaceStyle:style];
+}
+
+- (UITraitCollection *)uiTraitCollection {
+  UIUserInterfaceStyle style = UIUserInterfaceStyleUnspecified;
+  switch (_userInterfaceStyle) {
+    case DMUserInterfaceStyleLight:
+      style = UIUserInterfaceStyleLight;
+      break;
+    case DMUserInterfaceStyleDark:
+      style = UIUserInterfaceStyleDark;
+      break;
+    case DMUserInterfaceStyleUnspecified:
+    default:
+      style = UIUserInterfaceStyleUnspecified;
+      break;
+  }
+  return [UITraitCollection traitCollectionWithUserInterfaceStyle:style];
 }
 
 - (instancetype)init {

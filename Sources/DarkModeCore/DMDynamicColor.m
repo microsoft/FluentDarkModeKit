@@ -16,13 +16,6 @@
 
 @implementation DMDynamicColorProxy
 
-// TODO: We need a more generic initializer.
-- (instancetype)initWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor {
-  return [self initWithDynamicProvider:^(DMTraitCollection *traitCollection){
-    return traitCollection.userInterfaceStyle == DMUserInterfaceStyleDark ? darkColor : lightColor;
-  }];
-}
-
 - (instancetype)initWithDynamicProvider:(UIColor * (^)(DMTraitCollection *traitCollection))dynamicProvider {
   self.dynamicProvider = dynamicProvider;
   return self;
@@ -39,7 +32,7 @@
 // MARK: UIColor
 
 - (UIColor *)colorWithAlphaComponent:(CGFloat)alpha {
-  return [[DMDynamicColor alloc] initWithDynamicProvider:^UIColor *(DMTraitCollection *traitCollection) {
+  return [DMDynamicColor colorWithDynamicProvider:^UIColor *(DMTraitCollection *traitCollection) {
     return [self.dynamicProvider(traitCollection) colorWithAlphaComponent:alpha];
   }];
 }
@@ -99,11 +92,19 @@
 
 @implementation DMDynamicColor
 
-- (UIColor *)initWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor {
-  return (DMDynamicColor *)[[DMDynamicColorProxy alloc] initWithLightColor:lightColor darkColor:darkColor];
++ (UIColor *)colorWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor {
+  return [self colorWithDynamicProvider:^(DMTraitCollection *traitCollection){
+    return traitCollection.userInterfaceStyle == DMUserInterfaceStyleDark ? darkColor : lightColor;
+  }];
 }
 
-- (instancetype)initWithDynamicProvider:(UIColor * _Nonnull (^)(DMTraitCollection * _Nonnull))dynamicProvider {
++ (UIColor *)colorWithDynamicProvider:(UIColor * _Nonnull (^)(DMTraitCollection * _Nonnull))dynamicProvider {
+  if (@available(iOS 13.0, *)) {
+    // Use the UIColor dynamic mechanism here
+    return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+      return dynamicProvider([DMTraitCollection traitCollectionWithUITraitCollection:traitCollection]);
+    }];
+  }
   return (DMDynamicColor *)[[DMDynamicColorProxy alloc] initWithDynamicProvider:dynamicProvider];
 }
 

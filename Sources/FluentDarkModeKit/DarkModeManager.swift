@@ -14,6 +14,7 @@ public final class DarkModeManager: NSObject {
     UIView.swizzleWillMoveToWindowOnce
     UIView.dm_swizzleSetBackgroundColor()
     UIView.dm_swizzleSetTintColor()
+    UIView.dm_swizzleTraitCollectionDidChange()
     UITextField.swizzleTextFieldWillMoveToWindowOnce
     UILabel.swizzleDidMoveToWindowOnce
 

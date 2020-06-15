@@ -18,8 +18,8 @@ NS_SWIFT_NAME(DynamicColor)
 @property (nonatomic, readonly) UIColor *lightColor;
 @property (nonatomic, readonly) UIColor *darkColor;
 
-- (instancetype)initWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor;
-- (instancetype)initWithDynamicProvider:(UIColor * (^)(DMTraitCollection *traitCollection))dynamicProvider;
++ (UIColor *)colorWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor;
++ (UIColor *)colorWithDynamicProvider:(UIColor * (^)(DMTraitCollection *traitCollection))dynamicProvider;
 
 @end
 

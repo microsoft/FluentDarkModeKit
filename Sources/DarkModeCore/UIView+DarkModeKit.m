@@ -63,7 +63,12 @@
 
       IMP imp = method_getImplementation(method);
       class_replaceMethod(self, selector, imp_implementationWithBlock(^(UIView *self, UITraitCollection *previousTraitCollection) {
-
+        if (previousTraitCollection) {
+          [self dmTraitCollectionDidChange:[DMTraitCollection traitCollectionWithUITraitCollection:previousTraitCollection]];
+        }
+        else {
+          [self dmTraitCollectionDidChange:nil];
+        }
         ((void (*)(UIView *, SEL, UITraitCollection *))imp)(self, selector, previousTraitCollection);
       }), method_getTypeEncoding(method));
     });
@@ -93,6 +98,9 @@
 }
 
 - (void)dmTraitCollectionDidChange:(DMTraitCollection *)previousTraitCollection {
+  if (@available(iOS 13.0, *)) {
+    return;
+  }
   [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
     [view dmTraitCollectionDidChange:previousTraitCollection];
   }];
