@@ -4,8 +4,14 @@
 //
 
 extension UIPageControl {
-  override open func dm_updateDynamicColors() {
-    super.dm_updateDynamicColors()
+  override open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
+    super.dmTraitCollectionDidChange(previousTraitCollection)
+
+    if #available(iOS 13.0, *) {
+      return
+    }
+
+    dm_updateDynamicColors()
 
     if let dynamicPageIndicatorTintColor = pageIndicatorTintColor?.copy() as? DynamicColor {
       pageIndicatorTintColor = dynamicPageIndicatorTintColor

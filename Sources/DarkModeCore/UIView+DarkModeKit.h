@@ -19,8 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)dm_swizzleSetBackgroundColor;
 + (void)dm_swizzleSetTintColor;
 
-- (void)dm_updateDynamicColors API_DEPRECATED("dm_updateDynamicColors is deprecated and will not be called on iOS 13.0+, use dmTraitCollectionDidChange:", ios(11.0, 13.0));;
-- (void)dm_updateDynamicImages API_DEPRECATED("dm_updateDynamicImages is deprecated and will not be called on iOS 13.0+, use dmTraitCollectionDidChange:", ios(11.0, 13.0));;
+- (void)dm_updateDynamicColors API_DEPRECATED("dm_updateDynamicColors is deprecated and will not be called on iOS 13.0, use dmTraitCollectionDidChange: instead", ios(11.0, 13.0));;
+- (void)dm_updateDynamicImages API_DEPRECATED("dm_updateDynamicImages is deprecated and will not be called on iOS 13.0, use dmTraitCollectionDidChange: instead", ios(11.0, 13.0));;
 
 @end
 
