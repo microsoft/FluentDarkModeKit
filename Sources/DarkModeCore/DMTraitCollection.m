@@ -8,6 +8,41 @@
 
 @import ObjectiveC;
 
+@implementation NSObject (DMTraitEnvironment)
+
++ (void)swizzleTraitCollectionDidChangeToDMTraitCollectionDidChange {
+  [self swizzleTraitCollectionDidChangeToDMTraitCollectionDidChangeWithBlock:nil];
+}
+
++ (void)swizzleTraitCollectionDidChangeToDMTraitCollectionDidChangeWithBlock:(void (^)(NSObject *, UITraitCollection *))block API_AVAILABLE(ios(13.0)) {
+  // Only swizzling classes that conforms to both UITraitEnvironment & DMTraitEnvironment
+  if (!class_conformsToProtocol(self, @protocol(UITraitEnvironment)) || !class_conformsToProtocol(self, @protocol(DMTraitEnvironment))) {
+    return;
+  }
+
+  SEL selector = @selector(traitCollectionDidChange:);
+  Method method = class_getInstanceMethod(self, selector);
+
+  if (!method)
+    NSAssert(NO, @"Method not found for [%@ traitCollectionDidChange:]", NSStringFromClass(self));
+
+  IMP imp = method_getImplementation(method);
+  class_replaceMethod(self, selector, imp_implementationWithBlock(^(NSObject *self, UITraitCollection *previousTraitCollection) {
+    // Call previous implementation
+    ((void (*)(NSObject *, SEL, UITraitCollection *))imp)(self, selector, previousTraitCollection);
+
+    // Call DMTraitEnvironment
+    [(id <DMTraitEnvironment>)self dmTraitCollectionDidChange:previousTraitCollection == nil ? nil : [DMTraitCollection traitCollectionWithUITraitCollection:previousTraitCollection]];
+
+    // Call custom block
+    if (block) {
+      block(self, previousTraitCollection);
+    }
+  }), method_getTypeEncoding(method));
+}
+
+@end
+
 @implementation DMTraitCollection
 
 static DMTraitCollection *_lastManuallySetTraitCollection = nil; // This is set manually in setCurrentTraitCollection:animated
@@ -146,22 +181,27 @@ static __weak UIApplication *_registeredApplication = nil;
 
 + (void)swizzleUIScreenTraitCollectionDidChange {
   static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    SEL selector = @selector(traitCollectionDidChange:);
-    Method method = class_getInstanceMethod(UIScreen.class, selector);
-    if (!method)
-      NSAssert(NO, @"Method not found for [UIScreen traitCollectionDidChange:]");
-
-    IMP imp = method_getImplementation(method);
-    class_replaceMethod(UIScreen.class, selector, imp_implementationWithBlock(^(UIScreen *self, UITraitCollection *previousTraitCollection) {
-      ((void (*)(UIScreen *, SEL, UITraitCollection *))imp)(self, selector, previousTraitCollection);
+  dispatch_once(&onceToken, ^{\
+    [UIScreen swizzleTraitCollectionDidChangeToDMTraitCollectionDidChangeWithBlock:^(NSObject *self, UITraitCollection *previousTraitCollection) {
       if ([DMTraitCollection lastManuallySetTraitCollection].userInterfaceStyle != DMUserInterfaceStyleUnspecified) {
         // User has specified explicit dark mode or light mode
         return;
       }
       [DMTraitCollection updateUIWithTraitCollection:[DMTraitCollection traitCollectionWithUserInterfaceStyle:DMUserInterfaceStyleUnspecified] animated:YES];
-    }), method_getTypeEncoding(method));
+    }];
   });
 }
+
+@end
+
+@interface UIScreen (DMTraitEnvironment) <DMTraitEnvironment>
+
+- (void)dmTraitCollectionDidChange:(DMTraitCollection *)previousTraitCollection;
+
+@end
+
+@implementation UIScreen (DMTraitEnvironment)
+
+- (void)dmTraitCollectionDidChange:(DMTraitCollection *)previousTraitCollection {}
 
 @end

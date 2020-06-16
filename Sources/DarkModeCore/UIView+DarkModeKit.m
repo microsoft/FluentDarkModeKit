@@ -52,29 +52,6 @@
   });
 }
 
-+ (void)dm_swizzleTraitCollectionDidChange {
-  if (@available(iOS 13.0, *)) {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      SEL selector = @selector(traitCollectionDidChange:);
-      Method method = class_getInstanceMethod(self, selector);
-      if (!method)
-        NSAssert(NO, @"Method not found for [UIView traitCollectionDidChange:]");
-
-      IMP imp = method_getImplementation(method);
-      class_replaceMethod(self, selector, imp_implementationWithBlock(^(UIView *self, UITraitCollection *previousTraitCollection) {
-        if (previousTraitCollection) {
-          [self dmTraitCollectionDidChange:[DMTraitCollection traitCollectionWithUITraitCollection:previousTraitCollection]];
-        }
-        else {
-          [self dmTraitCollectionDidChange:nil];
-        }
-        ((void (*)(UIView *, SEL, UITraitCollection *))imp)(self, selector, previousTraitCollection);
-      }), method_getTypeEncoding(method));
-    });
-  }
-}
-
 - (DMDynamicColor *)dm_dynamicBackgroundColor {
   return objc_getAssociatedObject(self, _cmd);
 }

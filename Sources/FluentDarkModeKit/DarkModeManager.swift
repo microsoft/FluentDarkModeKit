@@ -14,7 +14,8 @@ public final class DarkModeManager: NSObject {
 
     if #available(iOS 13.0, *) {
       DMTraitCollection.swizzleUIScreenTraitCollectionDidChange()
-      UIView.dm_swizzleTraitCollectionDidChange()
+      UIView.swizzleTraitCollectionDidChangeToDMTraitCollectionDidChange()
+      UIViewController.swizzleTraitCollectionDidChangeToDMTraitCollectionDidChange()
     }
     else {
       // Colors
