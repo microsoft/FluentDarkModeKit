@@ -41,7 +41,7 @@ final class DarkModeKitUITests: XCTestCase {
     let uiviewStaticText = app.tables.staticTexts[className]
     uiviewStaticText.tap()
 
-    sleep(2)
+    sleep(1)
 
     let screenshot1 = app.screenshot()
 
