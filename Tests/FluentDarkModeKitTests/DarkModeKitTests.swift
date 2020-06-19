@@ -9,7 +9,7 @@ import XCTest
 final class DarkModeKitTests: XCTestCase {
   func testSetBackgroundColorSwizzling() {
     UIWindow.appearance().backgroundColor = .white
-    DarkModeManager.setup(with: UIApplication.shared)
+    DarkModeManager.register(with: UIApplication.shared)
     _ = UIWindow()
   }
 

@@ -28,8 +28,15 @@ typedef NS_ENUM(NSInteger, DMUserInterfaceStyle) {
 
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
-+ (void)registerApplication:(nullable UIApplication *)application;
 + (void)setOverrideTraitCollection:(DMTraitCollection *)overrideTraitCollection animated:(BOOL)animated;
+
+// MARK: - Observer Registration
++ (void)registerWithApplication:(UIApplication *)application syncImmediately:(BOOL)syncImmediately animated:(BOOL)animated;
++ (void)registerWithViewController:(UIViewController *)viewController syncImmediately:(BOOL)syncImmediately animated:(BOOL)animated;
++ (void)unregister;
+
+// MARK: - Swizzling
+// TODO: move swizzling to private header
 + (void)swizzleUIScreenTraitCollectionDidChange API_AVAILABLE(ios(13.0));
 
 @end

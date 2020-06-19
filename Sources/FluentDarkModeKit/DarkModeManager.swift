@@ -9,8 +9,26 @@ import UIKit
 #endif
 
 public final class DarkModeManager: NSObject {
-  public static func setup(with application: UIApplication?) {
-    DMTraitCollection.register(application)
+  private static var swizzlingConfigured = false
+
+  public class func register(with application: UIApplication, syncImmediately: Bool = false, animated: Bool = false) {
+    commonSetup()
+    DMTraitCollection.register(with: application, syncImmediately: syncImmediately, animated: animated)
+  }
+
+  public class func register(with viewController: UIViewController, syncImmediately: Bool = false, animated: Bool = false) {
+    commonSetup()
+    DMTraitCollection.register(with: viewController, syncImmediately: syncImmediately, animated: animated)
+  }
+
+  public class func unregister() {
+    DMTraitCollection.unregister()
+  }
+
+  private class func commonSetup() {
+    guard !swizzlingConfigured else {
+      return
+    }
 
     if #available(iOS 13.0, *) {
       DMTraitCollection.swizzleUIScreenTraitCollectionDidChange()
@@ -32,6 +50,8 @@ public final class DarkModeManager: NSObject {
       UITabBarItem.swizzleSetImageOnce
       UITabBarItem.swizzleSetSelectedImageOnce
     }
+
+    swizzlingConfigured = true
   }
 
   // MARK: - Internal

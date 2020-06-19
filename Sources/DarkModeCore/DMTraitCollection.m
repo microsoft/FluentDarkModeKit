@@ -4,7 +4,7 @@
 //
 
 #import "DMTraitCollection.h"
-#import "UIApplication+DarkModeKit.h"
+#import "UIView+DarkModeKit.h"
 
 @import ObjectiveC;
 
@@ -52,7 +52,7 @@
 @implementation DMTraitCollection
 
 static DMTraitCollection *_overrideTraitCollection = nil; // This is set manually in setCurrentTraitCollection:animated
-static __weak UIApplication *_registeredApplication = nil;
+static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil;
 
 + (DMTraitCollection *)currentTraitCollection {
   if (@available(iOS 13.0, *)) {
@@ -75,37 +75,56 @@ static __weak UIApplication *_registeredApplication = nil;
 
 + (void)setOverrideTraitCollection:(DMTraitCollection *)currentTraitCollection animated:(BOOL)animated {
   _overrideTraitCollection = currentTraitCollection;
-  [self updateUIWithTraitCollection:currentTraitCollection animated:animated];
+  [self syncImmediatelyAnimated:animated];
 }
 
-+ (void)updateUIWithTraitCollection:(DMTraitCollection *)traitCollection animated:(BOOL)animated {
-  // Update all windows' overrideUserInterfaceStyle to achieve a global theme
-  UIApplication *application = _registeredApplication;
-  if (!application) {
-    return;
-  }
-
++ (void)updateUIWithViews:(NSArray<UIView *> *)views viewControllers:(NSArray<UIViewController *> *)viewControllers traitCollection:(DMTraitCollection *)traitCollection animated:(BOOL)animated {
+  NSMutableArray<UIView *> *snapshotViews = nil;
   if (animated) {
     // Create snapshot views to ease the transition
-    NSArray<UIWindow *> *windows = application.windows;
-    NSMutableArray<UIView *> *snapshotViews = [NSMutableArray array];
-    [windows enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull window, NSUInteger idx, BOOL * _Nonnull stop) {
-      UIView *snapshotView = [window snapshotViewAfterScreenUpdates:NO];
+    snapshotViews = [NSMutableArray array];
+    [views enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
+      UIView *snapshotView = [view snapshotViewAfterScreenUpdates:NO];
       if (snapshotView) {
-        [window addSubview:snapshotView];
+        [view addSubview:snapshotView];
         [snapshotViews addObject:snapshotView];
       }
     }];
+    [viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull vc, NSUInteger idx, BOOL * _Nonnull stop) {
+      if (!vc.isViewLoaded)
+        return;
 
+      UIView *snapshotView = [vc.view snapshotViewAfterScreenUpdates:NO];
+      if (snapshotView) {
+        [vc.view addSubview:snapshotView];
+        [snapshotViews addObject:snapshotView];
+      }
+    }];
+  }
+
+  [views enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
     if (@available(iOS 13.0, *)) {
-      // Update user interface style with overrideUserInterfaceStyle
-      [windows enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull window, NSUInteger idx, BOOL * _Nonnull stop) {
-        window.overrideUserInterfaceStyle = traitCollection.uiTraitCollection.userInterfaceStyle;
-      }];
-    } else {
-      [application dmTraitCollectionDidChange:nil];
+      // Let the system propogate the change
+      view.overrideUserInterfaceStyle = traitCollection.uiTraitCollection.userInterfaceStyle;
     }
+    else {
+      // Propogate the change to subviews
+      [view dmTraitCollectionDidChange:nil];
+    }
+  }];
 
+  [viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull vc, NSUInteger idx, BOOL * _Nonnull stop) {
+    if (@available(iOS 13.0, *)) {
+      // Let the system propogate the change
+      vc.overrideUserInterfaceStyle = traitCollection.uiTraitCollection.userInterfaceStyle;
+    }
+    else {
+      // Propogate the change to subviews
+      [vc dmTraitCollectionDidChange:nil];
+    }
+  }];
+
+  if (animated) {
     [UIViewPropertyAnimator runningPropertyAnimatorWithDuration:0.25 delay:0 options:0 animations:^{
       [snapshotViews enumerateObjectsUsingBlock:^(UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
         view.alpha = 0;
@@ -115,17 +134,6 @@ static __weak UIApplication *_registeredApplication = nil;
         [view removeFromSuperview];
       }];
     }];
-  }
-  else {
-    if (@available(iOS 13.0, *)) {
-      // Update user interface style with overrideUserInterfaceStyle
-      [[application windows] enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull window, NSUInteger idx, BOOL * _Nonnull stop) {
-        window.overrideUserInterfaceStyle = traitCollection.uiTraitCollection.userInterfaceStyle;
-      }];
-    }
-    else {
-      [application dmTraitCollectionDidChange:nil];
-    }
   }
 }
 
@@ -177,19 +185,55 @@ static __weak UIApplication *_registeredApplication = nil;
   return self;
 }
 
-+ (void)registerApplication:(UIApplication *)application {
-  _registeredApplication = application;
+// MARK: - Observer Registration
++ (void)registerWithApplication:(UIApplication *)application syncImmediately:(BOOL)syncImmediately animated:(BOOL)animated {
+  __weak UIApplication *weakApp = application;
+  _userInterfaceStyleChangeHandler = ^(DMTraitCollection *traitCollection, BOOL animated) {
+    __strong UIApplication *strongApp = weakApp;
+    if (!strongApp)
+      return;
+
+    [self updateUIWithViews:strongApp.windows viewControllers:nil traitCollection:traitCollection animated:animated];
+  };
+
+  if (syncImmediately)
+    [self syncImmediatelyAnimated:animated];
 }
 
++ (void)registerWithViewController:(UIViewController *)viewController syncImmediately:(BOOL)syncImmediately animated:(BOOL)animated {
+  __weak UIViewController *weakVc = viewController;
+  _userInterfaceStyleChangeHandler = ^(DMTraitCollection *traitCollection, BOOL animated) {
+    __strong UIViewController *strongVc = weakVc;
+    if (!strongVc)
+      return;
+
+    [self updateUIWithViews:nil viewControllers:[NSArray arrayWithObject:strongVc] traitCollection:traitCollection animated:animated];
+  };
+
+  if (syncImmediately)
+    [self syncImmediatelyAnimated:animated];
+}
+
++ (void)syncImmediatelyAnimated:(BOOL)animated {
+  if (_userInterfaceStyleChangeHandler)
+    _userInterfaceStyleChangeHandler([self overrideTraitCollection], animated);
+}
+
++ (void)unregister {
+  _userInterfaceStyleChangeHandler = nil;
+}
+
+// MARK: - Swizzling
 + (void)swizzleUIScreenTraitCollectionDidChange {
   static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{\
-    [UIScreen swizzleTraitCollectionDidChangeToDMTraitCollectionDidChangeWithBlock:^(id<UITraitEnvironment> self, UITraitCollection *previousTraitCollection) {
+  dispatch_once(&onceToken, ^{
+    [UIScreen swizzleTraitCollectionDidChangeToDMTraitCollectionDidChangeWithBlock:^(id<UITraitEnvironment> object, UITraitCollection *previousTraitCollection) {
       if ([DMTraitCollection overrideTraitCollection].userInterfaceStyle != DMUserInterfaceStyleUnspecified) {
         // User has specified explicit dark mode or light mode
         return;
       }
-      [DMTraitCollection updateUIWithTraitCollection:[DMTraitCollection traitCollectionWithUserInterfaceStyle:DMUserInterfaceStyleUnspecified] animated:YES];
+
+      [self syncImmediatelyAnimated:YES];
     }];
   });
 }
