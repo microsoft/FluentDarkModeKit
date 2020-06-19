@@ -19,12 +19,12 @@ class ViewController: UIViewController {
 
   @objc private func refresh() {
     // Loop throught the available styles
-    DMTraitCollection.setCurrent(DMTraitCollection(userInterfaceStyle: DMTraitCollection.lastManuallySet.userInterfaceStyle.next), animated: true)
+    DMTraitCollection.setOverride(DMTraitCollection(userInterfaceStyle: DMTraitCollection.override.userInterfaceStyle.next), animated: true)
     showUserSetInterfaceStyle()
   }
 
   private func showUserSetInterfaceStyle() {
-    let alert = UIAlertController(title: DMTraitCollection.lastManuallySet.userInterfaceStyle.description, message: nil, preferredStyle: .alert)
+    let alert = UIAlertController(title: DMTraitCollection.override.userInterfaceStyle.description, message: nil, preferredStyle: .alert)
     if alert.popoverPresentationController != nil {
       alert.popoverPresentationController?.sourceRect = .zero
       alert.popoverPresentationController?.sourceView = view

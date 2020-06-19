@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, DMUserInterfaceStyle) {
 @interface DMTraitCollection : NSObject
 
 @property (class, nonatomic, readonly) DMTraitCollection *currentTraitCollection;
-@property (class, nonatomic, readonly) DMTraitCollection *lastManuallySetTraitCollection;
+@property (class, nonatomic, readonly) DMTraitCollection *overrideTraitCollection;
 
 + (DMTraitCollection *)traitCollectionWithUserInterfaceStyle:(DMUserInterfaceStyle)userInterfaceStyle;
 + (DMTraitCollection *)traitCollectionWithUITraitCollection:(UITraitCollection *)traitCollection API_AVAILABLE(ios(13.0));
@@ -29,7 +29,7 @@ typedef NS_ENUM(NSInteger, DMUserInterfaceStyle) {
 - (instancetype)init NS_DESIGNATED_INITIALIZER;
 
 + (void)registerApplication:(nullable UIApplication *)application;
-+ (void)setCurrentTraitCollection:(DMTraitCollection *)currentTraitCollection animated:(BOOL)animated;
++ (void)setOverrideTraitCollection:(DMTraitCollection *)overrideTraitCollection animated:(BOOL)animated;
 + (void)swizzleUIScreenTraitCollectionDidChange API_AVAILABLE(ios(13.0));
 
 @end

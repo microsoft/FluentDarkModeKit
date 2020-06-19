@@ -181,9 +181,9 @@ final class DarkModeKitTests: XCTestCase {
     }
     else {
       let saved = DMTraitCollection.current
-      DMTraitCollection.setCurrent(DMTraitCollection(userInterfaceStyle: userInterfaceStyle), animated: false)
+      DMTraitCollection.setOverride(DMTraitCollection(userInterfaceStyle: userInterfaceStyle), animated: false)
       expression()
-      DMTraitCollection.setCurrent(saved, animated: false)
+      DMTraitCollection.setOverride(saved, animated: false)
     }
   }
 }

@@ -14,7 +14,7 @@
   [self swizzleTraitCollectionDidChangeToDMTraitCollectionDidChangeWithBlock:nil];
 }
 
-+ (void)swizzleTraitCollectionDidChangeToDMTraitCollectionDidChangeWithBlock:(void (^)(NSObject *, UITraitCollection *))block API_AVAILABLE(ios(13.0)) {
++ (void)swizzleTraitCollectionDidChangeToDMTraitCollectionDidChangeWithBlock:(void (^)(id<UITraitEnvironment>, UITraitCollection *))block API_AVAILABLE(ios(13.0)) {
   // Only swizzling classes that conforms to both UITraitEnvironment & DMTraitEnvironment
   if (!class_conformsToProtocol(self, @protocol(UITraitEnvironment)) || !class_conformsToProtocol(self, @protocol(DMTraitEnvironment))) {
     return;
@@ -27,9 +27,15 @@
     NSAssert(NO, @"Method not found for [%@ traitCollectionDidChange:]", NSStringFromClass(self));
 
   IMP imp = method_getImplementation(method);
-  class_replaceMethod(self, selector, imp_implementationWithBlock(^(NSObject *self, UITraitCollection *previousTraitCollection) {
+  class_replaceMethod(self, selector, imp_implementationWithBlock(^(id<UITraitEnvironment> self, UITraitCollection *previousTraitCollection) {
     // Call previous implementation
     ((void (*)(NSObject *, SEL, UITraitCollection *))imp)(self, selector, previousTraitCollection);
+
+    if (previousTraitCollection != nil && previousTraitCollection.userInterfaceStyle == self.traitCollection.userInterfaceStyle) {
+      // We only care about userInterfaceStyle change currently, so filter out
+      // calling without this specific change
+      return;
+    }
 
     // Call DMTraitEnvironment
     [(id <DMTraitEnvironment>)self dmTraitCollectionDidChange:previousTraitCollection == nil ? nil : [DMTraitCollection traitCollectionWithUITraitCollection:previousTraitCollection]];
@@ -45,34 +51,30 @@
 
 @implementation DMTraitCollection
 
-static DMTraitCollection *_lastManuallySetTraitCollection = nil; // This is set manually in setCurrentTraitCollection:animated
+static DMTraitCollection *_overrideTraitCollection = nil; // This is set manually in setCurrentTraitCollection:animated
 static __weak UIApplication *_registeredApplication = nil;
 
 + (DMTraitCollection *)currentTraitCollection {
-  DMTraitCollection *lastTraitCollection = [self lastManuallySetTraitCollection];
   if (@available(iOS 13.0, *)) {
-    if (lastTraitCollection.userInterfaceStyle == DMUserInterfaceStyleUnspecified) {
-      // Return the ones used from the system when no specific user interface style is explicitly set
-      return [self currentSystemTraitCollection];
-    }
+    return [DMTraitCollection traitCollectionWithUITraitCollection:UITraitCollection.currentTraitCollection];
   }
-  return lastTraitCollection;
+  return [self overrideTraitCollection];
 }
 
-+ (DMTraitCollection *)lastManuallySetTraitCollection {
-  if (!_lastManuallySetTraitCollection) {
++ (DMTraitCollection *)overrideTraitCollection {
+  if (!_overrideTraitCollection) {
     // Provide unspecified at first
-    _lastManuallySetTraitCollection = [DMTraitCollection traitCollectionWithUserInterfaceStyle:DMUserInterfaceStyleUnspecified];
+    _overrideTraitCollection = [DMTraitCollection traitCollectionWithUserInterfaceStyle:DMUserInterfaceStyleUnspecified];
   }
-  return _lastManuallySetTraitCollection;
+  return _overrideTraitCollection;
 }
 
 + (DMTraitCollection *)currentSystemTraitCollection API_AVAILABLE(ios(13.0)) {
   return [DMTraitCollection traitCollectionWithUITraitCollection:UIScreen.mainScreen.traitCollection];
 }
 
-+ (void)setCurrentTraitCollection:(DMTraitCollection *)currentTraitCollection animated:(BOOL)animated {
-  _lastManuallySetTraitCollection = currentTraitCollection;
++ (void)setOverrideTraitCollection:(DMTraitCollection *)currentTraitCollection animated:(BOOL)animated {
+  _overrideTraitCollection = currentTraitCollection;
   [self updateUIWithTraitCollection:currentTraitCollection animated:animated];
 }
 
@@ -182,8 +184,8 @@ static __weak UIApplication *_registeredApplication = nil;
 + (void)swizzleUIScreenTraitCollectionDidChange {
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{\
-    [UIScreen swizzleTraitCollectionDidChangeToDMTraitCollectionDidChangeWithBlock:^(NSObject *self, UITraitCollection *previousTraitCollection) {
-      if ([DMTraitCollection lastManuallySetTraitCollection].userInterfaceStyle != DMUserInterfaceStyleUnspecified) {
+    [UIScreen swizzleTraitCollectionDidChangeToDMTraitCollectionDidChangeWithBlock:^(id<UITraitEnvironment> self, UITraitCollection *previousTraitCollection) {
+      if ([DMTraitCollection overrideTraitCollection].userInterfaceStyle != DMUserInterfaceStyleUnspecified) {
         // User has specified explicit dark mode or light mode
         return;
       }
