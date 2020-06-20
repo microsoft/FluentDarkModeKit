@@ -31,13 +31,7 @@
     // Call previous implementation
     ((void (*)(NSObject *, SEL, UITraitCollection *))imp)(self, selector, previousTraitCollection);
 
-    if (previousTraitCollection != nil && previousTraitCollection.userInterfaceStyle == self.traitCollection.userInterfaceStyle) {
-      // We only care about userInterfaceStyle change currently, so filter out
-      // calling without this specific change
-      return;
-    }
-
-    // Call DMTraitEnvironment
+    // Call DMTraitEnvironment method
     [(id <DMTraitEnvironment>)self dmTraitCollectionDidChange:previousTraitCollection == nil ? nil : [DMTraitCollection traitCollectionWithUITraitCollection:previousTraitCollection]];
 
     // Call custom block
