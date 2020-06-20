@@ -14,7 +14,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
-    DarkModeManager.setup()
+
+    DarkModeManager.register(with: application)
 
     window = UIWindow()
     window?.rootViewController = {

@@ -18,12 +18,44 @@ class ViewController: UIViewController {
   }
 
   @objc private func refresh() {
-    if DMTraitCollection.current.userInterfaceStyle == .dark {
-      DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .light)
+    // Loop throught the available styles
+    DMTraitCollection.setOverride(DMTraitCollection(userInterfaceStyle: DMTraitCollection.override.userInterfaceStyle.next), animated: true)
+    showUserSetInterfaceStyle()
+  }
+
+  private func showUserSetInterfaceStyle() {
+    let alert = UIAlertController(title: DMTraitCollection.override.userInterfaceStyle.description, message: nil, preferredStyle: .alert)
+    if alert.popoverPresentationController != nil {
+      alert.popoverPresentationController?.sourceRect = .zero
+      alert.popoverPresentationController?.sourceView = view
     }
-    else {
-      DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .dark)
+    present(alert, animated: true, completion: nil)
+    Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] _ in
+      self?.dismiss(animated: true, completion: nil)
     }
-    DarkModeManager.updateAppearance(for: .shared, animated: true)
+  }
+}
+
+private extension DMUserInterfaceStyle {
+  var description: String {
+    switch self {
+    case .dark:
+      return "dark"
+    case .light:
+      return "light"
+    default:
+      return "unspecified"
+    }
+  }
+
+  var next: DMUserInterfaceStyle {
+    switch self {
+    case .light:
+      return .dark
+    case .dark:
+      return .unspecified
+    default:
+      return .light
+    }
   }
 }

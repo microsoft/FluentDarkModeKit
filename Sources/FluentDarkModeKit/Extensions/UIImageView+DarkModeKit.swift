@@ -51,8 +51,12 @@ extension UIImageView {
     } as @convention(block) (UIImageView, UIImage?) -> UIImageView), method_getTypeEncoding(method))
   }()
 
-  override func dm_updateDynamicImages() {
-    super.dm_updateDynamicImages()
+  override open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
+    super.dmTraitCollectionDidChange(previousTraitCollection)
+
+    if #available(iOS 13.0, *) {
+      return
+    }
 
     if let dynamicImage = dm_dynamicImage {
       image = dynamicImage

@@ -9,69 +9,54 @@ import UIKit
 #endif
 
 public final class DarkModeManager: NSObject {
-  public static func setup() {
-    // Colors
-    UIView.swizzleWillMoveToWindowOnce
-    UIView.dm_swizzleSetBackgroundColor()
-    UIView.swizzleSetTintColorOnce
-    UITextField.swizzleTextFieldWillMoveToWindowOnce
-    UILabel.swizzleDidMoveToWindowOnce
+  private static var swizzlingConfigured = false
 
-    // Images
-    UIImage.dm_swizzleIsEqual()
-    UIImageView.swizzleSetImageOnce
-    UIImageView.swizzleInitImageOnce
-    UITabBarItem.swizzleSetImageOnce
-    UITabBarItem.swizzleSetSelectedImageOnce
+  public class func register(with application: UIApplication, syncImmediately: Bool = false, animated: Bool = false) {
+    commonSetup()
+    DMTraitCollection.register(with: application, syncImmediately: syncImmediately, animated: animated)
   }
 
-  /// Update application's appearance based on current theme (This method is for main app.)
-  ///
-  /// - Parameters:
-  ///   - application: The application needs to update.
-  ///   - animated: Use animation or not.
-  @objc public static func updateAppearance(for application: UIApplication, animated: Bool) {
-    application.updateAppearance(with: application.windows, animated: animated)
+  public class func register(with viewController: UIViewController, syncImmediately: Bool = false, animated: Bool = false) {
+    commonSetup()
+    DMTraitCollection.register(with: viewController, syncImmediately: syncImmediately, animated: animated)
+  }
+
+  public class func unregister() {
+    DMTraitCollection.unregister()
+  }
+
+  private class func commonSetup() {
+    guard !swizzlingConfigured else {
+      return
+    }
+
+    if #available(iOS 13.0, *) {
+      DMTraitCollection.swizzleUIScreenTraitCollectionDidChange()
+      UIView.swizzleTraitCollectionDidChangeToDMTraitCollectionDidChange()
+      UIViewController.swizzleTraitCollectionDidChangeToDMTraitCollectionDidChange()
+    }
+    else {
+      // Colors
+      UIView.swizzleWillMoveToWindowOnce
+      UIView.dm_swizzleSetBackgroundColor()
+      UIView.dm_swizzleSetTintColor()
+      UITextField.swizzleTextFieldWillMoveToWindowOnce
+      UILabel.swizzleDidMoveToWindowOnce
+
+      // Images
+      UIImage.dm_swizzleIsEqual()
+      UIImageView.swizzleSetImageOnce
+      UIImageView.swizzleInitImageOnce
+      UITabBarItem.swizzleSetImageOnce
+      UITabBarItem.swizzleSetSelectedImageOnce
+    }
+
+    swizzlingConfigured = true
   }
 
   // MARK: - Internal
 
   static func messageForSwizzlingFailed(class cls: AnyClass, selector: Selector) -> String {
     return "Method swizzling for theme failed! Class: \(cls), Selector: \(selector)"
-  }
-}
-
-// MARK: -
-
-extension DMTraitEnvironment {
-  /// Trigger `themeDidChange()`.
-  ///
-  /// - Parameters:
-  ///   - views: Views visiable by user, will be snapshoted if use animation.
-  ///   - animated: Use animation or not.
-  fileprivate func updateAppearance(with views: [UIView], animated: Bool) {
-    assert(Thread.isMainThread)
-
-    if animated {
-      var snapshotViews: [UIView] = []
-      views.forEach { view in
-        guard let snapshotView = view.snapshotView(afterScreenUpdates: false) else {
-          return
-        }
-        view.addSubview(snapshotView)
-        snapshotViews.append(snapshotView)
-      }
-
-      dmTraitCollectionDidChange(nil)
-
-      UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.25, delay: 0, options: [], animations: {
-        snapshotViews.forEach { $0.alpha = 0 }
-      }) { _ in
-        snapshotViews.forEach { $0.removeFromSuperview() }
-      }
-    }
-    else {
-      dmTraitCollectionDidChange(nil)
-    }
   }
 }

@@ -9,7 +9,12 @@
 @implementation UIColor (DarkModeKit)
 
 + (UIColor *)dm_colorWithLightColor:(UIColor *)lightColor darkColor:(UIColor *)darkColor {
-  return (UIColor *)[[DMDynamicColor alloc] initWithLightColor:lightColor darkColor:darkColor];
+  if (@available(iOS 13.0, *)) {
+    return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+      return traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark ? darkColor : lightColor;
+    }];
+  }
+  return [DMDynamicColor colorWithLightColor:lightColor darkColor:darkColor];
 }
 
 + (UIColor *)dm_namespace:(DMNamespace)namespace
@@ -19,7 +24,12 @@
 }
 
 + (UIColor *)dm_colorWithDynamicProvider:(UIColor *(^)(DMTraitCollection *))dynamicProvider {
-  return (UIColor *)[[DMDynamicColor alloc] initWithDynamicProvider:dynamicProvider];
+  if (@available(iOS 13.0, *)) {
+    return [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+      return dynamicProvider([DMTraitCollection traitCollectionWithUITraitCollection:traitCollection]);
+    }];
+  }
+  return [DMDynamicColor colorWithDynamicProvider:dynamicProvider];
 }
 
 + (UIColor *)dm_namespace:(DMNamespace)namespace dynamicProvider:(UIColor *(^)(DMTraitCollection *))dynamicProvider {
@@ -27,9 +37,11 @@
 }
 
 - (UIColor *)dm_resolvedColorWithTraitCollection:(DMTraitCollection *)traitCollection {
-  // Here we just need to take care of UIColor that is not DMDynamicColor
-  // since DMDynamicColor methods are all forwarded, simply return self
-  // before we need to bridge iOS 13's color mechanism
+  if (@available(iOS 13.0, *)) {
+    // Here we just need to take care of UIColor that is not DMDynamicColor
+    // since DMDynamicColor methods are all forwarded
+    return [self resolvedColorWithTraitCollection:traitCollection.uiTraitCollection];
+  }
   return self;
 }
 

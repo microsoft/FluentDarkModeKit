@@ -4,8 +4,14 @@
 //
 
 extension UITextField {
-  override func dm_updateDynamicColors() {
-    super.dm_updateDynamicColors()
+  override open func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?) {
+    super.dmTraitCollectionDidChange(previousTraitCollection)
+
+    if #available(iOS 13.0, *) {
+      return
+    }
+
+    dm_updateDynamicColors()
 
     if let dynamicTextColor = textColor?.copy() as? DynamicColor {
       textColor = dynamicTextColor
@@ -36,10 +42,7 @@ extension UITextField {
     class_replaceMethod(UITextField.self, selector, imp_implementationWithBlock({ (self: UITextField, window: UIWindow?) -> Void in
       let oldIMP = unsafeBitCast(imp, to: (@convention(c) (UITextField, Selector, UIWindow?) -> Void).self)
       oldIMP(self, selector, window)
-      if window != nil {
-        self.dm_updateDynamicColors()
-        self.dm_updateDynamicImages()
-      }
+      self.dmTraitCollectionDidChange(nil)
     } as @convention(block) (UITextField, UIWindow?) -> Void), method_getTypeEncoding(method))
   }()
 }

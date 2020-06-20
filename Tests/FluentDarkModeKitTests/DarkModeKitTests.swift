@@ -9,18 +9,20 @@ import XCTest
 final class DarkModeKitTests: XCTestCase {
   func testSetBackgroundColorSwizzling() {
     UIWindow.appearance().backgroundColor = .white
-    DarkModeManager.setup()
+    DarkModeManager.register(with: UIApplication.shared)
     _ = UIWindow()
   }
 
   func testColorInitializer() {
     let color = UIColor(.dm, light: .white, dark: .black)
 
-    DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .light)
-    XCTAssertEqual(color.rgba, UIColor.white.rgba)
+    perform(with: .light) {
+       XCTAssertEqual(color.rgba, UIColor.white.rgba)
+    }
 
-    DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .dark)
-    XCTAssertEqual(color.rgba, UIColor.black.rgba)
+    perform(with: .dark) {
+       XCTAssertEqual(color.rgba, UIColor.black.rgba)
+    }
   }
 
   func testImageInitializer() {
@@ -34,11 +36,13 @@ final class DarkModeKitTests: XCTestCase {
       $0.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
     }
 
-    DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .light)
-    XCTAssertEqual(color.rgba, UIColor.white.rgba)
+    perform(with: .light) {
+      XCTAssertEqual(color.rgba, UIColor.white.rgba)
+    }
 
-    DMTraitCollection.current = DMTraitCollection(userInterfaceStyle: .dark)
-    XCTAssertEqual(color.rgba, UIColor.black.rgba)
+    perform(with: .dark) {
+      XCTAssertEqual(color.rgba, UIColor.black.rgba)
+    }
 
     // Test color fetched from specific trait collections
     XCTAssertEqual(color.resolvedColor(.dm, with: DMTraitCollection(userInterfaceStyle: .dark)).rgba, UIColor.black.rgba)
@@ -51,7 +55,12 @@ final class DarkModeKitTests: XCTestCase {
     let view = UIView()
     view.backgroundColor = color
     view.tintColor = color
-    XCTAssertFalse(view.backgroundColor === color)
+    if #available(iOS 13.0, *) {
+      XCTAssertTrue(view.backgroundColor === color)
+    }
+    else {
+      XCTAssertFalse(view.backgroundColor === color)
+    }
     XCTAssertTrue(view.tintColor === color)
 
     // UIView subclasses
@@ -110,7 +119,12 @@ final class DarkModeKitTests: XCTestCase {
       label.shadowColor = color
       label.highlightedTextColor = color
       XCTAssertTrue(label.textColor === color)
-      XCTAssertFalse(label.shadowColor === color)
+      if #available(iOS 13.0, *) {
+        XCTAssertTrue(label.shadowColor === color)
+      }
+      else {
+        XCTAssertFalse(label.shadowColor === color)
+      }
       XCTAssertTrue(label.highlightedTextColor === color)
 
       let navigationBar = UINavigationBar()
@@ -153,6 +167,23 @@ final class DarkModeKitTests: XCTestCase {
       let toolbar = UIToolbar()
       toolbar.barTintColor = color
       XCTAssertTrue(toolbar.barTintColor === color)
+    }
+  }
+
+  func perform(with userInterfaceStyle: DMUserInterfaceStyle, expression: () -> Void) {
+    if #available(iOS 13.0, *) {
+      // On iOS 13, we use the system wide one, while in unit tests there is
+      // no actual views, use UITraitCollection.performAsCurrent to simulate
+      // theme change
+      DMTraitCollection(userInterfaceStyle: userInterfaceStyle).uiTraitCollection.performAsCurrent {
+        expression()
+      }
+    }
+    else {
+      let saved = DMTraitCollection.current
+      DMTraitCollection.setOverride(DMTraitCollection(userInterfaceStyle: userInterfaceStyle), animated: false)
+      expression()
+      DMTraitCollection.setOverride(saved, animated: false)
     }
   }
 }
