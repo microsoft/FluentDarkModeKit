@@ -17,8 +17,15 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     DarkModeManager.register(with: application)
 
-    window = UIWindow()
-    window?.rootViewController = {
+    window = AppDelegate.spawnNewWindow()
+    window?.makeKeyAndVisible()
+
+    return true
+  }
+
+  class func spawnNewWindow() -> UIWindow {
+    let window = UIWindow()
+    window.rootViewController = {
       let tabBarController = UITabBarController()
       tabBarController.viewControllers = [
         NavigationController(rootViewController: MainViewController()),
@@ -26,8 +33,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
       ]
       return tabBarController
     }()
-    window?.makeKeyAndVisible()
-
-    return true
+    return window
   }
 }

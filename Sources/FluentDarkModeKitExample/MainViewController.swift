@@ -6,6 +6,8 @@
 import UIKit
 
 final class MainViewController: ViewController {
+  private static var windowCount = 0
+
   struct Row {
     var name: String
     var vcType: UIViewController.Type
@@ -28,6 +30,24 @@ final class MainViewController: ViewController {
 
   override func loadView() {
     view = tableView
+
+    title = "\(MainViewController.windowCount)"
+    MainViewController.windowCount += 1
+  }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    navigationItem.leftBarButtonItem = UIBarButtonItem(
+      title: "Spawn",
+      style: .plain,
+      target: self,
+      action: #selector(spawnNewWindow)
+    )
+  }
+
+  @objc private func spawnNewWindow() {
+    AppDelegate.spawnNewWindow().makeKeyAndVisible()
   }
 }
 
