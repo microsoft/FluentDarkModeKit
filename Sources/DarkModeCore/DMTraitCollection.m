@@ -47,6 +47,7 @@
 
 static DMTraitCollection *_overrideTraitCollection = nil; // This is set manually in setCurrentTraitCollection:animated
 static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil;
+static BOOL isObservingNewWindowAddNotification = NO;
 
 + (DMTraitCollection *)currentTraitCollection {
   if (@available(iOS 13.0, *)) {
@@ -190,6 +191,8 @@ static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil
     [self updateUIWithViews:strongApp.windows viewControllers:nil traitCollection:traitCollection animated:animated];
   };
 
+  [self observeNewWindowNotificationIfNeeded];
+
   if (syncImmediately)
     [self syncImmediatelyAnimated:animated];
 }
@@ -208,6 +211,18 @@ static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil
     [self syncImmediatelyAnimated:animated];
 }
 
++ (void)observeNewWindowNotificationIfNeeded {
+  if (isObservingNewWindowAddNotification)
+    return;
+
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newWindowDidOpen:) name:UIWindowDidBecomeKeyNotification object:nil];
+}
+
++ (void)newWindowDidOpen:(NSNotification *)notification {
+  if (_userInterfaceStyleChangeHandler)
+    _userInterfaceStyleChangeHandler([self overrideTraitCollection], NO);
+}
+
 + (void)syncImmediatelyAnimated:(BOOL)animated {
   if (_userInterfaceStyleChangeHandler)
     _userInterfaceStyleChangeHandler([self overrideTraitCollection], animated);
@@ -215,6 +230,10 @@ static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil
 
 + (void)unregister {
   _userInterfaceStyleChangeHandler = nil;
+  if (isObservingNewWindowAddNotification) {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeKeyNotification object:nil];
+    isObservingNewWindowAddNotification = NO;
+  }
 }
 
 // MARK: - Swizzling
