@@ -47,7 +47,7 @@
 
 static DMTraitCollection *_overrideTraitCollection = nil; // This is set manually in setCurrentTraitCollection:animated
 static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil;
-static BOOL isObservingNewWindowAddNotification = NO;
+static BOOL _isObservingNewWindowAddNotification = NO;
 
 + (DMTraitCollection *)currentTraitCollection {
   if (@available(iOS 13.0, *)) {
@@ -89,7 +89,7 @@ static BOOL isObservingNewWindowAddNotification = NO;
       }
     }];
     [viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull vc, NSUInteger idx, BOOL * _Nonnull stop) {
-      if (!vc.isViewLoaded || vc.view.isHidden) // Skip view controller that are not loaded and hidden views
+      if (!vc.isViewLoaded || vc.view.isHidden) // Skip view controllers that are not loaded and hidden views
         return;
 
       UIView *snapshotView = [vc.view snapshotViewAfterScreenUpdates:NO];
@@ -186,12 +186,13 @@ static BOOL isObservingNewWindowAddNotification = NO;
 // MARK: - Observer Registration
 + (void)registerWithApplication:(UIApplication *)application syncImmediately:(BOOL)syncImmediately animated:(BOOL)animated {
   __weak UIApplication *weakApp = application;
+  __weak typeof(self) weakSelf = self;
   _userInterfaceStyleChangeHandler = ^(DMTraitCollection *traitCollection, BOOL animated) {
     __strong UIApplication *strongApp = weakApp;
     if (!strongApp)
       return;
 
-    [self updateUIWithViews:strongApp.windows viewControllers:nil traitCollection:traitCollection animated:animated];
+    [weakSelf updateUIWithViews:strongApp.windows viewControllers:nil traitCollection:traitCollection animated:animated];
   };
 
   [self observeNewWindowNotificationIfNeeded];
@@ -202,12 +203,13 @@ static BOOL isObservingNewWindowAddNotification = NO;
 
 + (void)registerWithViewController:(UIViewController *)viewController syncImmediately:(BOOL)syncImmediately animated:(BOOL)animated {
   __weak UIViewController *weakVc = viewController;
+  __weak typeof(self) weakSelf = self;
   _userInterfaceStyleChangeHandler = ^(DMTraitCollection *traitCollection, BOOL animated) {
     __strong UIViewController *strongVc = weakVc;
     if (!strongVc)
       return;
 
-    [self updateUIWithViews:nil viewControllers:[NSArray arrayWithObject:strongVc] traitCollection:traitCollection animated:animated];
+    [weakSelf updateUIWithViews:nil viewControllers:[NSArray arrayWithObject:strongVc] traitCollection:traitCollection animated:animated];
   };
 
   if (syncImmediately)
@@ -215,13 +217,13 @@ static BOOL isObservingNewWindowAddNotification = NO;
 }
 
 + (void)observeNewWindowNotificationIfNeeded {
-  if (isObservingNewWindowAddNotification)
+  if (_isObservingNewWindowAddNotification)
     return;
 
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newWindowDidOpen:) name:UIWindowDidBecomeVisibleNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeVisible:) name:UIWindowDidBecomeVisibleNotification object:nil];
 }
 
-+ (void)newWindowDidOpen:(NSNotification *)notification {
++ (void)windowDidBecomeVisible:(NSNotification *)notification {
   NSObject *object = [notification object];
   if ([object isKindOfClass:[UIWindow class]])
     [self updateUIWithViews:@[(UIWindow *)object] viewControllers:nil traitCollection:[self overrideTraitCollection] animated:NO];
@@ -234,15 +236,16 @@ static BOOL isObservingNewWindowAddNotification = NO;
 
 + (void)unregister {
   _userInterfaceStyleChangeHandler = nil;
-  if (isObservingNewWindowAddNotification) {
+  if (_isObservingNewWindowAddNotification) {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeVisibleNotification object:nil];
-    isObservingNewWindowAddNotification = NO;
+    _isObservingNewWindowAddNotification = NO;
   }
 }
 
 // MARK: - Swizzling
 + (void)swizzleUIScreenTraitCollectionDidChange {
   static dispatch_once_t onceToken;
+  __weak typeof(self) weakSelf = self;
   dispatch_once(&onceToken, ^{
     [UIScreen swizzleTraitCollectionDidChangeToDMTraitCollectionDidChangeWithBlock:^(id<UITraitEnvironment> object, UITraitCollection *previousTraitCollection) {
       if ([DMTraitCollection overrideTraitCollection].userInterfaceStyle != DMUserInterfaceStyleUnspecified) {
@@ -250,7 +253,7 @@ static BOOL isObservingNewWindowAddNotification = NO;
         return;
       }
 
-      [self syncImmediatelyAnimated:YES];
+      [weakSelf syncImmediatelyAnimated:YES];
     }];
   });
 }
