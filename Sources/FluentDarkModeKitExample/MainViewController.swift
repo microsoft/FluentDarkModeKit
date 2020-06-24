@@ -38,16 +38,33 @@ final class MainViewController: ViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    navigationItem.leftBarButtonItem = UIBarButtonItem(
-      title: "Spawn",
-      style: .plain,
-      target: self,
-      action: #selector(spawnNewWindow)
-    )
+    navigationItem.leftBarButtonItems = [
+      UIBarButtonItem(
+        title: "Replace",
+        style: .plain,
+        target: self,
+        action: #selector(replaceNewWindow)
+      ),
+      UIBarButtonItem(
+        title: "Spawn",
+        style: .plain,
+        target: self,
+        action: #selector(spawnNewWindow)
+      )
+    ]
+  }
+
+  @objc private func replaceNewWindow() {
+    let window = AppDelegate.createNewWindow(with: view.window!)
+    window.makeKeyAndVisible()
+    (UIApplication.shared.delegate as? AppDelegate)?.window = window
   }
 
   @objc private func spawnNewWindow() {
-    AppDelegate.spawnNewWindow().makeKeyAndVisible()
+    guard #available(iOS 13.0, *) else { return }
+
+    let userActivity = NSUserActivity(activityType: "window")
+    UIApplication.shared.requestSceneSessionActivation(nil, userActivity: userActivity, options: nil, errorHandler: nil)
   }
 }
 

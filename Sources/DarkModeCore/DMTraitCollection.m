@@ -79,6 +79,9 @@ static BOOL isObservingNewWindowAddNotification = NO;
     // Create snapshot views to ease the transition
     snapshotViews = [NSMutableArray array];
     [views enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
+      if (view.isHidden) // Skip hidden views
+        return;
+
       UIView *snapshotView = [view snapshotViewAfterScreenUpdates:NO];
       if (snapshotView) {
         [view addSubview:snapshotView];
@@ -86,7 +89,7 @@ static BOOL isObservingNewWindowAddNotification = NO;
       }
     }];
     [viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull vc, NSUInteger idx, BOOL * _Nonnull stop) {
-      if (!vc.isViewLoaded)
+      if (!vc.isViewLoaded || vc.view.isHidden) // Skip view controller that are not loaded and hidden views
         return;
 
       UIView *snapshotView = [vc.view snapshotViewAfterScreenUpdates:NO];
@@ -215,12 +218,13 @@ static BOOL isObservingNewWindowAddNotification = NO;
   if (isObservingNewWindowAddNotification)
     return;
 
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newWindowDidOpen:) name:UIWindowDidBecomeKeyNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(newWindowDidOpen:) name:UIWindowDidBecomeVisibleNotification object:nil];
 }
 
 + (void)newWindowDidOpen:(NSNotification *)notification {
-  if (_userInterfaceStyleChangeHandler)
-    _userInterfaceStyleChangeHandler([self overrideTraitCollection], NO);
+  NSObject *object = [notification object];
+  if ([object isKindOfClass:[UIWindow class]])
+    [self updateUIWithViews:@[(UIWindow *)object] viewControllers:nil traitCollection:[self overrideTraitCollection] animated:NO];
 }
 
 + (void)syncImmediatelyAnimated:(BOOL)animated {
@@ -231,7 +235,7 @@ static BOOL isObservingNewWindowAddNotification = NO;
 + (void)unregister {
   _userInterfaceStyleChangeHandler = nil;
   if (isObservingNewWindowAddNotification) {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeKeyNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeVisibleNotification object:nil];
     isObservingNewWindowAddNotification = NO;
   }
 }

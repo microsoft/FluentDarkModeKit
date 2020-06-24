@@ -53,6 +53,7 @@
 		8CDA62A52366DAA9004895B5 /* DMDynamicColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 8CDA628B2366DAA9004895B5 /* DMDynamicColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8CE066CF239E5582002CE16D /* UIColor+DarkModeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC8D86C2398E4EC0043276A /* UIColor+DarkModeKit.m */; };
 		8CE066D0239E5586002CE16D /* UIImage+DarkModeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC8D8722398E7A30043276A /* UIImage+DarkModeKit.m */; };
+		EA2EA50024A1CBF2001AE312 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA4FE24A1CAD5001AE312 /* SceneDelegate.swift */; };
 		EA7316F1248F5055009AE037 /* UILabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7316EF248F5050009AE037 /* UILabelVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +147,7 @@
 		8CDA62892366DAA9004895B5 /* DMDynamicImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDynamicImage.m; sourceTree = "<group>"; };
 		8CDA628A2366DAA9004895B5 /* DarkModeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DarkModeManager.swift; sourceTree = "<group>"; };
 		8CDA628B2366DAA9004895B5 /* DMDynamicColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDynamicColor.h; sourceTree = "<group>"; };
+		EA2EA4FE24A1CAD5001AE312 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EA7316EF248F5050009AE037 /* UILabelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -278,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				8CAFD9D423715FAA001A63B8 /* AppDelegate.swift */,
+				EA2EA4FE24A1CAD5001AE312 /* SceneDelegate.swift */,
 				8CAFD9EC2371606D001A63B8 /* NavigationController.swift */,
 				8CAFD9D823715FAA001A63B8 /* ViewController.swift */,
 				8C7B250223A22034002E2558 /* MainViewController.swift */,
@@ -575,6 +578,7 @@
 				8C63F64323A36B2700D93CF4 /* UIButtonVC.swift in Sources */,
 				EA7316F1248F5055009AE037 /* UILabelVC.swift in Sources */,
 				8CAFD9ED2371606D001A63B8 /* NavigationController.swift in Sources */,
+				EA2EA50024A1CBF2001AE312 /* SceneDelegate.swift in Sources */,
 				8CAFD9D523715FAA001A63B8 /* AppDelegate.swift in Sources */,
 				8C63F64623A374D300D93CF4 /* UIPageControlVC.swift in Sources */,
 				8C7B250423A22060002E2558 /* MainViewController.swift in Sources */,
