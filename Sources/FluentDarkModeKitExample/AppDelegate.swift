@@ -27,27 +27,27 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 
-  class func createNewWindow(with window: UIWindow) -> UIWindow {
+  static func createNewWindow(with window: UIWindow) -> UIWindow {
     guard #available(iOS 13.0, *), let scene = window.windowScene else {
       return createNewWindow()
     }
     return createNewWindow(with: scene)
   }
 
-  class func createNewWindow() -> UIWindow {
+  static func createNewWindow() -> UIWindow {
     let window = UIWindow()
     window.rootViewController = spawnNewViewController()
     return window
   }
 
   @available(iOS 13.0, *)
-  class func createNewWindow(with windowScene: UIWindowScene) -> UIWindow {
+  static func createNewWindow(with windowScene: UIWindowScene) -> UIWindow {
     let window = UIWindow(windowScene: windowScene)
     window.rootViewController = spawnNewViewController()
     return window
   }
 
-  private class func spawnNewViewController() -> UIViewController {
+  private static func spawnNewViewController() -> UIViewController {
     let tabBarController = UITabBarController()
     tabBarController.viewControllers = [
       NavigationController(rootViewController: MainViewController()),
