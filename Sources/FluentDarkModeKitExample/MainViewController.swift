@@ -6,6 +6,8 @@
 import UIKit
 
 final class MainViewController: ViewController {
+  private static var windowCount = 0
+
   struct Row {
     var name: String
     var vcType: UIViewController.Type
@@ -28,6 +30,41 @@ final class MainViewController: ViewController {
 
   override func loadView() {
     view = tableView
+
+    title = "\(MainViewController.windowCount)"
+    MainViewController.windowCount += 1
+  }
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+
+    navigationItem.leftBarButtonItems = [
+      UIBarButtonItem(
+        title: "Replace",
+        style: .plain,
+        target: self,
+        action: #selector(replaceNewWindow)
+      ),
+      UIBarButtonItem(
+        title: "Spawn",
+        style: .plain,
+        target: self,
+        action: #selector(spawnNewWindow)
+      )
+    ]
+  }
+
+  @objc private func replaceNewWindow() {
+    let window = AppDelegate.createNewWindow(with: view.window!)
+    window.makeKeyAndVisible()
+    (UIApplication.shared.delegate as? AppDelegate)?.window = window
+  }
+
+  @objc private func spawnNewWindow() {
+    guard #available(iOS 13.0, *) else { return }
+
+    let userActivity = NSUserActivity(activityType: "window")
+    UIApplication.shared.requestSceneSessionActivation(nil, userActivity: userActivity, options: nil, errorHandler: nil)
   }
 }
 

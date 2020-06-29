@@ -47,6 +47,7 @@
 
 static DMTraitCollection *_overrideTraitCollection = nil; // This is set manually in setCurrentTraitCollection:animated
 static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil;
+static BOOL _isObservingNewWindowAddNotification = NO;
 
 + (DMTraitCollection *)currentTraitCollection {
   if (@available(iOS 13.0, *)) {
@@ -78,6 +79,9 @@ static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil
     // Create snapshot views to ease the transition
     snapshotViews = [NSMutableArray array];
     [views enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
+      if (view.isHidden) // Skip hidden views
+        return;
+
       UIView *snapshotView = [view snapshotViewAfterScreenUpdates:NO];
       if (snapshotView) {
         [view addSubview:snapshotView];
@@ -85,7 +89,7 @@ static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil
       }
     }];
     [viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull vc, NSUInteger idx, BOOL * _Nonnull stop) {
-      if (!vc.isViewLoaded)
+      if (!vc.isViewLoaded || vc.view.isHidden) // Skip view controllers that are not loaded and hidden views
         return;
 
       UIView *snapshotView = [vc.view snapshotViewAfterScreenUpdates:NO];
@@ -182,13 +186,16 @@ static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil
 // MARK: - Observer Registration
 + (void)registerWithApplication:(UIApplication *)application syncImmediately:(BOOL)syncImmediately animated:(BOOL)animated {
   __weak UIApplication *weakApp = application;
+  __weak typeof(self) weakSelf = self;
   _userInterfaceStyleChangeHandler = ^(DMTraitCollection *traitCollection, BOOL animated) {
     __strong UIApplication *strongApp = weakApp;
     if (!strongApp)
       return;
 
-    [self updateUIWithViews:strongApp.windows viewControllers:nil traitCollection:traitCollection animated:animated];
+    [weakSelf updateUIWithViews:strongApp.windows viewControllers:nil traitCollection:traitCollection animated:animated];
   };
+
+  [self observeNewWindowNotificationIfNeeded];
 
   if (syncImmediately)
     [self syncImmediatelyAnimated:animated];
@@ -196,16 +203,30 @@ static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil
 
 + (void)registerWithViewController:(UIViewController *)viewController syncImmediately:(BOOL)syncImmediately animated:(BOOL)animated {
   __weak UIViewController *weakVc = viewController;
+  __weak typeof(self) weakSelf = self;
   _userInterfaceStyleChangeHandler = ^(DMTraitCollection *traitCollection, BOOL animated) {
     __strong UIViewController *strongVc = weakVc;
     if (!strongVc)
       return;
 
-    [self updateUIWithViews:nil viewControllers:[NSArray arrayWithObject:strongVc] traitCollection:traitCollection animated:animated];
+    [weakSelf updateUIWithViews:nil viewControllers:[NSArray arrayWithObject:strongVc] traitCollection:traitCollection animated:animated];
   };
 
   if (syncImmediately)
     [self syncImmediatelyAnimated:animated];
+}
+
++ (void)observeNewWindowNotificationIfNeeded {
+  if (_isObservingNewWindowAddNotification)
+    return;
+
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeVisible:) name:UIWindowDidBecomeVisibleNotification object:nil];
+}
+
++ (void)windowDidBecomeVisible:(NSNotification *)notification {
+  NSObject *object = [notification object];
+  if ([object isKindOfClass:[UIWindow class]])
+    [self updateUIWithViews:@[(UIWindow *)object] viewControllers:nil traitCollection:[self overrideTraitCollection] animated:NO];
 }
 
 + (void)syncImmediatelyAnimated:(BOOL)animated {
@@ -215,11 +236,16 @@ static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil
 
 + (void)unregister {
   _userInterfaceStyleChangeHandler = nil;
+  if (_isObservingNewWindowAddNotification) {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIWindowDidBecomeVisibleNotification object:nil];
+    _isObservingNewWindowAddNotification = NO;
+  }
 }
 
 // MARK: - Swizzling
 + (void)swizzleUIScreenTraitCollectionDidChange {
   static dispatch_once_t onceToken;
+  __weak typeof(self) weakSelf = self;
   dispatch_once(&onceToken, ^{
     [UIScreen swizzleTraitCollectionDidChangeToDMTraitCollectionDidChangeWithBlock:^(id<UITraitEnvironment> object, UITraitCollection *previousTraitCollection) {
       if ([DMTraitCollection overrideTraitCollection].userInterfaceStyle != DMUserInterfaceStyleUnspecified) {
@@ -227,7 +253,7 @@ static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil
         return;
       }
 
-      [self syncImmediatelyAnimated:YES];
+      [weakSelf syncImmediatelyAnimated:YES];
     }];
   });
 }
