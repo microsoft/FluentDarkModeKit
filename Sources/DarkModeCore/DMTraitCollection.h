@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, DMUserInterfaceStyle) {
 
 @interface DMTraitCollection : NSObject
 
-@property (class, nonatomic, readonly) DMTraitCollection *currentTraitCollection;
+@property (class, nonatomic, readonly) DMTraitCollection *currentTraitCollection API_DEPRECATED("Use of current should be avoided as in UIKit it does not contain meaningful values outside the render loop.", ios(11.0, 11.0));
 @property (class, nonatomic, readonly) DMTraitCollection *overrideTraitCollection;
 
 + (DMTraitCollection *)traitCollectionWithUserInterfaceStyle:(DMUserInterfaceStyle)userInterfaceStyle;
