@@ -18,7 +18,8 @@ final class MainViewController: ViewController {
     Row(name: "UIActivityIndicatorView", vcType: UIActivityIndicatorViewVC.self),
     Row(name: "UIButton", vcType: UIButtonVC.self),
     Row(name: "UILabel", vcType: UILabelVC.self),
-    Row(name: "UIPageControl", vcType: UIPageControlVC.self)
+    Row(name: "UIPageControl", vcType: UIPageControlVC.self),
+    Row(name: "UIImageView", vcType: UIImageViewVC.self),
   ]
 
   lazy var tableView: UITableView = {

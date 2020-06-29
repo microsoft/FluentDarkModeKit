@@ -37,7 +37,7 @@
 }
 
 - (UIImage *)resolvedImage {
-  if (DMTraitCollection.currentTraitCollection.userInterfaceStyle == DMUserInterfaceStyleDark) {
+  if (DMTraitCollection.overrideTraitCollection.userInterfaceStyle == DMUserInterfaceStyleDark) {
     return self.darkImage;
   } else {
     return self.lightImage;

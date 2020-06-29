@@ -55,6 +55,7 @@
 		8CE066D0239E5586002CE16D /* UIImage+DarkModeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC8D8722398E7A30043276A /* UIImage+DarkModeKit.m */; };
 		EA2EA50024A1CBF2001AE312 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA4FE24A1CAD5001AE312 /* SceneDelegate.swift */; };
 		EA7316F1248F5055009AE037 /* UILabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7316EF248F5050009AE037 /* UILabelVC.swift */; };
+		EAE6065624A9DA1B001304D1 /* UIImageViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE6065324A9D9E0001304D1 /* UIImageViewVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,7 @@
 		8CDA628B2366DAA9004895B5 /* DMDynamicColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMDynamicColor.h; sourceTree = "<group>"; };
 		EA2EA4FE24A1CAD5001AE312 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EA7316EF248F5050009AE037 /* UILabelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelVC.swift; sourceTree = "<group>"; };
+		EAE6065324A9D9E0001304D1 /* UIImageViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +291,7 @@
 				8C63F64123A36B0900D93CF4 /* UIButtonVC.swift */,
 				8C63F64423A374CF00D93CF4 /* UIPageControlVC.swift */,
 				EA7316EF248F5050009AE037 /* UILabelVC.swift */,
+				EAE6065324A9D9E0001304D1 /* UIImageViewVC.swift */,
 				8CAFD9DD23715FAB001A63B8 /* Assets.xcassets */,
 				8CAFD9DF23715FAB001A63B8 /* LaunchScreen.storyboard */,
 				8CAFD9E223715FAB001A63B8 /* Info.plist */,
@@ -576,6 +579,7 @@
 				8C7B250C23A22A80002E2558 /* UIActivityIndicatorViewVC.swift in Sources */,
 				8CAFD9D923715FAA001A63B8 /* ViewController.swift in Sources */,
 				8C63F64323A36B2700D93CF4 /* UIButtonVC.swift in Sources */,
+				EAE6065624A9DA1B001304D1 /* UIImageViewVC.swift in Sources */,
 				EA7316F1248F5055009AE037 /* UILabelVC.swift in Sources */,
 				8CAFD9ED2371606D001A63B8 /* NavigationController.swift in Sources */,
 				EA2EA50024A1CBF2001AE312 /* SceneDelegate.swift in Sources */,

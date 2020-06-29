@@ -22,7 +22,7 @@
 }
 
 - (UIColor *)resolvedColor {
-  return [self resolvedColorWithTraitCollection:DMTraitCollection.currentTraitCollection];
+  return [self resolvedColorWithTraitCollection:DMTraitCollection.overrideTraitCollection];
 }
 
 - (UIColor *)resolvedColorWithTraitCollection:(DMTraitCollection *)traitCollection {

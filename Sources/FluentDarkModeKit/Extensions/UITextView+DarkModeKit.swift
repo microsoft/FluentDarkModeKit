@@ -14,7 +14,7 @@ extension UITextView {
     dm_updateDynamicColors()
 
     keyboardAppearance = {
-      if DMTraitCollection.current.userInterfaceStyle == .dark {
+      if DMTraitCollection.override.userInterfaceStyle == .dark {
         return .dark
       }
       else {
