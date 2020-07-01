@@ -18,7 +18,7 @@ extension UITextField {
     }
 
     keyboardAppearance = {
-      if DMTraitCollection.current.userInterfaceStyle == .dark {
+      if DMTraitCollection.override.userInterfaceStyle == .dark {
         return .dark
       }
       else {

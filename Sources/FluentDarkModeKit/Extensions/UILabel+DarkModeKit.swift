@@ -19,8 +19,8 @@ extension UILabel {
     class_replaceMethod(UILabel.self, selector, imp_implementationWithBlock({ (self: UILabel) -> Void in
         let oldIMP = unsafeBitCast(imp, to: (@convention(c) (UILabel, Selector) -> Void).self)
         oldIMP(self, selector)
-        if self.currentUserInterfaceStyle != DMTraitCollection.current.userInterfaceStyle {
-          self.currentUserInterfaceStyle = DMTraitCollection.current.userInterfaceStyle
+        if self.currentUserInterfaceStyle != DMTraitCollection.override.userInterfaceStyle {
+          self.currentUserInterfaceStyle = DMTraitCollection.override.userInterfaceStyle
           self.dmTraitCollectionDidChange(nil)
         }
       } as @convention(block) (UILabel) -> Void), method_getTypeEncoding(method))

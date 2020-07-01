@@ -45,7 +45,7 @@
 
 @implementation DMTraitCollection
 
-static DMTraitCollection *_overrideTraitCollection = nil; // This is set manually in setCurrentTraitCollection:animated
+static DMTraitCollection *_overrideTraitCollection = nil; // This is set manually in setOverrideTraitCollection:animated
 static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil;
 static BOOL _isObservingNewWindowAddNotification = NO;
 
@@ -68,8 +68,8 @@ static BOOL _isObservingNewWindowAddNotification = NO;
   return [DMTraitCollection traitCollectionWithUITraitCollection:UIScreen.mainScreen.traitCollection];
 }
 
-+ (void)setOverrideTraitCollection:(DMTraitCollection *)currentTraitCollection animated:(BOOL)animated {
-  _overrideTraitCollection = currentTraitCollection;
++ (void)setOverrideTraitCollection:(DMTraitCollection *)overrideTraitCollection animated:(BOOL)animated {
+  _overrideTraitCollection = overrideTraitCollection;
   [self syncImmediatelyAnimated:animated];
 }
 

@@ -14,7 +14,7 @@ extension UIScrollView {
     dm_updateDynamicColors()
 
     indicatorStyle = {
-      if DMTraitCollection.current.userInterfaceStyle == .dark {
+      if DMTraitCollection.override.userInterfaceStyle == .dark {
         return .white
       }
       else {
