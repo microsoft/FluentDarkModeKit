@@ -38,12 +38,17 @@
 
 + (UIImage *)dm_imageWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage {
   if (@available(iOS 13, *)) {
-    UITraitCollection *lightTraitCollection = [UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleLight];
-    UITraitCollection *darkTraitCollection = [UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleDark];
-
     UIImageAsset *imageAsset = [[UIImageAsset alloc] init];
-    [imageAsset registerImage:lightImage withTraitCollection:lightTraitCollection];
-    [imageAsset registerImage:darkImage withTraitCollection:darkTraitCollection];
+
+    // Always specify a displayScale otherwise a default of 1.0 is assigned
+    [imageAsset registerImage:lightImage withTraitCollection:[UITraitCollection traitCollectionWithTraitsFromCollections:@[
+      [UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleLight],
+      [UITraitCollection traitCollectionWithDisplayScale:lightImage.scale]
+    ]]];
+    [imageAsset registerImage:darkImage withTraitCollection:[UITraitCollection traitCollectionWithTraitsFromCollections:@[
+      [UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleDark],
+      [UITraitCollection traitCollectionWithDisplayScale:darkImage.scale]
+    ]]];
 
     return [imageAsset imageWithTraitCollection:DMTraitCollection.overrideTraitCollection.uiTraitCollection];
   }
