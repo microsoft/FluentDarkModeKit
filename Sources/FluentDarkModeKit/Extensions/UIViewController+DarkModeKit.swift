@@ -4,7 +4,7 @@
 //
 
 extension UIViewController: DMTraitEnvironment {
-  public var dmTraitCollection: DMTraitCollection {
+  open var dmTraitCollection: DMTraitCollection {
     if #available(iOS 13.0, *) {
       return DMTraitCollection(uiTraitCollection: traitCollection)
     }
