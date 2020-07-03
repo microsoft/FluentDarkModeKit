@@ -74,6 +74,14 @@
                            OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
 
+// MARK: - Trait Collection
+- (DMTraitCollection *)dmTraitCollection {
+  if (@available(iOS 13.0, *)) {
+    return [DMTraitCollection traitCollectionWithUITraitCollection:self.traitCollection];
+  }
+  return DMTraitCollection.overrideTraitCollection;
+}
+
 - (void)dmTraitCollectionDidChange:(DMTraitCollection *)previousTraitCollection {
   if (@available(iOS 13.0, *)) {
     return;
@@ -88,6 +96,7 @@
   [self dm_updateDynamicImages];
 }
 
+// MARK: - Legacy Support
 - (void)dm_updateDynamicColors {
   UIColor *backgroundColor = [self dm_dynamicBackgroundColor];
   if (backgroundColor) {
