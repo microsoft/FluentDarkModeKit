@@ -17,30 +17,34 @@ final class DarkModeKitUITests: XCTestCase {
   }
 
   func testUIView() {
-    _test("UIView")
+    _test(UIView.self)
   }
 
   func testUIActivityIndicatorView() {
-    _test("UIActivityIndicatorView")
+    _test(UIActivityIndicatorView.self)
   }
 
   func testUIButton() {
-    _test("UIButton")
+    _test(UIButton.self)
   }
 
   func testUIPageControl() {
-    _test("UIPageControl")
+    _test(UIPageControl.self)
   }
 
   func testUILabel() {
-    _test("UILabel")
+    _test(UILabel.self)
   }
 
   func testUIImageView() {
-    _test("UIImageView")
+    _test(UIImageView.self)
   }
 
-  func _test(_ className: String) {
+  func _test(_ `class`: UIView.Type) {
+    _test(by: NSStringFromClass(`class`))
+  }
+
+  func _test(by itemName: String) {
     let app = XCUIApplication()
     let navigationBarIdentifier = "0" // Current window index is used as navigation bar title
     let refreshButtonIdentifier = "Refresh"
@@ -50,7 +54,7 @@ final class DarkModeKitUITests: XCTestCase {
     refreshButton.tap() // light mode
     refreshButton.tap() // dark mode
 
-    let uiviewStaticText = app.tables.staticTexts[className]
+    let uiviewStaticText = app.tables.staticTexts[itemName]
     uiviewStaticText.tap()
 
     sleep(1)

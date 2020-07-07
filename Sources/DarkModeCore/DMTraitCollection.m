@@ -262,11 +262,16 @@ static BOOL _isObservingNewWindowAddNotification = NO;
 
 @interface UIScreen (DMTraitEnvironment) <DMTraitEnvironment>
 
-- (void)dmTraitCollectionDidChange:(DMTraitCollection *)previousTraitCollection;
-
 @end
 
 @implementation UIScreen (DMTraitEnvironment)
+
+- (DMTraitCollection *)dmTraitCollection {
+  if (@available(iOS 13.0, *)) {
+    return [DMTraitCollection traitCollectionWithUITraitCollection:self.traitCollection];
+  }
+  return DMTraitCollection.overrideTraitCollection;
+}
 
 - (void)dmTraitCollectionDidChange:(DMTraitCollection *)previousTraitCollection {}
 
