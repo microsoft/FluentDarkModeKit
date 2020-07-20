@@ -35,9 +35,8 @@ typedef NS_ENUM(NSInteger, DMUserInterfaceStyle) {
 + (void)registerWithViewController:(UIViewController *)viewController syncImmediately:(BOOL)syncImmediately animated:(BOOL)animated;
 + (void)unregister;
 
-// MARK: - Swizzling
-// TODO: move swizzling to private header
-+ (void)swizzleUIScreenTraitCollectionDidChange API_AVAILABLE(ios(13.0));
+// MARK: - Setup
++ (void)setupEnvironment:(BOOL)useUIImageAsset;
 
 @end
 

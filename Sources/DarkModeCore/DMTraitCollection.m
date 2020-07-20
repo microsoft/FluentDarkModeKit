@@ -4,7 +4,8 @@
 //
 
 #import "DMTraitCollection.h"
-#import "UIView+DarkModeKit.h"
+#import "UIView+DarkModeKitSwizzling.h"
+#import "UIImage+DarkModeKitSwizzling.h"
 
 @import ObjectiveC;
 
@@ -243,7 +244,7 @@ static BOOL _isObservingNewWindowAddNotification = NO;
 }
 
 // MARK: - Swizzling
-+ (void)swizzleUIScreenTraitCollectionDidChange {
++ (void)swizzleUIScreenTraitCollectionDidChange API_AVAILABLE(ios(13.0)) {
   static dispatch_once_t onceToken;
   __weak typeof(self) weakSelf = self;
   dispatch_once(&onceToken, ^{
@@ -255,6 +256,24 @@ static BOOL _isObservingNewWindowAddNotification = NO;
 
       [weakSelf syncImmediatelyAnimated:YES];
     }];
+  });
+}
+
++ (void)setupEnvironment:(BOOL)useUIImageAsset {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    if (@available(iOS 13.0, *)) {
+      [DMTraitCollection swizzleUIScreenTraitCollectionDidChange];
+      [UIView swizzleTraitCollectionDidChangeToDMTraitCollectionDidChange];
+      [UIViewController swizzleTraitCollectionDidChangeToDMTraitCollectionDidChange];
+      if (!useUIImageAsset)
+        [UIImage dm_swizzleIsEqual];
+    }
+    else {
+      [UIView dm_swizzleSetTintColor];
+      [UIView dm_swizzleSetBackgroundColor];
+      [UIImage dm_swizzleIsEqual];
+    }
   });
 }
 
