@@ -8,7 +8,7 @@
 
 @import ObjectiveC;
 
-static BOOL _useUIImageAsset = NO;
+static BOOL _useUIImageAsset = YES;
 
 @implementation UIImage (DarkModeKitSwizzling)
 
@@ -38,6 +38,8 @@ static BOOL _useUIImageAsset = NO;
       }
       return ((BOOL(*)(UIImage *, SEL, UIImage *))imp)(realSelf, selector, realOther);
     }), method_getTypeEncoding(method));
+
+    _useUIImageAsset = NO;
   });
 }
 
