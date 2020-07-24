@@ -1,0 +1,4 @@
+module DarkModeCorePrivate {
+  header "shim.h"
+  export *
+}
