@@ -10,6 +10,12 @@
 
 @import ObjectiveC;
 
+@interface NSObject (DMTraitEnvironment)
+
++ (void)swizzleTraitCollectionDidChangeToDMTraitCollectionDidChange API_AVAILABLE(ios(13.0));
+
+@end
+
 @implementation NSObject (DMTraitEnvironment)
 
 + (void)swizzleTraitCollectionDidChangeToDMTraitCollectionDidChange {
@@ -49,6 +55,7 @@
 
 static DMTraitCollection *_overrideTraitCollection = nil; // This is set manually in setOverrideTraitCollection:animated
 static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil;
+static void (^_themeChangeHandler)(void) = nil;
 static BOOL _isObservingNewWindowAddNotification = NO;
 
 + (DMTraitCollection *)currentTraitCollection {
@@ -195,6 +202,9 @@ static BOOL _isObservingNewWindowAddNotification = NO;
       return;
 
     [weakSelf updateUIWithViews:strongApp.windows viewControllers:nil traitCollection:traitCollection animated:animated];
+
+    if (_themeChangeHandler)
+      _themeChangeHandler();
   };
 
   [self observeNewWindowNotificationIfNeeded];
@@ -212,6 +222,9 @@ static BOOL _isObservingNewWindowAddNotification = NO;
       return;
 
     [weakSelf updateUIWithViews:nil viewControllers:[NSArray arrayWithObject:strongVc] traitCollection:traitCollection animated:animated];
+
+    if (_themeChangeHandler)
+      _themeChangeHandler();
   };
 
   if (syncImmediately)
@@ -275,6 +288,8 @@ static BOOL _isObservingNewWindowAddNotification = NO;
       [UIView dm_swizzleSetBackgroundColor];
       [UIImage dm_swizzleIsEqual];
     }
+
+    _themeChangeHandler = configuration.themeChangeHandler;
   });
 }
 

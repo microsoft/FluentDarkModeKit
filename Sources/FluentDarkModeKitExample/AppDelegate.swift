@@ -16,7 +16,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
 
     let configuration = DMEnvironmentConfiguration()
-    DarkModeManager.register(with: configuration, for: application)
+    configuration.themeChangeHandler = {
+      print("theme changed")
+    }
+    DarkModeManager.setup(with: configuration)
+    DarkModeManager.register(with: application)
 
     if #available(iOS 13.0, *) {
       return true

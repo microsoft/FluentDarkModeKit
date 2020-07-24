@@ -10,6 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface DMEnvironmentConfiguration : NSObject
 
 @property (nonatomic) BOOL useImageAsset; // Defaults to NO
+@property (nullable, nonatomic) void (^themeChangeHandler)(void); // Defaults to nil
 
 - (instancetype)init;
 
