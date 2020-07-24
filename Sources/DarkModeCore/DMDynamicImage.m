@@ -39,9 +39,8 @@
 - (UIImage *)resolvedImage {
   if (DMTraitCollection.overrideTraitCollection.userInterfaceStyle == DMUserInterfaceStyleDark) {
     return self.darkImage;
-  } else {
-    return self.lightImage;
   }
+  return self.lightImage;
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
@@ -86,6 +85,13 @@
 - (UIImage *)imageWithHorizontallyFlippedOrientation {
   return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:[self.lightImage imageWithHorizontallyFlippedOrientation]
                                                           darkImage:[self.darkImage imageWithHorizontallyFlippedOrientation]];
+}
+
+- (UIImage *)imageWithConfiguration:(UIImageConfiguration *)configuration API_AVAILABLE(ios(13.0)) {
+  if (configuration.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+    return [_darkImage imageWithConfiguration:configuration];
+  }
+  return [_lightImage imageWithConfiguration:configuration];
 }
 
 - (id)copy {

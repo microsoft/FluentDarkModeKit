@@ -4,6 +4,7 @@
 //
 
 #import "UIImage+DarkModeKit.h"
+#import "UIImage+DarkModeKitSwizzling.h"
 #import "DMDynamicImage.h"
 #import "DMTraitCollection.h"
 
@@ -11,46 +12,23 @@
 
 @implementation UIImage (DarkModeKit)
 
-+ (void)dm_swizzleIsEqual {
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    SEL selector = @selector(isEqual:);
-    Method method = class_getInstanceMethod(self, selector);
-    if (!method)
-      NSAssert(NO, @"Method not found for [UIImage isEqual:]");
-
-    IMP imp = method_getImplementation(method);
-    class_replaceMethod(self, selector, imp_implementationWithBlock(^BOOL(UIImage *self, UIImage *other) {
-      /// On iOS 13, UIImage `isEqual:` somehow changes internally and doesn't work for `NSProxy`,
-      /// here we forward the message to internal images manually
-      UIImage *realSelf = self;
-      UIImage *realOther = other;
-      if (object_getClass(self) == DMDynamicImageProxy.class) {
-        realSelf = ((DMDynamicImageProxy *)self).resolvedImage;
-      }
-      if (object_getClass(other) == DMDynamicImageProxy.class) {
-        realOther = ((DMDynamicImageProxy *)other).resolvedImage;
-      }
-      return ((BOOL(*)(UIImage *, SEL, UIImage *))imp)(realSelf, selector, realOther);
-    }), method_getTypeEncoding(method));
-  });
-}
-
 + (UIImage *)dm_imageWithLightImage:(UIImage *)lightImage darkImage:(UIImage *)darkImage {
   if (@available(iOS 13, *)) {
-    UIImageAsset *imageAsset = [[UIImageAsset alloc] init];
+    if ([UIImage useUIImageAsset]) {
+      UIImageAsset *imageAsset = [[UIImageAsset alloc] init];
 
-    // Always specify a displayScale otherwise a default of 1.0 is assigned
-    [imageAsset registerImage:lightImage withTraitCollection:[UITraitCollection traitCollectionWithTraitsFromCollections:@[
-      [UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleLight],
-      [UITraitCollection traitCollectionWithDisplayScale:lightImage.scale]
-    ]]];
-    [imageAsset registerImage:darkImage withTraitCollection:[UITraitCollection traitCollectionWithTraitsFromCollections:@[
-      [UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleDark],
-      [UITraitCollection traitCollectionWithDisplayScale:darkImage.scale]
-    ]]];
+      // Always specify a displayScale otherwise a default of 1.0 is assigned
+      [imageAsset registerImage:lightImage withTraitCollection:[UITraitCollection traitCollectionWithTraitsFromCollections:@[
+        [UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleLight],
+        [UITraitCollection traitCollectionWithDisplayScale:lightImage.scale]
+      ]]];
+      [imageAsset registerImage:darkImage withTraitCollection:[UITraitCollection traitCollectionWithTraitsFromCollections:@[
+        [UITraitCollection traitCollectionWithUserInterfaceStyle:UIUserInterfaceStyleDark],
+        [UITraitCollection traitCollectionWithDisplayScale:darkImage.scale]
+      ]]];
 
-    return [imageAsset imageWithTraitCollection:DMTraitCollection.overrideTraitCollection.uiTraitCollection];
+      return [imageAsset imageWithTraitCollection:DMTraitCollection.overrideTraitCollection.uiTraitCollection];
+    }
   }
 
   return (UIImage *)[[DMDynamicImageProxy alloc] initWithLightImage:lightImage darkImage:darkImage];

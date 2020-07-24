@@ -4,6 +4,7 @@
 
 #import "../DMDynamicColor.h"
 #import "../DMDynamicImage.h"
+#import "../DMEnvironmentConfiguration"
 #import "../DMNamespace.h"
 #import "../DMTraitCollection.h"
 #import "../UIColor+DarkModeKit.h"
