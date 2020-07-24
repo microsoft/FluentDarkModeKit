@@ -5,7 +5,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class UITraitCollection;
+@class UITraitCollection, DMEnvironmentConfiguration;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -36,7 +36,8 @@ typedef NS_ENUM(NSInteger, DMUserInterfaceStyle) {
 + (void)unregister;
 
 // MARK: - Setup
-+ (void)setupEnvironment:(BOOL)useUIImageAsset;
+// TODO: Move to private header
++ (void)setupEnvironmentWithConfiguration:(DMEnvironmentConfiguration *)configuration;
 
 @end
 

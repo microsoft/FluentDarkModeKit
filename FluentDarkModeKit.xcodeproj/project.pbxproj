@@ -59,6 +59,8 @@
 		EA1BAF7024C58447006E755F /* UIImage+DarkModeKitSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BAF6E24C58447006E755F /* UIImage+DarkModeKitSwizzling.m */; };
 		EA2EA50024A1CBF2001AE312 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA4FE24A1CAD5001AE312 /* SceneDelegate.swift */; };
 		EA7316F1248F5055009AE037 /* UILabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7316EF248F5050009AE037 /* UILabelVC.swift */; };
+		EAC41E2F24CADD6E0033C9AC /* DMEnvironmentConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC41E2D24CADD6E0033C9AC /* DMEnvironmentConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EAC41E3024CADD6E0033C9AC /* DMEnvironmentConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC41E2E24CADD6E0033C9AC /* DMEnvironmentConfiguration.m */; };
 		EAE6065624A9DA1B001304D1 /* UIImageViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE6065324A9D9E0001304D1 /* UIImageViewVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -158,6 +160,8 @@
 		EA1BAF6E24C58447006E755F /* UIImage+DarkModeKitSwizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DarkModeKitSwizzling.m"; sourceTree = "<group>"; };
 		EA2EA4FE24A1CAD5001AE312 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		EA7316EF248F5050009AE037 /* UILabelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelVC.swift; sourceTree = "<group>"; };
+		EAC41E2D24CADD6E0033C9AC /* DMEnvironmentConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMEnvironmentConfiguration.h; sourceTree = "<group>"; };
+		EAC41E2E24CADD6E0033C9AC /* DMEnvironmentConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMEnvironmentConfiguration.m; sourceTree = "<group>"; };
 		EAE6065324A9D9E0001304D1 /* UIImageViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,6 +226,8 @@
 				8CDA62732366DAA9004895B5 /* DMDynamicColor.m */,
 				8CDA62762366DAA9004895B5 /* DMDynamicImage.h */,
 				8CDA62892366DAA9004895B5 /* DMDynamicImage.m */,
+				EAC41E2D24CADD6E0033C9AC /* DMEnvironmentConfiguration.h */,
+				EAC41E2E24CADD6E0033C9AC /* DMEnvironmentConfiguration.m */,
 				8CDA62712366DAA9004895B5 /* DMTraitCollection.h */,
 				8CDA62722366DAA9004895B5 /* DMTraitCollection.m */,
 				8CC8D86F2398E7520043276A /* DMNamespace.h */,
@@ -352,6 +358,7 @@
 				EA1BAF6724C581C5006E755F /* UIView+DarkModeKitSwizzling.h in Headers */,
 				EA1BAF6F24C58447006E755F /* UIImage+DarkModeKitSwizzling.h in Headers */,
 				8CC8D8702398E7520043276A /* DMNamespace.h in Headers */,
+				EAC41E2F24CADD6E0033C9AC /* DMEnvironmentConfiguration.h in Headers */,
 				8CDA628D2366DAA9004895B5 /* DMTraitCollection.h in Headers */,
 				8CDA628C2366DAA9004895B5 /* FluentDarkModeKit.h in Headers */,
 				8CB63E41238551F3008ABCE2 /* UIView+DarkModeKit.h in Headers */,
@@ -545,6 +552,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CDA62972366DAA9004895B5 /* UIScrollView+DarkModeKit.swift in Sources */,
+				EAC41E3024CADD6E0033C9AC /* DMEnvironmentConfiguration.m in Sources */,
 				8CB63E42238551F3008ABCE2 /* UIView+DarkModeKit.m in Sources */,
 				8CDA62A12366DAA9004895B5 /* UITextField+DarkModeKit.swift in Sources */,
 				8CDA62952366DAA9004895B5 /* UIWindow+DarkModeKit.swift in Sources */,

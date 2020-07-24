@@ -15,7 +15,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
 
-    DarkModeManager.register(with: application, useUIImageAsset: true)
+    let configuration = DMEnvironmentConfiguration()
+    DarkModeManager.register(with: configuration, for: application)
 
     if #available(iOS 13.0, *) {
       return true

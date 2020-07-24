@@ -11,13 +11,13 @@ import UIKit
 public final class DarkModeManager: NSObject {
   private static var swizzlingConfigured = false
 
-  public class func register(with application: UIApplication, useUIImageAsset: Bool, syncImmediately: Bool = false, animated: Bool = false) {
-    commonSetup(useUIImageAsset)
+  public class func register(with configuration: DMEnvironmentConfiguration, for application: UIApplication, syncImmediately: Bool = false, animated: Bool = false) {
+    commonSetup(with: configuration)
     DMTraitCollection.register(with: application, syncImmediately: syncImmediately, animated: animated)
   }
 
-  public class func register(with viewController: UIViewController, useUIImageAsset: Bool, syncImmediately: Bool = false, animated: Bool = false) {
-    commonSetup(useUIImageAsset)
+  public class func register(with configuration: DMEnvironmentConfiguration, for viewController: UIViewController, syncImmediately: Bool = false, animated: Bool = false) {
+    commonSetup(with: configuration)
     DMTraitCollection.register(with: viewController, syncImmediately: syncImmediately, animated: animated)
   }
 
@@ -25,14 +25,14 @@ public final class DarkModeManager: NSObject {
     DMTraitCollection.unregister()
   }
 
-  private class func commonSetup(_ useUIImageAsset: Bool) {
+  private class func commonSetup(with configuration: DMEnvironmentConfiguration) {
     guard !swizzlingConfigured else {
       return
     }
 
     defer { swizzlingConfigured = true }
 
-    DMTraitCollection.setupEnvironment(useUIImageAsset)
+    DMTraitCollection.setupEnvironment(with: configuration)
     guard #available(iOS 13.0, *) else {
       // Colors
       UIView.swizzleWillMoveToWindowOnce

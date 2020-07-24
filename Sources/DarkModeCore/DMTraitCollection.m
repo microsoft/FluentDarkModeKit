@@ -3,6 +3,7 @@
 //  Licensed under the MIT License.
 //
 
+#import "DMEnvironmentConfiguration.h"
 #import "DMTraitCollection.h"
 #import "UIView+DarkModeKitSwizzling.h"
 #import "UIImage+DarkModeKitSwizzling.h"
@@ -259,14 +260,14 @@ static BOOL _isObservingNewWindowAddNotification = NO;
   });
 }
 
-+ (void)setupEnvironment:(BOOL)useUIImageAsset {
++ (void)setupEnvironmentWithConfiguration:(DMEnvironmentConfiguration *)configuration {
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
     if (@available(iOS 13.0, *)) {
       [DMTraitCollection swizzleUIScreenTraitCollectionDidChange];
       [UIView swizzleTraitCollectionDidChangeToDMTraitCollectionDidChange];
       [UIViewController swizzleTraitCollectionDidChangeToDMTraitCollectionDidChange];
-      if (!useUIImageAsset)
+      if (!configuration.useImageAsset)
         [UIImage dm_swizzleIsEqual];
     }
     else {
