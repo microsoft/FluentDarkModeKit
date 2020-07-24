@@ -1,0 +1,8 @@
+framework module FluentDarkModeKit {
+  umbrella header "FluentDarkModeKit.h"
+  export *
+
+  explicit module Private {
+    header "DMTraitCollection+DarkModeKitSwizzling.h"
+  }
+}

@@ -6,6 +6,8 @@
 import UIKit
 #if SWIFT_PACKAGE
 @_exported import DarkModeCore
+#else
+import FluentDarkModeKit.Private
 #endif
 
 public final class DarkModeManager: NSObject {

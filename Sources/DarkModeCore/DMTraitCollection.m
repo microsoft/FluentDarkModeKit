@@ -4,7 +4,7 @@
 //
 
 #import "DMEnvironmentConfiguration.h"
-#import "DMTraitCollection.h"
+#import "DMTraitCollection+DarkModeKitSwizzling.h"
 #import "UIView+DarkModeKitSwizzling.h"
 #import "UIImage+DarkModeKitSwizzling.h"
 
@@ -272,6 +272,10 @@ static BOOL _isObservingNewWindowAddNotification = NO;
     }];
   });
 }
+
+@end
+
+@implementation DMTraitCollection (DarkModeKitSwizzling)
 
 + (void)setupEnvironmentWithConfiguration:(DMEnvironmentConfiguration *)configuration {
   static dispatch_once_t onceToken;

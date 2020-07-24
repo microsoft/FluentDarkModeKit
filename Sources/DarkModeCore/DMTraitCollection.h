@@ -35,10 +35,6 @@ typedef NS_ENUM(NSInteger, DMUserInterfaceStyle) {
 + (void)registerWithViewController:(UIViewController *)viewController syncImmediately:(BOOL)syncImmediately animated:(BOOL)animated;
 + (void)unregister;
 
-// MARK: - Setup
-// TODO: Move to private header
-+ (void)setupEnvironmentWithConfiguration:(DMEnvironmentConfiguration *)configuration;
-
 @end
 
 #pragma mark - DMTraitEnvironment
