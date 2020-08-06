@@ -11,6 +11,7 @@
   self = [super init];
   if (self) {
     _useImageAsset = NO;
+    _themeChangeHandler = nil;
   }
   return self;
 }

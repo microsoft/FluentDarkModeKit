@@ -11,21 +11,24 @@ import UIKit
 public final class DarkModeManager: NSObject {
   private static var swizzlingConfigured = false
 
-  public class func register(with configuration: DMEnvironmentConfiguration, for application: UIApplication, syncImmediately: Bool = false, animated: Bool = false) {
+  public static func setup(with configuration: DMEnvironmentConfiguration) {
     commonSetup(with: configuration)
+  }
+
+  public static func register(with application: UIApplication, syncImmediately: Bool = false, animated: Bool = false) {
     DMTraitCollection.register(with: application, syncImmediately: syncImmediately, animated: animated)
   }
 
-  public class func register(with configuration: DMEnvironmentConfiguration, for viewController: UIViewController, syncImmediately: Bool = false, animated: Bool = false) {
-    commonSetup(with: configuration)
+  @available(iOSApplicationExtension 11.0, *)
+  public static func register(with viewController: UIViewController, syncImmediately: Bool = false, animated: Bool = false) {
     DMTraitCollection.register(with: viewController, syncImmediately: syncImmediately, animated: animated)
   }
 
-  public class func unregister() {
+  public static func unregister() {
     DMTraitCollection.unregister()
   }
 
-  private class func commonSetup(with configuration: DMEnvironmentConfiguration) {
+  private static func commonSetup(with configuration: DMEnvironmentConfiguration) {
     guard !swizzlingConfigured else {
       return
     }
