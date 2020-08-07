@@ -58,6 +58,7 @@
 		EA1BAF6F24C58447006E755F /* UIImage+DarkModeKitSwizzling.h in Headers */ = {isa = PBXBuildFile; fileRef = EA1BAF6D24C58447006E755F /* UIImage+DarkModeKitSwizzling.h */; };
 		EA1BAF7024C58447006E755F /* UIImage+DarkModeKitSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BAF6E24C58447006E755F /* UIImage+DarkModeKitSwizzling.m */; };
 		EA2EA50024A1CBF2001AE312 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2EA4FE24A1CAD5001AE312 /* SceneDelegate.swift */; };
+		EA6B880824C6D49400409485 /* UIActivityIndicatorView+DarkModeKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA6B880724C6D49400409485 /* UIActivityIndicatorView+DarkModeKit.swift */; };
 		EA7316F1248F5055009AE037 /* UILabelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7316EF248F5050009AE037 /* UILabelVC.swift */; };
 		EAC41E2F24CADD6E0033C9AC /* DMEnvironmentConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = EAC41E2D24CADD6E0033C9AC /* DMEnvironmentConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAC41E3024CADD6E0033C9AC /* DMEnvironmentConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = EAC41E2E24CADD6E0033C9AC /* DMEnvironmentConfiguration.m */; };
@@ -159,6 +160,7 @@
 		EA1BAF6D24C58447006E755F /* UIImage+DarkModeKitSwizzling.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+DarkModeKitSwizzling.h"; sourceTree = "<group>"; };
 		EA1BAF6E24C58447006E755F /* UIImage+DarkModeKitSwizzling.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DarkModeKitSwizzling.m"; sourceTree = "<group>"; };
 		EA2EA4FE24A1CAD5001AE312 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		EA6B880724C6D49400409485 /* UIActivityIndicatorView+DarkModeKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+DarkModeKit.swift"; sourceTree = "<group>"; };
 		EA7316EF248F5050009AE037 /* UILabelVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelVC.swift; sourceTree = "<group>"; };
 		EAC41E2D24CADD6E0033C9AC /* DMEnvironmentConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMEnvironmentConfiguration.h; sourceTree = "<group>"; };
 		EAC41E2E24CADD6E0033C9AC /* DMEnvironmentConfiguration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMEnvironmentConfiguration.m; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				8CDA62852366DAA9004895B5 /* UILabel+DarkModeKit.swift */,
 				8CDA62862366DAA9004895B5 /* UISlider+DarkModeKit.swift */,
 				8CDA62872366DAA9004895B5 /* UITextField+DarkModeKit.swift */,
+				EA6B880724C6D49400409485 /* UIActivityIndicatorView+DarkModeKit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -575,6 +578,7 @@
 				8CDA629A2366DAA9004895B5 /* UIPageControl+DarkModeKit.swift in Sources */,
 				8CDA62932366DAA9004895B5 /* UIButton+DarkModeKit.swift in Sources */,
 				EA1BAF7024C58447006E755F /* UIImage+DarkModeKitSwizzling.m in Sources */,
+				EA6B880824C6D49400409485 /* UIActivityIndicatorView+DarkModeKit.swift in Sources */,
 				8CDA629B2366DAA9004895B5 /* UITableView+DarkModeKit.swift in Sources */,
 				8CDA629F2366DAA9004895B5 /* UILabel+DarkModeKit.swift in Sources */,
 			);
