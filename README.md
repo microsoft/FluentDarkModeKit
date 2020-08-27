@@ -123,6 +123,16 @@ protocol DMTraitEnvironment: NSObjectProtocol {
 }
 ```
 
+## Migration
+
+If you are using a pre 0.5.2 version and wants to migrate to the new version, here are the changes that you should pay attention to:
+
+1. On iOS 13, the latest version of FluentDarkModeKit uses iOS 13's API for dynamic color and theme change.
+2. There are some API changes, see [How to Use FluentDarkModeKit](#how-to-use-fluentdarkmodekit) and [Change Theme](#change-theme).
+
+Carefully test your app after updating FluentDarkModeKit and fix compile errors/warnings.
+
+
 ## Contributing
 
 This project welcomes contributions and suggestions. Most contributions require you to agree to a
