@@ -1,5 +1,3 @@
-swiftlint_version: 0.40.0
-
 # these must match project setting values, checks that we don't have redundant availability checks.
 deployment_target:
   iOS_deployment_target: 11.0
