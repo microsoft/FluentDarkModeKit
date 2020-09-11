@@ -37,6 +37,10 @@
   }];
 }
 
+- (CGColorRef)CGColor {
+  return [[self resolvedColor] CGColor];
+}
+
 // MARK: Methods that do not need forwarding
 
 - (UIColor *)lightColor {
