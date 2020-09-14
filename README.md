@@ -54,25 +54,50 @@ pod "FluentDarkModeKit"
 
 ## Get Started
 
-### How to Use FluentDarkModeKit
+### How to Set Up FluentDarkModeKit
 
 To set up FluentDarkModeKit, you need to call the following methods first.
 
 ```swift
 let configuration = DMEnvironmentConfiguration()
-// optional, register a callback for theme change
 configuration.themeChangeHandler = {
     print("theme changed")
 }
-// optional, whether UIImageAsset is used for dynamic image
-// only available for iOS 13+, images marked with "Preserve
-// Vector Data" is not to be used when it is set to true,
-// default to false.
+configuration.windowThemeChangeHandler = { window in
+    print("\(window) theme changed")
+}
 configuration.useImageAsset = false
 
 DarkModeManager.setup(with: configuration)
 DarkModeManager.register(with: UIApplication.shared)
 ```
+
+There are 3 configurable properties in FluentDarkModeKit as you can see in the code sample above.
+
+**themeChangeHandler**
+
+This is a callback for app wide theme change. Defaults to nil.
+
+It is invoked when a new theme is set via `setOverrideTraitCollection(_:)` or system wide theme changes (`DMTraitCollection.overrideTraitCollection.userInterfaceStyle` is set to `.unspecific`).
+
+**windowThemeChangeHandler**
+
+This is a callback for window theme change. iOS 13+. Defaults to nil.
+
+It is invoked per window when the window's `traitCollection.userInterfaceStyle` changes.
+UIWindow's `traitCollection.userInterfaceStyle` can change for multiple reasons:
+1. System wide theme changes (`DMTraitCollection.overrideTraitCollection.userInterfaceStyle` and UIWindow's `overrideUserInterfaceStyle` are both `.unspecific`).
+2.  `setOverrideTraitCollection(_:)`  is called (UIWindow's `overrideUserInterfaceStyle` is `.unspecific`).
+3. UIWindow's `overrideUserInterfaceStyle` is manually modified to a different value than current mode.
+4. UIKit modifies your UIWindow's `traitCollection` (An example would be when an app enters background, UIKit will prepare snapshots with dark mode on/off by modifying it).
+
+**useImageAsset**
+
+It determines whether UIImageAsset is used for dynamic image. iOS 13+. Defaults to false.
+
+Images marked with "Preserve Vector Data" must not to be used when it is set to true.
+
+### How to Use FluentDarkModeKit
 
 To use FluentDarkModeKit, provide a pair of colors or images instead of a single value. Simply replace existing colors/images with a pair of light and dark colors/images.
 
@@ -128,7 +153,7 @@ protocol DMTraitEnvironment: NSObjectProtocol {
 If you are using a pre 0.5.2 version and wants to migrate to the new version, here are the changes that you should pay attention to:
 
 1. On iOS 13, the latest version of FluentDarkModeKit uses iOS 13's API for dynamic color and theme change.
-2. There are some API changes, see [How to Use FluentDarkModeKit](#how-to-use-fluentdarkmodekit) and [Change Theme](#change-theme).
+2. There are some API changes, see [How to Set Up FluentDarkModeKit](#how-to-set-up-fluentdarkmodekit) and [Change Theme](#change-theme).
 
 Carefully test your app after updating FluentDarkModeKit and fix compile errors/warnings.
 

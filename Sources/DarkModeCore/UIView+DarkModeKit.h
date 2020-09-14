@@ -12,8 +12,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class DMDynamicColor;
-
 @interface UIView (DarkModeKit) <DMTraitEnvironment>
 
 - (void)dm_updateDynamicColors API_DEPRECATED("dm_updateDynamicColors is deprecated and will not be called on iOS 13.0, use dmTraitCollectionDidChange: instead", ios(11.0, 13.0));;

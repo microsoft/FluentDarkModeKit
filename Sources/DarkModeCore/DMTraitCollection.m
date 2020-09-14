@@ -5,6 +5,8 @@
 
 #import "DMEnvironmentConfiguration.h"
 #import "DMTraitCollection.h"
+#import "UIViewController+DarkModeKit.h"
+#import "UIView+DarkModeKit.h"
 #import "UIView+DarkModeKitSwizzling.h"
 #import "UIImage+DarkModeKitSwizzling.h"
 
@@ -56,6 +58,7 @@
 static DMTraitCollection *_overrideTraitCollection = nil; // This is set manually in setOverrideTraitCollection:animated
 static void (^_userInterfaceStyleChangeHandler)(DMTraitCollection *, BOOL) = nil;
 static void (^_themeChangeHandler)(void) = nil;
+static void (^_windowThemeChangeHandler)(UIWindow *) = nil;
 static BOOL _isObservingNewWindowAddNotification = NO;
 
 + (DMTraitCollection *)currentTraitCollection {
@@ -282,6 +285,8 @@ static BOOL _isObservingNewWindowAddNotification = NO;
       [UIViewController swizzleTraitCollectionDidChangeToDMTraitCollectionDidChange];
       if (!configuration.useImageAsset)
         [UIImage dm_swizzleIsEqual];
+
+      _windowThemeChangeHandler = configuration.windowThemeChangeHandler;
     }
     else {
       [UIView dm_swizzleSetTintColor];
@@ -309,5 +314,24 @@ static BOOL _isObservingNewWindowAddNotification = NO;
 }
 
 - (void)dmTraitCollectionDidChange:(DMTraitCollection *)previousTraitCollection {}
+
+@end
+
+@interface UIWindow (DMTraitEnvironment)
+
+@end
+
+@implementation UIWindow (DMTraitEnvironment)
+
+- (void)dmTraitCollectionDidChange:(DMTraitCollection *)previousTraitCollection {
+  [super dmTraitCollectionDidChange:previousTraitCollection];
+
+  if (@available(iOS 13, *)) {
+    if (previousTraitCollection.userInterfaceStyle != self.dmTraitCollection.userInterfaceStyle && _windowThemeChangeHandler)
+      _windowThemeChangeHandler(self);
+  } else {
+    [[self rootViewController] dmTraitCollectionDidChange:previousTraitCollection];
+  }
+}
 
 @end
