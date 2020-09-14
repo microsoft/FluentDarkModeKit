@@ -12,6 +12,7 @@
   if (self) {
     _useImageAsset = NO;
     _themeChangeHandler = nil;
+    _windowThemeChangeHandler = nil;
   }
   return self;
 }

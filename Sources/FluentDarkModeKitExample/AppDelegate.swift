@@ -19,6 +19,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     configuration.themeChangeHandler = {
       print("theme changed")
     }
+    if #available(iOS 13.0, *) {
+      configuration.windowThemeChangeHandler = { window in
+        print("\(window) theme changed")
+      }
+    }
     DarkModeManager.setup(with: configuration)
     DarkModeManager.register(with: application)
 

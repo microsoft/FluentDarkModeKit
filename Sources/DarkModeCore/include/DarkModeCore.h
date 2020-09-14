@@ -9,4 +9,5 @@
 #import "../DMTraitCollection.h"
 #import "../UIColor+DarkModeKit.h"
 #import "../UIImage+DarkModeKit.h"
+#import "../UIViewController+DarkModeKit.h"
 #import "../UIView+DarkModeKit.h"
