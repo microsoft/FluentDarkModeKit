@@ -61,13 +61,24 @@ To set up FluentDarkModeKit, you need to call the following methods first.
 ```swift
 let configuration = DMEnvironmentConfiguration()
 // optional, register a callback for theme change
+// only called when actual theme change takes
+// place.
+// defaults to nil.
 configuration.themeChangeHandler = {
     print("theme changed")
 }
+// optional, register a callback for per-window theme change
+// only available for iOS 13+, called when a window's theme
+// changes (either a window's theme changes or UIKit is toggling
+// dark mode on window level when app enters background).
+// defaults to nil.
+configuration.windowThemeChangeHandler = { window in
+    print("\(window) theme changed")
+}
 // optional, whether UIImageAsset is used for dynamic image
 // only available for iOS 13+, images marked with "Preserve
-// Vector Data" is not to be used when it is set to true,
-// default to false.
+// Vector Data" is not to be used when it is set to true.
+// defaults to false.
 configuration.useImageAsset = false
 
 DarkModeManager.setup(with: configuration)
