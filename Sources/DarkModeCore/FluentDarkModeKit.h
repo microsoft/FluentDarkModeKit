@@ -9,6 +9,7 @@
 #import <FluentDarkModeKit/DMTraitCollection.h>
 #import <FluentDarkModeKit/UIColor+DarkModeKit.h>
 #import <FluentDarkModeKit/UIImage+DarkModeKit.h>
+#import <FluentDarkModeKit/UIViewController+DarkModeKit.h>
 #import <FluentDarkModeKit/UIView+DarkModeKit.h>
 
 //! Project version number for DarkModeKit.
