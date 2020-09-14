@@ -52,7 +52,7 @@
 		8CE066CF239E5582002CE16D /* UIColor+DarkModeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC8D86C2398E4EC0043276A /* UIColor+DarkModeKit.m */; };
 		8CE066D0239E5586002CE16D /* UIImage+DarkModeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CC8D8722398E7A30043276A /* UIImage+DarkModeKit.m */; };
 		EA00E2FF250B7E1900B78F87 /* UIViewController+DarkModeKit.m in Sources */ = {isa = PBXBuildFile; fileRef = EA00E2FD250B7E1900B78F87 /* UIViewController+DarkModeKit.m */; };
-		EA00E300250B7E1900B78F87 /* UIViewController+DarkModeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EA00E2FE250B7E1900B78F87 /* UIViewController+DarkModeKit.h */; };
+		EA00E300250B7E1900B78F87 /* UIViewController+DarkModeKit.h in Headers */ = {isa = PBXBuildFile; fileRef = EA00E2FE250B7E1900B78F87 /* UIViewController+DarkModeKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EA1BAF6724C581C5006E755F /* UIView+DarkModeKitSwizzling.h in Headers */ = {isa = PBXBuildFile; fileRef = EA1BAF6524C581C5006E755F /* UIView+DarkModeKitSwizzling.h */; };
 		EA1BAF6824C581C5006E755F /* UIView+DarkModeKitSwizzling.m in Sources */ = {isa = PBXBuildFile; fileRef = EA1BAF6624C581C5006E755F /* UIView+DarkModeKitSwizzling.m */; };
 		EA1BAF6F24C58447006E755F /* UIImage+DarkModeKitSwizzling.h in Headers */ = {isa = PBXBuildFile; fileRef = EA1BAF6D24C58447006E755F /* UIImage+DarkModeKitSwizzling.h */; };
@@ -360,10 +360,10 @@
 				8CC8D86D2398E4EC0043276A /* UIColor+DarkModeKit.h in Headers */,
 				EA1BAF6724C581C5006E755F /* UIView+DarkModeKitSwizzling.h in Headers */,
 				EA1BAF6F24C58447006E755F /* UIImage+DarkModeKitSwizzling.h in Headers */,
-				EA00E300250B7E1900B78F87 /* UIViewController+DarkModeKit.h in Headers */,
 				8CC8D8702398E7520043276A /* DMNamespace.h in Headers */,
 				EAC41E2F24CADD6E0033C9AC /* DMEnvironmentConfiguration.h in Headers */,
 				8CDA628D2366DAA9004895B5 /* DMTraitCollection.h in Headers */,
+				EA00E300250B7E1900B78F87 /* UIViewController+DarkModeKit.h in Headers */,
 				8CDA628C2366DAA9004895B5 /* FluentDarkModeKit.h in Headers */,
 				8CB63E41238551F3008ABCE2 /* UIView+DarkModeKit.h in Headers */,
 				8CC8D8732398E7A30043276A /* UIImage+DarkModeKit.h in Headers */,
