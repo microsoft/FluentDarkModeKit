@@ -10,11 +10,12 @@ extension UINavigationBar {
     if #available(iOS 13.0, *) {
       return
     }
+    else {
+      dm_updateDynamicColors()
 
-    dm_updateDynamicColors()
-
-    if let dynamicBarTintColor = barTintColor?.copy() as? DynamicColor {
-      barTintColor = dynamicBarTintColor
+      if let dynamicBarTintColor = barTintColor?.copy() as? DynamicColor {
+        barTintColor = dynamicBarTintColor
+      }
     }
   }
 }

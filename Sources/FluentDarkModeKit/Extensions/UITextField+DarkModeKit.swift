@@ -10,21 +10,22 @@ extension UITextField {
     if #available(iOS 13.0, *) {
       return
     }
+    else {
+      dm_updateDynamicColors()
 
-    dm_updateDynamicColors()
+      if let dynamicTextColor = textColor?.copy() as? DynamicColor {
+        textColor = dynamicTextColor
+      }
 
-    if let dynamicTextColor = textColor?.copy() as? DynamicColor {
-      textColor = dynamicTextColor
+      keyboardAppearance = {
+        if DMTraitCollection.override.userInterfaceStyle == .dark {
+          return .dark
+        }
+        else {
+          return .default
+        }
+      }()
     }
-
-    keyboardAppearance = {
-      if DMTraitCollection.override.userInterfaceStyle == .dark {
-        return .dark
-      }
-      else {
-        return .default
-      }
-    }()
   }
 }
 

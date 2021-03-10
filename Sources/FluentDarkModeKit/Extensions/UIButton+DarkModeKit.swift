@@ -10,12 +10,13 @@ extension UIButton {
     if #available(iOS 13.0, *) {
       return
     }
+    else {
+      dm_updateDynamicColors()
 
-    dm_updateDynamicColors()
-
-    [UIControl.State.normal, .highlighted, .disabled, .selected, .focused].forEach { state in
-      if let color = titleColor(for: state)?.copy() as? DynamicColor {
-        setTitleColor(color, for: state)
+      [UIControl.State.normal, .highlighted, .disabled, .selected, .focused].forEach { state in
+        if let color = titleColor(for: state)?.copy() as? DynamicColor {
+          setTitleColor(color, for: state)
+        }
       }
     }
   }
