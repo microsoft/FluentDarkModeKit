@@ -10,14 +10,15 @@ extension UITableView {
     if #available(iOS 13.0, *) {
       return
     }
+    else {
+      dm_updateDynamicColors()
 
-    dm_updateDynamicColors()
-
-    if let dynamicSectionIndexColor = sectionIndexColor?.copy() as? DynamicColor {
-      sectionIndexColor = dynamicSectionIndexColor
-    }
-    if let dynamicSeparatorColor = separatorColor?.copy() as? DynamicColor {
-      separatorColor = dynamicSeparatorColor
+      if let dynamicSectionIndexColor = sectionIndexColor?.copy() as? DynamicColor {
+        sectionIndexColor = dynamicSectionIndexColor
+      }
+      if let dynamicSeparatorColor = separatorColor?.copy() as? DynamicColor {
+        separatorColor = dynamicSeparatorColor
+      }
     }
   }
 }

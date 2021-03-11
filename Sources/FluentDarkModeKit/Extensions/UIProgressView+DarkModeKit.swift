@@ -10,14 +10,15 @@ extension UIProgressView {
     if #available(iOS 13.0, *) {
       return
     }
+    else {
+      dm_updateDynamicColors()
 
-    dm_updateDynamicColors()
-
-    if let dynamicProgressTintColor = progressTintColor?.copy() as? DynamicColor {
-      progressTintColor = dynamicProgressTintColor
-    }
-    if let dynamicTrackTintColor = trackTintColor?.copy() as? DynamicColor {
-      trackTintColor = dynamicTrackTintColor
+      if let dynamicProgressTintColor = progressTintColor?.copy() as? DynamicColor {
+        progressTintColor = dynamicProgressTintColor
+      }
+      if let dynamicTrackTintColor = trackTintColor?.copy() as? DynamicColor {
+        trackTintColor = dynamicTrackTintColor
+      }
     }
   }
 }

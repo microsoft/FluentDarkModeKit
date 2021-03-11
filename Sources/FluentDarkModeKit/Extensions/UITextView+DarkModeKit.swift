@@ -10,16 +10,17 @@ extension UITextView {
     if #available(iOS 13.0, *) {
       return
     }
+    else {
+      dm_updateDynamicColors()
 
-    dm_updateDynamicColors()
-
-    keyboardAppearance = {
-      if DMTraitCollection.override.userInterfaceStyle == .dark {
-        return .dark
-      }
-      else {
-        return .default
-      }
-    }()
+      keyboardAppearance = {
+        if DMTraitCollection.override.userInterfaceStyle == .dark {
+          return .dark
+        }
+        else {
+          return .default
+        }
+      }()
+    }
   }
 }

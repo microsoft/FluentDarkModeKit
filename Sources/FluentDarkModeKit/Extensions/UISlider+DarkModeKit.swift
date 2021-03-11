@@ -10,14 +10,15 @@ extension UISlider {
     if #available(iOS 13.0, *) {
       return
     }
+    else {
+      dm_updateDynamicColors()
 
-    dm_updateDynamicColors()
-
-    if let dynamicMinimumTrackTintColor = minimumTrackTintColor?.copy() as? DynamicColor {
-      minimumTrackTintColor = dynamicMinimumTrackTintColor
-    }
-    if let dynamicMaximumTrackTintColor = maximumTrackTintColor?.copy() as? DynamicColor {
-      maximumTrackTintColor = dynamicMaximumTrackTintColor
+      if let dynamicMinimumTrackTintColor = minimumTrackTintColor?.copy() as? DynamicColor {
+        minimumTrackTintColor = dynamicMinimumTrackTintColor
+      }
+      if let dynamicMaximumTrackTintColor = maximumTrackTintColor?.copy() as? DynamicColor {
+        maximumTrackTintColor = dynamicMaximumTrackTintColor
+      }
     }
   }
 }

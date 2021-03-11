@@ -29,8 +29,10 @@
   }];
   [self setNeedsLayout];
   [self setNeedsDisplay];
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_13_0
   [self dm_updateDynamicColors];
   [self dm_updateDynamicImages];
+#endif
 }
 
 // MARK: - Legacy Support
