@@ -68,11 +68,14 @@ extension UILabel {
       let attribute = withUnsafeMutablePointer(to: &range) {
         attributedText.attribute(.foregroundColor, at: index, effectiveRange: $0)
       }
+      if updatedAttributedText == nil {
+        updatedAttributedText = NSMutableAttributedString(attributedString: attributedText)
+      }
       if let color = attribute as? DynamicColor {
-        if updatedAttributedText == nil {
-          updatedAttributedText = NSMutableAttributedString(attributedString: attributedText)
-        }
-        updatedAttributedText?.setAttributes([.foregroundColor: color.copy()], range: range)
+        updatedAttributedText?.addAttribute(.foregroundColor, value: color.copy(), range: range)
+      }
+      else if let color = textColor as? DynamicColor {
+        updatedAttributedText?.addAttribute(.foregroundColor, value: color.copy(), range: range)
       }
     }
 
