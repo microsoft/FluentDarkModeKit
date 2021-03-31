@@ -73,7 +73,8 @@ extension UILabel {
       }
       if let color = attribute as? DynamicColor {
         updatedAttributedText?.addAttribute(.foregroundColor, value: color.copy(), range: range)
-      } else if let color = textColor as? DynamicColor {
+      }
+      else if let color = textColor as? DynamicColor {
         updatedAttributedText?.addAttribute(.foregroundColor, value: color.copy(), range: range)
       }
     }
