@@ -56,17 +56,22 @@ pod "FluentDarkModeKit"
 
 ### How to Set Up FluentDarkModeKit
 
-To set up FluentDarkModeKit, you need to call the following methods first.
+To set up FluentDarkModeKit, you need to call the following methods first. A good place to call it is inside your AppDelegate's `application:didFinishLaunchingWithOptions:`.
 
 ```swift
+import FluentDarkModeKit
+
 let configuration = DMEnvironmentConfiguration()
 configuration.themeChangeHandler = {
-    print("theme changed")
+  print("theme changed")
 }
-configuration.windowThemeChangeHandler = { window in
+
+if #available(iOS 13.0, *) {
+  configuration.windowThemeChangeHandler = { window in
     print("\(window) theme changed")
+  }
+  configuration.useImageAsset = false
 }
-configuration.useImageAsset = false
 
 DarkModeManager.setup(with: configuration)
 DarkModeManager.register(with: UIApplication.shared)
@@ -97,6 +102,30 @@ It determines whether UIImageAsset is used for dynamic image. iOS 13+. Defaults 
 
 Images marked with "Preserve Vector Data" must not to be used when it is set to true.
 
+**Objective-C**
+
+The equivalent Objective-C code for setting up FluentDarkModeKit is as below.
+
+```objective-c
+#import <FluentDarkModeKit/FluentDarkModeKit.h>
+#import <FluentDarkModeKit/FluentDarkModeKit-Swift.h>
+
+DMEnvironmentConfiguration *configuration = [[DMEnvironmentConfiguration alloc] init];
+configuration.themeChangeHandler = ^{
+  NSLog(@"theme changed");
+};
+
+if (@available(iOS 13.0, *)) {
+  configuration.windowThemeChangeHandler = ^(UIWindow *window) {
+    NSLog(@"%@ theme changed", window);
+  };
+  configuration.useImageAsset = NO;
+}
+
+[DarkModeManager setupWithConfiguration:configuration];
+[DarkModeManager registerWithApplication:[UIApplication sharedApplication] syncImmediately:NO animated:NO];
+```
+
 ### How to Use FluentDarkModeKit
 
 To use FluentDarkModeKit, provide a pair of colors or images instead of a single value. Simply replace existing colors/images with a pair of light and dark colors/images.
@@ -105,21 +134,36 @@ To use FluentDarkModeKit, provide a pair of colors or images instead of a single
 
 ```swift
 extension UIColor {
-    init(_ namespace: DMNamespace, light: UIColor, dark: UIColor)
-    init(_ namespace: DMNamespace, dynamicProvider: @escaping (DMTraitCollection) -> UIColor)
+  init(_ namespace: DMNamespace, light: UIColor, dark: UIColor)
+  init(_ namespace: DMNamespace, dynamicProvider: @escaping (DMTraitCollection) -> UIColor)
 }
 
 let color1 = UIColor(.dm, light: .white, dark: .black)
 let color2 = UIColor(.dm) { traitCollection in
-    return traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
+  return traitCollection.userInterfaceStyle == .dark ? UIColor.black : UIColor.white
 }
 ```
+
+Objective-C
+
+```objective-c
+UIColor *color1 = [UIColor dm_colorWithLightColor:[UIColor whiteColor] darkColor:[UIColor blackColor]];
+UIColor *color2 = [UIColor dm_colorWithDynamicProvider:^UIColor * (DMTraitCollection *traitCollection) {
+  if (traitCollection.userInterfaceStyle == DMUserInterfaceStyleDark) {
+    return [UIColor blackColor];
+  }
+  return [UIColor whiteColor];
+}];
+
+```
+
+
 
 #### Images
 
 ```swift
 extension UIImage {
-    init(_ namespace: DMNamespace, light: UIImage, dark: UIImage)
+  init(_ namespace: DMNamespace, light: UIImage, dark: UIImage)
 }
 
 let lightImage = UIImage(named: "Light")!
@@ -127,11 +171,26 @@ let darkImage = UIImage(named: "Dark")!
 let image = UIImage(.dm, light: lightImage, dark: darkImage)
 ```
 
+Objective-C
+
+```objective-c
+UIImage *image = [UIImage dm_imageWithLightImage:lightImage darkImage:darkImage];
+```
+
+
+
 #### Change Theme
 
 ```swift
 DMTraitCollection.setOverride(DMTraitCollection(userInterfaceStyle: .light), animated: true) // Change to light theme with animation
 DMTraitCollection.setOverride(DMTraitCollection(userInterfaceStyle: .unspecified), animated: true) // Change to "follow system" theme
+```
+
+Objective-C
+
+```objective-c
+[DMTraitCollection setOverrideTraitCollection:[DMTraitCollection traitCollectionWithUserInterfaceStyle:DMUserInterfaceStyleLight] animated:YES]; // Change to light theme with animation
+[DMTraitCollection setOverrideTraitCollection:[DMTraitCollection traitCollectionWithUserInterfaceStyle:DMUserInterfaceStyleUnspecified] animated:YES]; // Change to "follow system" theme
 ```
 
 ### Others
@@ -142,9 +201,13 @@ For more information on cases you should handle during layout, please refer to [
 
 FluentDarkModeKit will notify views or view controllers in the current window when the theme changes by calling the following delegate method. 
 
+Note that on iOS 13 and later, certain UIKit classes do not call `UIView`'s implementation of `traitCollectionDidChange(_:)`, thus `dmTraitCollectionDidChange(_:)` will not be invoked.
+
+The (incomprehensive) list includes UIImageView, UILabel, UIDatePicker, UIPickerView, UISplitViewController, and their subclasses. See [issue 104](https://github.com/microsoft/FluentDarkModeKit/issues/104) .
+
 ```swift
 protocol DMTraitEnvironment: NSObjectProtocol {
-    func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?)
+  func dmTraitCollectionDidChange(_ previousTraitCollection: DMTraitCollection?)
 }
 ```
 
