@@ -11,16 +11,16 @@ import UIKit
 public final class DarkModeManager: NSObject {
   private static var swizzlingConfigured = false
 
-  public static func setup(with configuration: DMEnvironmentConfiguration) {
+  @objc(setupWithConfiguration:) public static func setup(with configuration: DMEnvironmentConfiguration) {
     commonSetup(with: configuration)
   }
 
-  public static func register(with application: UIApplication, syncImmediately: Bool = false, animated: Bool = false) {
+  @objc(registerWithApplication:syncImmediately:animated:) public static func register(with application: UIApplication, syncImmediately: Bool = false, animated: Bool = false) {
     DMTraitCollection.register(with: application, syncImmediately: syncImmediately, animated: animated)
   }
 
   @available(iOSApplicationExtension 11.0, *)
-  public static func register(with viewController: UIViewController, syncImmediately: Bool = false, animated: Bool = false) {
+  @objc(registerWithViewController:syncImmediately:animated:) public static func register(with viewController: UIViewController, syncImmediately: Bool = false, animated: Bool = false) {
     DMTraitCollection.register(with: viewController, syncImmediately: syncImmediately, animated: animated)
   }
 
